@@ -10,6 +10,7 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build",
+    "prepare": "husky install",
     "lint": "npx eslint \"**/*.js\"",
     "prettier-check": "npx prettier --check .",
     "prettier-write": "npx prettier --write ."
@@ -29,7 +30,8 @@
   },
   "homepage": "https://github.com/AtlantaBlack/artist-alley#readme",
   "dependencies": {
-    "concurrently": "^7.3.0"
+    "concurrently": "^7.3.0",
+    "husky": "^8.0.1"
   },
   "devDependencies": {
     "eslint": "^8.20.0",
@@ -39,6 +41,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "husky": "^8.0.0"
   }
 }
