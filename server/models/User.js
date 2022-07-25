@@ -7,6 +7,11 @@ const bcrypt = require('bcrypt');
 const Order = require('./Order');
 
 const userSchema = new Schema({
+  userType: {
+    type: String,
+    enum: ['Artist', 'Non-Artist'],
+    required: true
+  },
   username: {
     type: String,
     required: true,
@@ -41,6 +46,11 @@ const userSchema = new Schema({
     type: String,
     required: true
     // find regex for password validation
+  },
+  // https://stackoverflow.com/questions/59410507/date-of-birth-in-mongoose-schema/59410609#59410609
+  birthday: {
+    type: Date,
+    required: true
   },
   orders: [Order.schema]
 });
