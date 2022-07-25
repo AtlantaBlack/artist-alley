@@ -14,6 +14,15 @@ const typeDefs = gql`
     orders: [Order]
     products: [Product]
   }
+
+  type Post {
+    _id: ID
+    title: String
+    description: String
+    image: String
+    postType: String
+    likes: Int
+  }
 `;
 
 module.exports = typeDefs;
