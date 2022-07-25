@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const bcrypt = require('bcrypt');
-const Order = require('./Order');
+const { Order } = require('./Order');
+const { Product } = require('./Product');
 
 const userSchema = new Schema({
   userType: {
@@ -15,6 +16,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
     trim: true
   },
   firstName: {
@@ -30,7 +32,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    uniqe: true,
+    unique: true,
     lowercase: true,
     validate: {
       // Custom validation for email https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
@@ -52,7 +54,9 @@ const userSchema = new Schema({
     type: Date,
     required: true
   },
-  orders: [Order.schema]
+  orders: [Order.schema],
+
+  products: [Product.schema]
 });
 
 // Set up for pre-save middleware to create a password for user
