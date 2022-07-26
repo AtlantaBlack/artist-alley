@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
   name: {
-    trype: String,
+    type: String,
     required: true,
     trim: true
   },
@@ -28,6 +28,11 @@ const productSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
+    required: true
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   }
 });

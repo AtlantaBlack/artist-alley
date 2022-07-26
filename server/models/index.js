@@ -6,8 +6,8 @@ const Category = require('./Category');
 
 module.exports = {
   User,
+  Post,
   Category,
   Product,
-  Order,
-  Post
+  Order
 };

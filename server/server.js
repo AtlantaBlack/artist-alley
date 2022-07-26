@@ -39,7 +39,9 @@ const startApolloServer = async () => {
 
   db.once('open', () => {
     app.listen(PORT, () => {
+      // eslint-disable-next-line no-console
       console.log(`We're live! API server is running on port ${PORT}.`);
+      // eslint-disable-next-line no-console
       console.log(
         `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
       );
