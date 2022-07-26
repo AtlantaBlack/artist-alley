@@ -1,6 +1,6 @@
 import './index.css';
 
-const Header = () => {
+const GlobalHeader = () => {
   return (
     <div>
       <h1 className="header">Artist Alley</h1>
@@ -8,4 +8,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default GlobalHeader;
