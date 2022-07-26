@@ -11,8 +11,7 @@ const typeDefs = gql`
     email: String
     password: String
     birthday: String
-    orders: [Order]
-    products: [Product]
+    # add orders in later
   }
 
   type Post {
@@ -22,6 +21,11 @@ const typeDefs = gql`
     image: String
     postType: String
     likes: Int
+  }
+
+  type Query {
+    users: [User]
+    user: User
   }
 `;
 
