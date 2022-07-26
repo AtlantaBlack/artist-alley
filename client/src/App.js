@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import GlobalHeader from './components/GlobalHeader';
-import Home from './pages/Home.js';
+// import Home from './pages/Home.js';
+import Signup from './pages/Signup.js';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -17,7 +18,12 @@ function App() {
       <BrowserRouter>
         <GlobalHeader />
         <Routes>
+          {/* BELOW FOR TESTING ONLY */}
+          <Route path="/" element={<Signup />} />
+          {/* UNCOMMENT THIS FOR THE REAL DEAL
           <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+           */}
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
