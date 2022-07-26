@@ -1,7 +1,20 @@
-/* IMPORT Google Fonts
- * cabin sketch: 400, 700
- * lato: 100, 300, 400 */
+/*
+ * Import Google Fonts
+ * 1. Cabin sketch: 400 (norm), 700 (bold)
+ * 2. Lato: 100 (thin), 300 (norm), 400 (bold)
+*/
 @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Lato:wght@100;300;400&display=swap');
+
+/* 
+* 1. Correct the line height in all browsers.
+* 2. Prevent adjustments of font size after orientation changes in iOS.
+*/
+html {
+  /* 1 */
+  line-height: 1.15;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
@@ -9,11 +22,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 24px;
-  line-height: 1.4;
 }
 
 h1 {
   font-family: 'Cabin Sketch', cursive;
-  font-weight: 700;
   font-size: 5rem;
+  font-weight: 700;
+}
+
+p {
+  font-weight: 300;
 }
