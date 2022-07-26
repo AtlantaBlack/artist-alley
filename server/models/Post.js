@@ -24,6 +24,11 @@ const postSchema = new Schema({
     type: Number,
     min: 0,
     default: 0
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 

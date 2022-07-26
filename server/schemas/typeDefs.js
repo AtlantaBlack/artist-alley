@@ -21,6 +21,7 @@ const typeDefs = gql`
     image: String
     postType: String
     likes: Int
+    user: User
   }
 
   type Category {
