@@ -38,6 +38,12 @@ const typeDefs = gql`
     category: Category
   }
 
+  type Order {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
+
   type Query {
     users: [User]
     user: User
