@@ -1,3 +1,6 @@
+/* eslint-disable func-names */
+/* eslint-disable no-return-await */
+
 // user
 const mongoose = require('mongoose');
 
@@ -72,7 +75,6 @@ userSchema.pre('save', async function (next) {
 
 // Compare password input with hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
-  // eslint-disable-next-line no-return-await
   return await bcrypt.compare(password, this.password);
 };
 
