@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const productSchema = new Schema({
+const merchSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -37,6 +37,6 @@ const productSchema = new Schema({
   }
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Merch = mongoose.model('Merch', merchSchema);
 
-module.exports = Product;
+module.exports = Merch;

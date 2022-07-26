@@ -8,15 +8,14 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  products: [
+  merch: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Product'
+      ref: 'Merch'
     }
   ]
 });
 
 const Order = mongoose.model('Order', orderSchema);
 
-// https://stackoverflow.com/questions/70505335/mongoose-getting-typeerror-cannot-read-properties-of-undefined-reading-find
-module.exports = { Order };
+module.exports = Order;

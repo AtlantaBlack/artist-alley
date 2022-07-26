@@ -29,7 +29,7 @@ const typeDefs = gql`
     name: String
   }
 
-  type Product {
+  type Merch {
     _id: ID
     name: String
     description: String
@@ -43,7 +43,7 @@ const typeDefs = gql`
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
+    merch: [Merch]
   }
 
   type Query {
