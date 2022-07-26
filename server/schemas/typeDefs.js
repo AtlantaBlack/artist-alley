@@ -11,7 +11,7 @@ const typeDefs = gql`
     email: String
     password: String
     birthday: String
-    # add orders in later
+    orders: [Order]
   }
 
   type Post {
@@ -21,6 +21,21 @@ const typeDefs = gql`
     image: String
     postType: String
     likes: Int
+  }
+
+  type Category {
+    _id: ID
+    name: String
+  }
+
+  type Product {
+    _id: ID
+    name: String
+    description: String
+    image: String
+    price: Float
+    quantity: Int
+    category: Category
   }
 
   type Query {
