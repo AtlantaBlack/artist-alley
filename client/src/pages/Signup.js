@@ -9,7 +9,33 @@ import React, { useState } from 'react';
 */
 
 function Signup(props) {
+  // set local state for userType
   const [userType, setUserType] = useState('');
+  const [formState, setFormState] = useState({ email: '', password: '' });
+
+  // CURRENTLY ONLY CONSOLE LOGGING THE SIGNUP RESPONSES
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const response = await {
+      email: formState.email,
+      password: formState.password,
+      username: formState.username,
+      firstName: formState.firstName,
+      lastName: formState.lastName,
+      birthday: formState.birthday,
+      userType: userType
+    };
+    // add auths and stuff here also
+    console.log(response);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  };
 
   // rendering form
   return (
@@ -27,15 +53,13 @@ function Signup(props) {
         </div>
       )}
 
-      {/* this here for testing the local state */}
-      <div>
-        <p>the user is a(n):</p>
-        {userType}
-      </div>
-
       {/* if the user type is defined then show the sign up form */}
       {userType && (
         <div className="signup-container">
+          {/* this here for testing the local state */}
+          <p>the user is a(n):</p>
+          {userType}
+
           <h2>Enter your details</h2>
           <form>
             <div>
@@ -45,25 +69,28 @@ function Signup(props) {
                 name="username"
                 type="username"
                 id="username"
+                onChange={handleInputChange}
               />
             </div>
             <div>
               <label htmlFor="firstName">First name:</label>
               <input
-                placeholder="First name"
+                placeholder="First"
                 name="firstName"
                 type="firstName"
                 id="firstName"
+                onChange={handleInputChange}
               />
             </div>
 
             <div>
               <label htmlFor="lastName">Last name:</label>
               <input
-                placeholder="lastName"
+                placeholder="Last"
                 name="lastName"
                 type="lastName"
                 id="lastName"
+                onChange={handleInputChange}
               />
             </div>
 
@@ -74,6 +101,7 @@ function Signup(props) {
                 name="email"
                 type="email"
                 id="email"
+                onChange={handleInputChange}
               />
             </div>
 
@@ -83,7 +111,8 @@ function Signup(props) {
                 placeholder="*****"
                 name="password"
                 type="password"
-                id="password"
+                id="pwd"
+                onChange={handleInputChange}
               />
             </div>
 
@@ -94,10 +123,14 @@ function Signup(props) {
                 name="birthday"
                 type="birthday"
                 id="birthday"
+                onChange={handleInputChange}
               />
             </div>
             <div>
-              <button type="submit">Submit</button>
+              {/* CHANGE THIS TO TYPE=SUBMIT LATER */}
+              <button type="button" onClick={handleFormSubmit}>
+                Submit
+              </button>
             </div>
           </form>
         </div>
