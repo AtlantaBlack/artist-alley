@@ -9,13 +9,22 @@ import React, { useState } from 'react';
 */
 
 function Signup(props) {
+  const [userType, setUserType] = useState('');
+
+  // rendering form
   return (
     <div>
       <div className="userType-container">
         <h2>I am...</h2>
-        <button>An Artist</button>
-        <button>A Wizard</button>
+        <button type="button" onClick={() => setUserType('Artist')}>
+          An Artist
+        </button>
+        <button type="button" onClick={() => setUserType('Non-Artist')}>
+          A Wizard
+        </button>
       </div>
+
+      {userType}
 
       <div className="signup-container">
         <h2>Enter your details</h2>
