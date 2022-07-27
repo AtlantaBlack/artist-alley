@@ -5,6 +5,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import GlobalHeader from './components/GlobalHeader';
 import Home from './pages/Home.js';
+import Signup from './pages/Signup.js';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -16,8 +17,10 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <GlobalHeader />
+        {/* prettier-ignore */}
         <Routes>
           <Route path="/" element={<Home />} />
+            <Route path="signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
