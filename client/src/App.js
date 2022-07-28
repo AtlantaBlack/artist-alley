@@ -7,6 +7,7 @@ import GlobalHeader from './components/GlobalHeader';
 import Home from './pages/Home.js';
 import Signup from './pages/Signup.js';
 import Login from './pages/Login.js';
+import Dashboard from './pages/Dashboard.js';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
+            <Route path="dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
