@@ -5,7 +5,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { dateScalar } = require('../scalars/date');
 
 // Add resolversfor GraphQL
-const { User } = require('../models');
+const { User, Post } = require('../models');
 
 const resolvers = {
   Query: {
@@ -14,7 +14,14 @@ const resolvers = {
     },
     user: async (parent, { username }) => {
       return await User.findOne({ username });
+    },
+    posts: async () => {
+      return await Post.find();
     }
+
+    // userPost: async (parent, username) => {
+    //   return await User.findOne(username).populate('post');
+    // }
   },
 
   Mutation: {
