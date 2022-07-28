@@ -48,8 +48,18 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true
-    // find regex for password validation
+    required: true,
+
+    validate: {
+      validator(value) {
+        // https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/
+        return /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*?><]).{8,32}$/.test(
+          value
+        );
+      },
+      message:
+        'Password must be between 8-16 characters and must include at least one character from each of the following categories: uppercase, lowercase, number, special character '
+    }
   },
   // https://stackoverflow.com/questions/59410507/date-of-birth-in-mongoose-schema/59410609#59410609
   birthday: {
