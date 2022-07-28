@@ -18,6 +18,10 @@ const resolvers = {
     posts: async () => {
       return await Post.find();
     }
+
+    // userPost: async (parent, username) => {
+    //   return await User.findOne(username).populate('post');
+    // }
   },
 
   Mutation: {
