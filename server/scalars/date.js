@@ -9,12 +9,13 @@ const { GraphQLScalarType } = require('graphql');
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
   parseValue(value) {
-    return new Date(value);
-    // .toLocaleDateString('en-GB');
+    // Append Z to the value so that it is in UTC
+    // https://www.mongodb.com/community/forums/t/save-date-of-birth-of-user-without-timezone/9155/8
+    const dateVal = `${value}Z`;
+    return new Date(dateVal);
   },
   serialize(value) {
     return value;
-    // .toLocaleDateString('en-GB');
   }
 });
 
