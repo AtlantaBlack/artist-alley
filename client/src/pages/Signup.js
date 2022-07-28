@@ -29,8 +29,7 @@ function Signup(props) {
         username: formState.username,
         firstName: formState.firstName,
         lastName: formState.lastName,
-        // parseInt on the birthday value as GraphQL takes dates as integers
-        birthday: parseInt(formState.birthday),
+        birthday: formState.birthday,
         userType: userType
       }
     });

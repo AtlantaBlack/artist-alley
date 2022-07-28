@@ -1,5 +1,6 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-return-await */
+const { dateScalar } = require('../scalars/date');
 
 // Add resolversfor GraphQL
 const { User } = require('../models');
@@ -31,7 +32,8 @@ const resolvers = {
       });
       return user;
     }
-  }
+  },
+  dateScalar
 };
 
 module.exports = resolvers;

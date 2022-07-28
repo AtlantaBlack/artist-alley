@@ -1,7 +1,11 @@
 // Add typeDefs for GraphQL
 const { gql } = require('apollo-server-express');
 
+// const { dateScalar } = require('../scalars/date');
+
 const typeDefs = gql`
+  scalar dateScalar
+
   type User {
     _id: ID
     userType: String
@@ -10,7 +14,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     password: String
-    birthday: String
+    birthday: dateScalar
     orders: [Order]
   }
 
@@ -59,7 +63,7 @@ const typeDefs = gql`
       lastName: String!
       email: String!
       password: String!
-      birthday: Int!
+      birthday: dateScalar!
     ): User
   }
 `;

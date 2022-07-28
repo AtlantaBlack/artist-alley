@@ -31,6 +31,8 @@
   "homepage": "https://github.com/AtlantaBlack/artist-alley#readme",
   "dependencies": {
     "concurrently": "^7.3.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-type-datetime": "^0.2.4",
     "husky": "^8.0.1"
   },
   "devDependencies": {
