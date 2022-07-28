@@ -31,7 +31,10 @@ const Dashboard = () => {
       <h2>posts</h2>
       {/* map posts */}
       {posts.map((post) => (
-        <div key={post.id}>
+        <div
+          key={post.id}
+          style={{ border: '1px solid green', margin: '10px 0' }}
+        >
           <h3>{post.title}</h3>
           <p>{post.description}</p>
           <img src={post.image} alt={post.image} />
