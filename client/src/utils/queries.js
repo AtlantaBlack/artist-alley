@@ -8,6 +8,7 @@ export const QUERY_POSTS = gql`
       image
       likes
       user {
+        _id
         username
       }
     }
