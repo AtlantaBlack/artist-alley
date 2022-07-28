@@ -127,7 +127,7 @@ function Signup(props) {
             <div>
               <label htmlFor="birthday">Birthday:</label>
               <input
-                placeholder="DD/MM/YYYY"
+                placeholder="MM/DD/YYYY"
                 name="birthday"
                 type="birthday"
                 id="birthday"

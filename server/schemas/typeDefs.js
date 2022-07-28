@@ -50,6 +50,11 @@ const typeDefs = gql`
     merch: [Merch]
   }
 
+  type Auth {
+    # token: ID
+    user: User
+  }
+
   type Query {
     users: [User]
     user: User
@@ -65,6 +70,8 @@ const typeDefs = gql`
       password: String!
       birthday: dateScalar!
     ): User
+
+    login(email: String!, password: String!): Auth
   }
 `;
 

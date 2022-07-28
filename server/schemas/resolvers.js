@@ -1,5 +1,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-return-await */
+const { AuthenticationError } = require('apollo-server-express');
+// const { signToken } = require('../utils/auth');
 const { dateScalar } = require('../scalars/date');
 
 // Add resolversfor GraphQL
@@ -31,6 +33,25 @@ const resolvers = {
         birthday
       });
       return user;
+    },
+
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      // const token = signToken(user);
+
+      // return { token, user };
+      return { user };
     }
   },
   dateScalar
