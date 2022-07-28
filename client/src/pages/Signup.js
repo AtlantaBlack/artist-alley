@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// import the useMutation function and ADD_USER mutation
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 /*
 
 1) make sign up form
@@ -13,18 +16,24 @@ function Signup(props) {
   const [userType, setUserType] = useState('');
   const [formState, setFormState] = useState({ email: '', password: '' });
 
+  //use the addUser mutation
+  const [addUser] = useMutation(ADD_USER);
+
   // CURRENTLY ONLY CONSOLE LOGGING THE SIGNUP RESPONSES
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const response = await {
-      email: formState.email,
-      password: formState.password,
-      username: formState.username,
-      firstName: formState.firstName,
-      lastName: formState.lastName,
-      birthday: formState.birthday,
-      userType: userType
-    };
+    const response = await addUser({
+      variables: {
+        email: formState.email,
+        password: formState.password,
+        username: formState.username,
+        firstName: formState.firstName,
+        lastName: formState.lastName,
+        // parseInt on the birthday value as GraphQL takes dates as integers
+        birthday: parseInt(formState.birthday),
+        userType: userType
+      }
+    });
     // add auths and stuff here also
     console.log(response);
   };
