@@ -30,4 +30,15 @@ export const ADD_USER = gql`
   }
 `;
 
+export const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      # token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
 //add token to the above once we've worked out the auth stuff
