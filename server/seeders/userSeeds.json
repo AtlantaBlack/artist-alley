@@ -1,0 +1,20 @@
+[
+  {
+    "userType": "Artist",
+    "username": "Princess",
+    "firstName": "Quinn",
+    "lastName": "Donohue",
+    "email": "quinn@email.com",
+    "password": "Pass1234!",
+    "birthday": "07/21/1990"
+  },
+  {
+    "userType": "Non-Artist",
+    "username": "Bo-Peep",
+    "firstName": "Vincent",
+    "lastName": "Curley",
+    "email": "vincent@email.com",
+    "password": "Pass1234!",
+    "birthday": "06/23/1990"
+  }
+]
