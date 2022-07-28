@@ -5,8 +5,8 @@
     "firstName": "Quinn",
     "lastName": "Donohue",
     "email": "quinn@email.com",
-    "password": "pass1234",
-    "birthday": "21 July 1990"
+    "password": "Pass1234!",
+    "birthday": "07/21/1990"
   },
   {
     "userType": "Non-Artist",
@@ -14,7 +14,7 @@
     "firstName": "Vincent",
     "lastName": "Curley",
     "email": "vincent@email.com",
-    "password": "pass1234",
-    "birthday": "23 June 1990"
+    "password": "Pass1234!",
+    "birthday": "06/23/1990"
   }
 ]
