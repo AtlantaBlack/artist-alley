@@ -41,4 +41,27 @@ export const LOGIN = gql`
   }
 `;
 
+export const ADD_POST = gql`
+  mutation Mutation(
+    $title: String
+    $description: String
+    $image: String
+    $createdBy: String!
+    $postType: String!
+  ) {
+    addPost(
+      title: $title
+      description: $description
+      image: $image
+      createdBy: $createdBy
+      postType: $postType
+    ) {
+      title
+      image
+      description
+      postType
+    }
+  }
+`;
+
 //add token to the above once we've worked out the auth stuff

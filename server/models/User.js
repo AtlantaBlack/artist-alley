@@ -66,10 +66,12 @@ const userSchema = new Schema({
     type: Date,
     required: true
   },
-  post: {
-    type: Schema.Types.ObjectId,
-    ref: 'Post'
-  },
+  post: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Post'
+    }
+  ],
   orders: [Order.schema]
 });
 
