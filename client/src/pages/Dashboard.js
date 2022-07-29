@@ -47,18 +47,18 @@ const Dashboard = () => {
 
   const [addPost] = useMutation(ADD_POST);
 
+  // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
-    console.log(value);
+    // console.log(value);
+    // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
-    console.log(image);
+    // console.log(image);
     setImage(image);
-    // ({ base64 }) => setImage({ ...imageUpload, image: base64 });
-    // return convertedImage;
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // const imageUpload = setImage(event.target.value.split('base64,')[1]);
+
     const response = await addPost({
       variables: {
         title: formState.title,
@@ -122,7 +122,6 @@ const Dashboard = () => {
               type="file"
               multiple={false}
               onDone={({ base64 }) => convert64({ base64 })}
-              // onDone={({ base64 }) => setImage({ ...imageUpload, image: base64 })}
             />
           </div>
 
@@ -158,7 +157,7 @@ const Dashboard = () => {
                   src={`data:image/png;base64,${post.image}`}
                   alt={post.image}
                 />
-                <p>posted by {post.username}</p>
+                <p>posted by {post.createdBy}</p>
                 <p>likes:</p>
               </div>
             ))
