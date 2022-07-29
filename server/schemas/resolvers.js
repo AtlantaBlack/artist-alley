@@ -9,22 +9,24 @@ const { User, Post } = require('../models');
 
 const resolvers = {
   Query: {
+    // find all users
     users: async () => {
       return await User.find();
     },
+    // find single user and display posts
     user: async (parent, { username }) => {
-      return await User.findOne({ username });
+      return await User.findOne({ username }).populate('posts');
     },
-    posts: async () => {
-      return await Post.find();
-    }
 
-    // userPost: async (parent, username) => {
-    //   return await User.findOne(username).populate('post');
-    // }
+    // find all posts
+    allUserPosts: async () => {
+      return await User.find().populate('posts');
+    }
   },
 
   Mutation: {
+    // add new user
+
     addUser: async (
       parent,
       // eslint-disable-next-line object-curly-newline
@@ -41,6 +43,8 @@ const resolvers = {
       });
       return user;
     },
+
+    // user login
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -59,6 +63,26 @@ const resolvers = {
 
       // return { token, user };
       return { user };
+    },
+
+    // add new post
+    addPost: async (
+      parent,
+      // eslint-disable-next-line object-curly-newline
+      { title, description, image, createdBy, postType }
+    ) => {
+      const newPost = await Post.create({
+        title,
+        description,
+        image,
+        createdBy,
+        postType
+      });
+      await User.findOneAndUpdate(
+        { username: createdBy },
+        { $addToSet: { posts: newPost.id } }
+      );
+      return newPost;
     }
   },
   dateScalar

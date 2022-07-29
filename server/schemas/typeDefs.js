@@ -15,6 +15,7 @@ const typeDefs = gql`
     email: String
     password: String
     birthday: dateScalar
+    posts: [Post]
     orders: [Order]
   }
 
@@ -57,9 +58,10 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user: User
+    user(username: String): User
     posts: [Post]
-    # userPost: [Post]
+    userPost(username: String!): [Post]
+    allUserPosts: [User]
   }
 
   type Mutation {
@@ -74,6 +76,14 @@ const typeDefs = gql`
     ): User
 
     login(email: String!, password: String!): Auth
+
+    addPost(
+      title: String
+      description: String
+      image: String
+      createdBy: String!
+      postType: String!
+    ): Post
   }
 `;
 

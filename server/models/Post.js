@@ -25,10 +25,14 @@ const postSchema = new Schema({
     min: 0,
     default: 0
   },
+  createdBy: {
+    type: String
+  },
+
+  // idk if we need this
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
   }
 });
 
