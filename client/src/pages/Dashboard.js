@@ -1,6 +1,9 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import FileBase64 from 'react-file-base64';
 import { QUERY_POSTS } from '../utils/queries';
+import { ADD_POST } from '../utils/mutations';
 
 const Dashboard = () => {
   // const posts = [
@@ -33,6 +36,48 @@ const Dashboard = () => {
 
   console.log(posts);
 
+  const [postType, setUserType] = useState('');
+  const [image, setImage] = useState('');
+  const [formState, setFormState] = useState({
+    title: '',
+    description: '',
+    createdBy: '',
+    image: ''
+  });
+
+  const [addPost] = useMutation(ADD_POST);
+
+  const convert64 = async (value) => {
+    console.log(value);
+    const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
+    console.log(image);
+    setImage(image);
+    // ({ base64 }) => setImage({ ...imageUpload, image: base64 });
+    // return convertedImage;
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    // const imageUpload = setImage(event.target.value.split('base64,')[1]);
+    const response = await addPost({
+      variables: {
+        title: formState.title,
+        description: formState.description,
+        image: image,
+        createdBy: formState.createdBy,
+        postType: postType
+      }
+    });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  };
+
   return (
     <div>
       <div className="add-post">
@@ -45,6 +90,17 @@ const Dashboard = () => {
               name="title"
               type="title"
               id="title"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="createdBy">Username</label>
+            <input
+              placeholder="title of post"
+              name="createdBy"
+              type="createdBy"
+              id="createdBy"
+              onChange={handleInputChange}
             />
           </div>
           <div>
@@ -54,16 +110,32 @@ const Dashboard = () => {
               name="description"
               type="description"
               id="description"
+              onChange={handleInputChange}
             ></textarea>
           </div>
 
           <div>
             <label htmlFor="img">upload img:</label>
-            <button type="button">click to upload image</button>
+            {/* <button type="button">click to upload image</button> */}
+            <FileBase64
+              name="file"
+              type="file"
+              multiple={false}
+              onDone={({ base64 }) => convert64({ base64 })}
+              // onDone={({ base64 }) => setImage({ ...imageUpload, image: base64 })}
+            />
           </div>
 
           <div>
-            <button type="button">Submit</button>
+            <button type="button" onClick={() => setUserType('Portfolio')}>
+              Portfolio
+            </button>
+          </div>
+
+          <div>
+            <button type="button" onClick={handleFormSubmit}>
+              Submit
+            </button>
           </div>
         </form>
       </div>
@@ -82,7 +154,10 @@ const Dashboard = () => {
               >
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
-                <img src={post.image} alt={post.image} />
+                <img
+                  src={`data:image/png;base64,${post.image}`}
+                  alt={post.image}
+                />
                 <p>posted by {post.username}</p>
                 <p>likes:</p>
               </div>

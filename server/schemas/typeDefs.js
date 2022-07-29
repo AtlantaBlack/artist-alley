@@ -73,6 +73,14 @@ const typeDefs = gql`
       birthday: dateScalar!
     ): User
 
+    addPost(
+      title: String
+      description: String
+      image: String
+      createdBy: String!
+      postType: String!
+    ): Post
+
     login(email: String!, password: String!): Auth
   }
 `;
