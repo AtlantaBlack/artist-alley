@@ -1,22 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import WelcomeScreen from '../components/WelcomeScreen';
 
 const Home = () => {
+  // if not logged in, render welcome screen:
   return (
     <div>
-      <p>Here's a thingy on the Home Page</p>
-      <p>HAY HAY HAY</p>
-      <p>WELCOME TO ARTIST ALLEY</p>
-
-      <Link to="/signup">
-        <button>GET STARTED 👇🏼</button>
-      </Link>
-
-      <Link to="/login">
-        <button>LOGIN 👉🏼</button>
-      </Link>
+      HOME PAGE
+      <WelcomeScreen />
     </div>
   );
+
+  // if logged in, render latest posts:
+  // code here
 };
 
 export default Home;
