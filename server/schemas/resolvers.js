@@ -1,10 +1,10 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-return-await */
 const { AuthenticationError } = require('apollo-server-express');
-// const { signToken } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 const { dateScalar } = require('../scalars/date');
 
-// Add resolversfor GraphQL
+// Add models for GraphQL
 const { User, Post } = require('../models');
 
 const resolvers = {
@@ -39,7 +39,8 @@ const resolvers = {
         password,
         birthday
       });
-      return user;
+      const token = signToken(user);
+      return { token, user };
     },
 
     login: async (parent, { email, password }) => {
@@ -55,10 +56,9 @@ const resolvers = {
         throw new AuthenticationError('Incorrect credentials');
       }
 
-      // const token = signToken(user);
+      const token = signToken(user);
 
-      // return { token, user };
-      return { user };
+      return { token, user };
     },
     addPost: async (
       parent,

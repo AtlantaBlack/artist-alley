@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
 import { QUERY_USER } from '../utils/queries';
 import { ADD_POST } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const Dashboard = () => {
   console.log('load');
@@ -42,7 +43,7 @@ const Dashboard = () => {
         title: formState.title,
         description: formState.description,
         image: image,
-        createdBy: formState.createdBy,
+        createdBy: Auth.getProfile().data.username,
         postType: postType
       }
     });

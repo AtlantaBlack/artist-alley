@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 // import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -17,8 +17,9 @@ function Login(props) {
 
       console.log(mutationResponse);
 
-      // const token = mutationResponse.data.login.token;
-      // Auth.login(token);
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+      // console.log('heres the', token);
     } catch (e) {
       console.log(e);
     }
