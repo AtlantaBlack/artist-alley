@@ -7,6 +7,8 @@
 
 :root {
   --dark-blue: #002255;
+  --mid-blue: #798ba5;
+  --light-blue: #d5dae2;
   --pink: #ff66ff;
 }
 
@@ -27,13 +29,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 24px;
-  background-color: ;
 }
 
 h1 {
   font-family: 'Cabin Sketch', cursive;
   font-size: 5rem;
   font-weight: 700;
+  color: var(--pink);
 }
 
 p {

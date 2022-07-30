@@ -7,17 +7,23 @@ import { ADD_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const Dashboard = () => {
-  const { loading, data } = useQuery(QUERY_USER);
-  const posts = data?.posts || [];
+  // console.log('load');
 
-  console.log(data);
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { username: Auth.getProfile().data.username }
+  });
+
+  // console.log(data);
+
+  const posts = data?.user.posts || [];
+
+  // console.log(data);
 
   useEffect(() => {
     console.log('use effect');
     console.log('load');
   }, []);
 
-  const [postType, setPostType] = useState('');
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -46,8 +52,7 @@ const Dashboard = () => {
         title: formState.title,
         description: formState.description,
         image: image,
-        createdBy: Auth.getProfile().data.username,
-        postType: postType
+        createdBy: Auth.getProfile().data.username
       }
     });
     console.log(response);
@@ -78,16 +83,6 @@ const Dashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="createdBy">created by:</label>
-            <input
-              placeholder="your username"
-              name="createdBy"
-              type="createdBy"
-              id="createdBy"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
             <label htmlFor="description">Description:</label>
             <textarea
               placeholder="description of post"
@@ -110,13 +105,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <button type="button" onClick={() => setPostType('Portfolio')}>
-              Portfolio
-            </button>
-          </div>
-
-          <div>
-            <button type="button" onClick={handleFormSubmit}>
+            <button type="submit" onClick={handleFormSubmit}>
               Submit
             </button>
           </div>

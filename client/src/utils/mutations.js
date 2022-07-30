@@ -46,19 +46,16 @@ export const ADD_POST = gql`
     $description: String
     $image: String
     $createdBy: String!
-    $postType: String!
   ) {
     addPost(
       title: $title
       description: $description
       image: $image
       createdBy: $createdBy
-      postType: $postType
     ) {
       title
       image
       description
-      postType
     }
   }
 `;

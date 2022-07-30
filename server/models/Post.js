@@ -15,11 +15,6 @@ const postSchema = new Schema({
   image: {
     type: String
   },
-  postType: {
-    type: String,
-    enum: ['Sell', 'Portfolio'],
-    required: true
-  },
   likes: {
     type: Number,
     min: 0,

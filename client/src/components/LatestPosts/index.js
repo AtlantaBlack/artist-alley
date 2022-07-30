@@ -1,41 +1,57 @@
 import './index.css';
+import { useQuery } from '@apollo/client';
+import { QUERY_POSTS } from '../../utils/queries';
+
+import Post from '../Post';
 
 const LatestPosts = () => {
-  const posts = [
-    {
-      id: 1,
-      title: 'this is a piece of crap',
-      description: 'piece of crap i said',
-      image: 'notworking.jpg',
-      postType: 'Portfolio',
-      user: {
-        id: '62e25dedb892551267e87606',
-        username: 'quinn'
-      }
-    },
-    {
-      id: 2,
-      title: 'hey hey hey',
-      description: 'fancy volleyball guy',
-      image: 'notworking2.jpg',
-      postType: 'Portfolio',
-      user: {
-        id: '62e25dedb892551267e87606',
-        username: 'quinn'
-      }
-    }
-  ];
+  // const posts = [
+  //   {
+  //     id: 1,
+  //     title: 'this is a piece of crap',
+  //     description: 'piece of crap i said',
+  //     image: 'notworking.jpg',
+  //     postType: 'Portfolio',
+  //     user: {
+  //       id: '62e25dedb892551267e87606',
+  //       username: 'quinn'
+  //     }
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'hey hey hey',
+  //     description: 'fancy volleyball guy',
+  //     image: 'notworking2.jpg',
+  //     postType: 'Portfolio',
+  //     user: {
+  //       id: '62e25dedb892551267e87606',
+  //       username: 'quinn'
+  //     }
+  //   }
+  // ];
+
+  const { loading, data } = useQuery(QUERY_POSTS);
+  const posts = data?.posts || [];
+
+  console.log('posts', posts);
 
   return (
     <>
       <h2>Latest Posts</h2>
-      {posts.map((post) => (
-        <div style={{ border: '1px solid cyan' }}>
-          <h2>{post.title}</h2>
-          <p>by {post.user.username}</p>
-          <p>{post.description}</p>
-        </div>
-      ))}
+      <div style={{ border: '1px solid orange' }}>
+        {loading ? (
+          <div> loading </div>
+        ) : (
+          posts.map((post) => (
+            <div
+              key={post._id}
+              style={{ border: '1px solid green', margin: '10px 0' }}
+            >
+              {<Post postDetails={post} />}
+            </div>
+          ))
+        )}
+      </div>
     </>
   );
 };
