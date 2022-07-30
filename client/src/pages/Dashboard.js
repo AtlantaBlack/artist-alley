@@ -71,6 +71,13 @@ const Dashboard = () => {
     });
   };
 
+  // const postContainerStyling = {
+  //   flex: '0 0 45%',
+  //   border: '1px solid blue',
+  //   backgroundColor: 'var(--pale-pink)',
+  //   margin: '10px 0'
+  // };
+
   return (
     <div>
       <h1>My Dashboard</h1>
@@ -125,10 +132,7 @@ const Dashboard = () => {
             <div> loading </div>
           ) : (
             posts.map((post) => (
-              <div
-                key={post._id}
-                style={{ border: '1px solid green', margin: '10px 0' }}
-              >
+              <div key={post._id} className="post-container">
                 {/* <h3>{post.title}</h3>
                 <p>{post.description}</p>
                 <img
