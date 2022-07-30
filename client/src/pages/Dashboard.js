@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
@@ -7,19 +7,24 @@ import { ADD_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const Dashboard = () => {
-  console.log('load');
+  // console.log('load');
 
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { username: Auth.getProfile().data.username }
   });
 
-  console.log(data);
-
+  // console.log(data);
   const posts = data?.user.posts || [];
+  // console.log(data);
 
-  console.log('posts:', posts);
+  // set the person logged in as the artist
+  const loggedInArtist = Auth.getProfile().data.username;
 
-  const [postType, setPostType] = useState('');
+  useEffect(() => {
+    console.log('use effect');
+    console.log('load');
+  }, []);
+
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -43,13 +48,13 @@ const Dashboard = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     const response = await addPost({
       variables: {
         title: formState.title,
         description: formState.description,
         image: image,
-        createdBy: Auth.getProfile().data.username,
-        postType: postType
+        createdBy: loggedInArtist // set the artist as the person logged in
       }
     });
     console.log(response);
@@ -59,7 +64,8 @@ const Dashboard = () => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
+      createdBy: loggedInArtist // set the artist as the person logged in
     });
   };
 
@@ -76,16 +82,6 @@ const Dashboard = () => {
               name="title"
               type="title"
               id="title"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="createdBy">created by:</label>
-            <input
-              placeholder="your username"
-              name="createdBy"
-              type="createdBy"
-              id="createdBy"
               onChange={handleInputChange}
             />
           </div>
@@ -112,13 +108,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <button type="button" onClick={() => setPostType('Portfolio')}>
-              Portfolio
-            </button>
-          </div>
-
-          <div>
-            <button type="button" onClick={handleFormSubmit}>
+            <button type="submit" onClick={handleFormSubmit}>
               Submit
             </button>
           </div>
