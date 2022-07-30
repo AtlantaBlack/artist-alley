@@ -4,7 +4,7 @@ import './index.css';
 const GlobalHeader = () => {
   return (
     // blue border to show the header boundary
-    <div style={{ border: '1px solid blue' }}>
+    <header style={{ border: '1px solid blue' }}>
       {/* artist alley */}
       <h1 className="header">Artist Alley</h1>
       {/* nav bar starts here */}
@@ -38,7 +38,7 @@ const GlobalHeader = () => {
           login
         </NavLink>
       </div>
-    </div>
+    </header>
   );
 };
 
