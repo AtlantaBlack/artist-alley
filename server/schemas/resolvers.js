@@ -13,15 +13,15 @@ const resolvers = {
       return await User.find();
     },
     user: async (parent, { username }) => {
-      return await User.findOne({ username });
+      return await User.findOne({ username }).populate('posts');
     },
     posts: async () => {
-      return await Post.find();
-    }
+      return await Post.find({}).populate('user');
+    },
 
-    // userPost: async (parent, username) => {
-    //   return await User.findOne(username).populate('post');
-    // }
+    userPost: async (parent, { username }) => {
+      return await User.findOne({ username }).populate('post');
+    }
   },
 
   Mutation: {

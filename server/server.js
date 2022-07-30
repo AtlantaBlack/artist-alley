@@ -18,8 +18,9 @@ const server = new ApolloServer({
   // context: authMiddleware,
 });
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// https://stackoverflow.com/questions/19917401/error-request-entity-too-large
+app.use(express.urlencoded({ limit: '13MB', extended: true }));
+app.use(express.json({ limit: '13MB' }));
 
 // Serving static images
 app.use('images/', express.static(path.join(__dirname, '../client/images')));
