@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
@@ -7,12 +7,15 @@ import { ADD_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const Dashboard = () => {
-  console.log('load');
-
   const { loading, data } = useQuery(QUERY_USER);
   const posts = data?.posts || [];
 
-  console.log('posts:', posts);
+  console.log(data);
+
+  useEffect(() => {
+    console.log('use effect');
+    console.log('load');
+  }, []);
 
   const [postType, setPostType] = useState('');
   const [image, setImage] = useState('');
