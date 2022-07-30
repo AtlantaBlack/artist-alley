@@ -2,41 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
-import { QUERY_POSTS } from '../utils/queries';
+import { QUERY_USER } from '../utils/queries';
 import { ADD_POST } from '../utils/mutations';
 
 const Dashboard = () => {
-  // const posts = [
-  //   {
-  //     id: 1,
-  //     title: 'this is a piece of crap',
-  //     description: 'piece of crap i said',
-  //     image: 'notworking.jpg',
-  //     postType: 'Portfolio',
-  //     user: {
-  //       id: '62e25dedb892551267e87606',
-  //       username: 'quinn'
-  //     }
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'hey hey hey',
-  //     description: 'fancy volleyball guy',
-  //     image: 'notworking2.jpg',
-  //     postType: 'Portfolio',
-  //     user: {
-  //       id: '62e25dedb892551267e87606',
-  //       username: 'quinn'
-  //     }
-  //   }
-  // ];
+  console.log('load');
 
-  const { loading, data } = useQuery(QUERY_POSTS);
+  const { loading, data } = useQuery(QUERY_USER);
   const posts = data?.posts || [];
 
-  console.log(posts);
+  console.log('posts:', posts);
 
-  const [postType, setUserType] = useState('');
+  const [postType, setPostType] = useState('');
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -49,6 +26,8 @@ const Dashboard = () => {
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
+    console.log('ARE U DOING ');
+
     // console.log(value);
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
@@ -58,7 +37,6 @@ const Dashboard = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     const response = await addPost({
       variables: {
         title: formState.title,
@@ -68,6 +46,7 @@ const Dashboard = () => {
         postType: postType
       }
     });
+    console.log(response);
   };
 
   const handleInputChange = (event) => {
@@ -80,6 +59,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      <h1>My Dashboard</h1>
       <div className="add-post">
         <h2>add a post</h2>
         <form>
@@ -94,9 +74,9 @@ const Dashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="createdBy">Username</label>
+            <label htmlFor="createdBy">created by:</label>
             <input
-              placeholder="title of post"
+              placeholder="your username"
               name="createdBy"
               type="createdBy"
               id="createdBy"
@@ -126,7 +106,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <button type="button" onClick={() => setUserType('Portfolio')}>
+            <button type="button" onClick={() => setPostType('Portfolio')}>
               Portfolio
             </button>
           </div>
