@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
 import { QUERY_POSTS } from '../utils/queries';
 import { ADD_POST } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const Dashboard = () => {
   // const posts = [
@@ -34,8 +35,6 @@ const Dashboard = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
 
-  console.log(posts);
-
   const [postType, setUserType] = useState('');
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
@@ -64,7 +63,7 @@ const Dashboard = () => {
         title: formState.title,
         description: formState.description,
         image: image,
-        createdBy: formState.createdBy,
+        createdBy: Auth.getProfile().data.username,
         postType: postType
       }
     });

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // import the useMutation function and ADD_USER mutation
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 /*
 
 1) make sign up form
@@ -17,12 +18,12 @@ function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
 
   //use the addUser mutation
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   // CURRENTLY ONLY CONSOLE LOGGING THE SIGNUP RESPONSES
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const response = await addUser({
+    const { data } = await addUser({
       variables: {
         email: formState.email,
         password: formState.password,
@@ -34,7 +35,12 @@ function Signup(props) {
       }
     });
     // add auths and stuff here also
-    console.log(response);
+    console.log(data.addUser.token);
+
+    Auth.login(data.addUser.token);
+
+    console.log('this worked!', data);
+    console.log('heres the', data.addUser.token);
   };
 
   const handleInputChange = (event) => {
