@@ -14,10 +14,11 @@ const Dashboard = () => {
   });
 
   // console.log(data);
-
   const posts = data?.user.posts || [];
-
   // console.log(data);
+
+  // set the person logged in as the artist
+  const loggedInArtist = Auth.getProfile().data.username;
 
   useEffect(() => {
     console.log('use effect');
@@ -47,12 +48,13 @@ const Dashboard = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     const response = await addPost({
       variables: {
         title: formState.title,
         description: formState.description,
         image: image,
-        createdBy: Auth.getProfile().data.username
+        createdBy: loggedInArtist // set the artist as the person logged in
       }
     });
     console.log(response);
@@ -62,7 +64,8 @@ const Dashboard = () => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
+      createdBy: loggedInArtist // set the artist as the person logged in
     });
   };
 

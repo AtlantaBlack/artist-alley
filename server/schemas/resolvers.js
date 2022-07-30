@@ -16,7 +16,7 @@ const resolvers = {
       return await User.findOne({ username }).populate('posts');
     },
     posts: async () => {
-      return await Post.find({}).populate('user');
+      return await Post.find({});
     },
 
     userPost: async (parent, { username }) => {

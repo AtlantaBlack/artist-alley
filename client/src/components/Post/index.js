@@ -2,12 +2,16 @@ import './index.css';
 
 const Post = ({ postDetails }) => {
   console.log(postDetails);
-  const { title, image, description } = postDetails;
+  const { title, image, description, createdBy } = postDetails;
 
   return (
-    <div style={{ border: '1px solid purple' }}>
-      this is a post
-      {title}
+    <div className="post-container">
+      <h4 className="post">post title: {title}</h4>
+      <ul>
+        <li>{image}</li>
+        <li>{description}</li>
+        <li>created by: {createdBy}</li>
+      </ul>
     </div>
   );
 };

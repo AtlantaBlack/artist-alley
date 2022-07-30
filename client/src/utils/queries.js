@@ -8,10 +8,11 @@ export const QUERY_POSTS = gql`
       description
       image
       likes
-      user {
-        _id
-        username
-      }
+      createdBy
+      # user {
+      #   _id
+      #   username
+      # }
     }
   }
 `;

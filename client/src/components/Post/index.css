@@ -1,0 +1,8 @@
+.post-container {
+  flex: 1 0 100%;
+  border: 1px solid blue;
+}
+
+.post {
+  background-color: var(--light-grey);
+}
