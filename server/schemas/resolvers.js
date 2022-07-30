@@ -13,7 +13,8 @@ const resolvers = {
       return await User.find();
     },
     user: async (parent, { username }) => {
-      return await User.findOne({ username }).populate('posts');
+      const user = await User.findOne({ username }).populate('posts');
+      console.log(user);
     },
     posts: async () => {
       return await Post.find({}).populate('user');
@@ -79,6 +80,20 @@ const resolvers = {
         { $addToSet: { posts: newPost.id } }
       );
       return newPost;
+    },
+
+    removePost: async (parent, { postId, createdBy }) => {
+      const post = await Post.findByIdAndDelete({
+        _id: postId
+      });
+      console.log(post);
+
+      const user = await User.findOneAndUpdate(
+        { username: createdBy },
+        { $pull: { post: { _id: postId } } }
+      );
+      console.log(user);
+      return post;
     }
   },
   dateScalar
