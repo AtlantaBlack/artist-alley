@@ -24,9 +24,9 @@ const typeDefs = gql`
     title: String
     description: String
     image: String
-    postType: String
     likes: Int
     user: User
+    createdBy: String
   }
 
   type Category {
@@ -79,7 +79,6 @@ const typeDefs = gql`
       description: String
       image: String
       createdBy: String
-      postType: String!
     ): Post
 
     login(email: String!, password: String!): Auth

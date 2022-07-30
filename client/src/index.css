@@ -5,6 +5,16 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Lato:wght@100;300;400&display=swap');
 
+:root {
+  --deep-blue: #001a45;
+  --mid-blue: #032d5e;
+  --mid-grey: #9192a3;
+  --light-grey: #f5f2fc;
+  --dark-pink: #f41999;
+  --hot-pink: #ff66ff;
+  --pale-pink: #f4d3db;
+}
+
 /* 
 * 1. Correct the line height in all browsers.
 * 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -21,15 +31,26 @@ body {
   font-family: 'Lato', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 24px;
+  font-size: 22px;
+  font-weight: 300;
 }
 
 h1 {
   font-family: 'Cabin Sketch', cursive;
   font-size: 5rem;
   font-weight: 700;
+  color: var(--hot-pink);
 }
 
-p {
-  font-weight: 300;
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+}
+
+.embolden {
+  font-weight: bolder;
 }

@@ -16,7 +16,7 @@ const resolvers = {
       return await User.findOne({ username }).populate('posts');
     },
     posts: async () => {
-      return await Post.find({}).populate('user');
+      return await Post.find({});
     },
 
     userPost: async (parent, { username }) => {
@@ -63,15 +63,14 @@ const resolvers = {
     addPost: async (
       parent,
       // eslint-disable-next-line object-curly-newline
-      { title, description, image, createdBy, postType }
+      { title, description, image, createdBy }
     ) => {
       // console.log(createdBy);
       const newPost = await Post.create({
         title,
         description,
         image,
-        createdBy,
-        postType
+        createdBy
       });
       // console.log(newPost);
       await User.findOneAndUpdate(
