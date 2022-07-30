@@ -9,8 +9,13 @@ import Auth from '../utils/auth';
 const Dashboard = () => {
   console.log('load');
 
-  const { loading, data } = useQuery(QUERY_USER);
-  const posts = data?.posts || [];
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { username: Auth.getProfile().data.username }
+  });
+
+  console.log(data);
+
+  const posts = data?.user.posts || [];
 
   console.log('posts:', posts);
 
