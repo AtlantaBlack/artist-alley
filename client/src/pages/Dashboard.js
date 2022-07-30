@@ -6,6 +6,8 @@ import { QUERY_USER } from '../utils/queries';
 import { ADD_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+import Post from '../components/Post';
+
 const Dashboard = () => {
   // console.log('load');
 
@@ -127,14 +129,15 @@ const Dashboard = () => {
                 key={post._id}
                 style={{ border: '1px solid green', margin: '10px 0' }}
               >
-                <h3>{post.title}</h3>
+                {/* <h3>{post.title}</h3>
                 <p>{post.description}</p>
                 <img
                   src={`data:image/png;base64,${post.image}`}
-                  alt={post.image}
+                  alt={post.description}
                 />
                 <p>posted by {post.createdBy}</p>
-                <p>likes:</p>
+                <p>likes:</p> */}
+                <Post postDetails={post} />
               </div>
             ))
           )}

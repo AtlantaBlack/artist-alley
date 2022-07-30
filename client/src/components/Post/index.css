@@ -5,5 +5,15 @@
 }
 
 .post {
+  /* background-color: var(--light-grey); */
+  border: 1px solid yellow;
+}
+
+.post h4 {
   background-color: var(--light-grey);
+  text-transform: uppercase;
+}
+
+.post img {
+  max-width: 80%;
 }

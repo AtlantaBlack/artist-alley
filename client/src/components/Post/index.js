@@ -6,12 +6,12 @@ const Post = ({ postDetails }) => {
 
   return (
     <div className="post-container">
-      <h4 className="post">post title: {title}</h4>
-      <ul>
-        <li>{image}</li>
-        <li>{description}</li>
-        <li>created by: {createdBy}</li>
-      </ul>
+      <div className="post">
+        <h4>{title}</h4>
+        <img src={`data:image/png;base64,${image}`} alt={description} />
+        <p>{description}</p>
+        <p>created by: {createdBy}</p>
+      </div>
     </div>
   );
 };
