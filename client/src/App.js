@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
@@ -16,15 +15,17 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    // FONT AWESOME ICONS - currently imported in global header
+    // check there to see how to get icons
     <ApolloProvider client={client}>
       <BrowserRouter>
         <GlobalHeader />
         {/* prettier-ignore */}
         <Routes>
           <Route path="/" element={<Home />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="login" element={<Login />} />
-            <Route path="dashboard" element={<Dashboard />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<Login />} />
+              <Route path="dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
