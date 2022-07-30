@@ -1,6 +1,7 @@
 .post-container {
   flex: 1 0 100%;
   border: 1px solid blue;
+  background-color: var(--pale-pink);
 }
 
 .post {

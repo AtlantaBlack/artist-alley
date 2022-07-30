@@ -33,6 +33,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 22px;
   font-weight: 300;
+  background-image: url(images/grunge-navy.jpg);
 }
 
 h1 {
