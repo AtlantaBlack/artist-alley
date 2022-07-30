@@ -15,6 +15,8 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    // FONT AWESOME ICONS - currently imported in global header
+    // check there to see how to get icons
     <ApolloProvider client={client}>
       <BrowserRouter>
         <GlobalHeader />

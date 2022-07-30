@@ -39,6 +39,17 @@ const GlobalHeader = () => {
             login
           </NavLink>
         </div>
+
+        <div style={{ margin: '10px' }}>
+          <NavLink
+            to="/dashboard"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? 'yellow' : 'pink'
+            })}
+          >
+            dashboard
+          </NavLink>
+        </div>
       </header>
 
       <div>
