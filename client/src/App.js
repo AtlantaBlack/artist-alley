@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import GlobalHeader from './components/GlobalHeader';
-
 import Home from './pages/Home.js';
 import Signup from './pages/Signup.js';
 import Login from './pages/Login.js';

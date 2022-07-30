@@ -1,11 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import './index.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
 const GlobalHeader = () => {
   return (
-    <div>
-      <header style={{ border: '1px solid blue' }}>
-        <h1 className="header">Artist Alley</h1>
+    <>
+      <header className="header">
+        <h1>Artist Alley</h1>
         <div style={{ margin: '10px' }}>
           <NavLink
             to="/"
@@ -37,7 +40,11 @@ const GlobalHeader = () => {
           </NavLink>
         </div>
       </header>
-    </div>
+
+      <div>
+        <FontAwesomeIcon icon={solid('coffee')} />
+      </div>
+    </>
   );
 };
 
