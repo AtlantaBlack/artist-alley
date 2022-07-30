@@ -66,7 +66,7 @@ const userSchema = new Schema({
     type: Date,
     required: true
   },
-  post: [
+  posts: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Post'
