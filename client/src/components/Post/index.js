@@ -1,17 +1,36 @@
 import './index.css';
+import { useMutation } from '@apollo/client';
+import { REMOVE_POST } from '../../utils/mutations';
 
-const Post = ({ postDetails }) => {
+const Post = ({ postDetails }, { loggedInArtist }) => {
+  const [removePost] = useMutation(REMOVE_POST);
+
   console.log(postDetails);
-  const { title, image, description, createdBy } = postDetails;
+  const { _id, title, image, description, createdBy } = postDetails;
+
+  const handleDeleteClick = async (event) => {
+    const postId = _id;
+
+    const deletePost = await removePost({
+      variables: {
+        postId,
+        createdBy: loggedInArtist
+      }
+    });
+    console.log('deletedPost: ', deletePost);
+  };
 
   return (
-    <div className="post-container">
-      <h4 className="post">post title: {title}</h4>
-      <ul>
-        <li>{image}</li>
-        <li>{description}</li>
-        <li>created by: {createdBy}</li>
-      </ul>
+    <div className="post">
+      <h4>{title}</h4>
+      <img src={`data:image/png;base64,${image}`} alt={description} />
+      <p>{description}</p>
+      <p>created by: {createdBy}</p>
+      <div>
+        <button type="button" onClick={handleDeleteClick}>
+          Delete Post
+        </button>
+      </div>
     </div>
   );
 };

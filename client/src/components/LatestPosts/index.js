@@ -43,10 +43,7 @@ const LatestPosts = () => {
           <div> loading </div>
         ) : (
           posts.map((post) => (
-            <div
-              key={post._id}
-              style={{ border: '1px solid green', margin: '10px 0' }}
-            >
+            <div key={post._id} className="post-container">
               {<Post postDetails={post} />}
             </div>
           ))

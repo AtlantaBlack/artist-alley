@@ -33,6 +33,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 22px;
   font-weight: 300;
+  background-image: url(images/grunge-navy.jpg);
 }
 
 h1 {
@@ -53,4 +54,11 @@ h6 {
 
 .embolden {
   font-weight: bolder;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  border: 2px dotted cyan;
 }
