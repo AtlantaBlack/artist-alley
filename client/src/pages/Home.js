@@ -5,6 +5,7 @@ import WelcomeScreen from '../components/WelcomeScreen';
 import LatestPosts from '../components/LatestPosts';
 
 const Home = () => {
+  // if logged in, render latest posts:
   if (Auth.loggedIn()) {
     return (
       <div>
@@ -20,9 +21,6 @@ const Home = () => {
       <WelcomeScreen />
     </div>
   );
-
-  // if logged in, render latest posts:
-  // code here
 };
 
 export default Home;
