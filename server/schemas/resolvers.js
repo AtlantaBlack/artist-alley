@@ -18,6 +18,12 @@ const resolvers = {
     },
     posts: async () => {
       return await Post.find({});
+    },
+
+    merch: async (parent, { username }) => {
+      const merch = await User.findOne({ username }).populate('merch');
+      console.log(merch);
+      return merch;
     }
 
     // userPost: async (parent, { username }) => {
@@ -112,7 +118,7 @@ const resolvers = {
     addToStore: async (
       parent,
       // eslint-disable-next-line object-curly-newline
-      { name, description, image, price, quantity, category, user }
+      { name, description, image, price, quantity, createdBy }
     ) => {
       const addToStore = await Merch.create({
         name,
@@ -120,9 +126,15 @@ const resolvers = {
         image,
         price,
         quantity,
-        category,
-        user
+        createdBy
       });
+      console.log(addToStore);
+
+      await User.findOneAndUpdate(
+        { username: createdBy },
+        { $addToSet: { merch: addToStore.id } }
+      );
+
       return addToStore;
     }
   },
