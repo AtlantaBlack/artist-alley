@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
@@ -9,8 +9,7 @@ import Auth from '../utils/auth';
 import Shop from '../components/Shop';
 
 const Store = () => {
-  // console.log('load');
-
+  // console.log('load shop');
   const { loading, data } = useQuery(QUERY_USER_MERCH, {
     variables: { username: Auth.getProfile().data.username }
   });
@@ -22,14 +21,8 @@ const Store = () => {
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
 
-  useEffect(() => {
-    console.log('use effect');
-    console.log('load');
-  }, []);
-
   const [image, setImage] = useState('');
   const [price, setPrice] = useState('');
-  const [quantity, setQuantity] = useState('');
   const [formState, setFormState] = useState({
     name: '',
     description: '',
@@ -52,6 +45,7 @@ const Store = () => {
   // handler for adding march to store
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    // eslint-disable-next-line no-unused-vars
     const response = await addMerch({
       variables: {
         name: formState.name,
@@ -62,35 +56,20 @@ const Store = () => {
         createdBy: loggedInArtist // set the artist as the person logged in
       }
     });
-    // console.log('this is the response', response);
   };
 
   // for getting details from the add merch form
   const handleInputChange = async (event) => {
     const { name, value } = event.target;
-    // let parsedPrice;
     let parsedQuantity;
-    // console.log(name);
 
     // parsing price and quantity as numbers to be passed into the database
     if (name === 'price') {
-      // console.log('this is the price');
-      // console.log(value);
       let parsedPrice = Number(value);
-      // console.log('int price', parsedPrice);
-
-      // set state for price
-      setPrice(parsedPrice);
+      setPrice(parsedPrice); // set state for price
     }
     if (name === 'quantity') {
-      // console.log('this is the quantity');
-      // console.log(value);
       parsedQuantity = parseInt(value);
-      console.log('int quantity', parsedQuantity);
-
-      //set state for quantity
-      // setQuantity(parsedQuantity);
-      // console.log('int quantity', parsedQuantity);
     }
     setFormState({
       ...formState,
@@ -102,12 +81,6 @@ const Store = () => {
     });
     // console.log('this is the', formState);
   };
-
-  // const postContainerStyling = {
-  //   flex: '0 0 45%',
-  //   border: '1px solid blue',
-  //   backgroundColor: 'var(--pale-pink)',
-  //   margin: '10px 0'
 
   // delete event for deleting a post
   const handleDeleteClick = async (event) => {
@@ -209,15 +182,6 @@ const Store = () => {
                 >
                   Delete Item
                 </button>
-                {/* <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <img
-                  src={`data:image/png;base64,${item.image}`}
-                  alt={item.description}
-                />
-                <p>Price: {item.price}</p>
-                <p>Quantity: {item.quantity}</p> */}
-                {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
               </div>
             ))
           )}
