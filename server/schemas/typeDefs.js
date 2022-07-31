@@ -86,6 +86,9 @@ const typeDefs = gql`
     removePost(postId: ID!, createdBy: String): Post
 
     updatePost(postId: ID!, title: String, description: String): Post
+
+    addToStore(merchId: ID!, name: String!, description: String!, image: String, price: Float!, quantity: Int!, category: Category, user: User!)
+
   }
 `;
 

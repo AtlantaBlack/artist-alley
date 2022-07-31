@@ -5,7 +5,7 @@ const { signToken } = require('../utils/auth');
 const { dateScalar } = require('../scalars/date');
 
 // Add models for GraphQL
-const { User, Post } = require('../models');
+const { User, Post, Merch } = require('../models');
 
 const resolvers = {
   Query: {
@@ -108,6 +108,23 @@ const resolvers = {
         { new: true }
       );
       return updatePost;
+    },
+
+    addToStore: async (
+      parent,
+      // eslint-disable-next-line object-curly-newline
+      { name, description, image, price, quantity, category, user }
+    ) => {
+      const addToStore = await Merch.create({
+        name,
+        description,
+        image,
+        price,
+        quantity,
+        category,
+        user
+      });
+      return addToStore;
     }
   },
   dateScalar
