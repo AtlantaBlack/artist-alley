@@ -99,6 +99,15 @@ const resolvers = {
       );
 
       return removePost;
+    },
+
+    updatePost: async (parent, { title, description, postId }) => {
+      const updatePost = await Post.findByIdAndUpdate(
+        { _id: postId },
+        { $set: { title, description } },
+        { new: true }
+      );
+      return updatePost;
     }
   },
   dateScalar
