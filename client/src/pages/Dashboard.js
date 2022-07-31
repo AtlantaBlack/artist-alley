@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
 import { QUERY_USER } from '../utils/queries';
-import { ADD_POST } from '../utils/mutations';
+import { ADD_POST, REMOVE_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import Post from '../components/Post';
@@ -15,7 +15,12 @@ const Dashboard = () => {
     variables: { username: Auth.getProfile().data.username }
   });
 
-  // console.log(data);
+  const loggedInUser = JSON.stringify(Auth.getProfile().data.username);
+
+  console.log('logged in user: ', loggedInUser);
+
+  // console.log('data', data);
+
   const posts = data?.user.posts || [];
   // console.log(data);
 
@@ -36,6 +41,7 @@ const Dashboard = () => {
   });
 
   const [addPost] = useMutation(ADD_POST);
+  const [removePost] = useMutation(REMOVE_POST);
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
@@ -69,6 +75,18 @@ const Dashboard = () => {
       [name]: value,
       createdBy: loggedInArtist // set the artist as the person logged in
     });
+  };
+
+  const handleDeleteClick = async (event) => {
+    const postId = event.target.getAttribute('postid');
+
+    const deletePost = await removePost({
+      variables: {
+        postId,
+        createdBy: loggedInArtist
+      }
+    });
+    console.log('deletedPost: ', deletePost);
   };
 
   // const postContainerStyling = {
@@ -140,7 +158,14 @@ const Dashboard = () => {
                 />
                 <p>posted by {post.createdBy}</p>
                 <p>likes:</p> */}
-                <Post postDetails={post} loggedInArtist={loggedInArtist} />
+                <Post postDetails={post} />
+                <button
+                  type="button"
+                  postid={post._id}
+                  onClick={handleDeleteClick}
+                >
+                  Delete Post
+                </button>
               </div>
             ))
           )}

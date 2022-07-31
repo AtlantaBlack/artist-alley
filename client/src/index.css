@@ -34,6 +34,7 @@ body {
   font-size: 22px;
   font-weight: 300;
   background-image: url(images/grunge-navy.jpg);
+  color: var(--light-grey);
 }
 
 h1 {

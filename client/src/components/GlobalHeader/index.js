@@ -1,15 +1,18 @@
 import './index.css';
-
-import Nav from '../Nav';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
+import Nav from '../Nav';
 
 const GlobalHeader = () => {
   return (
     <>
       <header className="header">
-        <h1>Artist Alley</h1>
+        <Link to="/">
+          <h1>Artist Alley</h1>
+        </Link>
         <Nav />
       </header>
 

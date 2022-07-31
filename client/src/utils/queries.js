@@ -20,6 +20,7 @@ export const QUERY_POSTS = gql`
 export const QUERY_USER = gql`
   query User($username: String!) {
     user(username: $username) {
+      _id
       # username
       # firstName
       # lastName
