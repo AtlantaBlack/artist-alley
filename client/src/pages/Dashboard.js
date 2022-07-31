@@ -37,9 +37,6 @@ const Dashboard = () => {
 
   const [addPost] = useMutation(ADD_POST);
 
-  // trying to remove post
-  const [removePost] = useMutation(REMOVE_POST);
-
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
     console.log('ARE U DOING ');
@@ -79,16 +76,6 @@ const Dashboard = () => {
   //   border: '1px solid blue',
   //   backgroundColor: 'var(--pale-pink)',
   //   margin: '10px 0'
-
-  // const handleClick = async (props, event) => {
-  //   const deletePost = await removePost({
-  //     variables: {
-  //       postId: props._id,
-  //       createdBy: loggedInArtist
-  //     }
-  //   });
-  //   console.log(deletePost);
-  // };
 
   return (
     <div>
@@ -153,13 +140,7 @@ const Dashboard = () => {
                 />
                 <p>posted by {post.createdBy}</p>
                 <p>likes:</p> */}
-                <Post postDetails={post} />
-                {/* 
-                <div>
-                  <button type="button" onClick={handleClick}>
-                    Delete Post
-                  </button>
-                </div> */}
+                <Post postDetails={post} loggedInArtist={loggedInArtist} />
               </div>
             ))
           )}

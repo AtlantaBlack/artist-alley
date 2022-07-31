@@ -14,7 +14,7 @@ const resolvers = {
     },
     user: async (parent, { username }) => {
       const user = await User.findOne({ username }).populate('posts');
-      console.log(user);
+      // console.log(user);
       return user;
     },
     posts: async () => {
