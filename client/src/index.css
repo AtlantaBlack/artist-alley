@@ -9,7 +9,7 @@
   --deep-blue: #001a45;
   --mid-blue: #032d5e;
   --mid-grey: #9192a3;
-  --light-grey: #f5f2fc;
+  --light-grey: #ededed;
   --dark-pink: #f41999;
   --hot-pink: #ff66ff;
   --pale-pink: #f4d3db;
@@ -34,7 +34,7 @@ body {
   font-size: 22px;
   font-weight: 300;
   background-image: url(images/grunge-navy.jpg);
-  color: var(--light-grey);
+  /* color: var(--light-grey); */
 }
 
 h1 {
@@ -53,13 +53,37 @@ h6 {
   font-weight: 400;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
 .embolden {
   font-weight: bolder;
 }
 
-.flex-container-row {
+.italicised {
+  font-style: italic;
+}
+
+.flex-row {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   border: 2px dotted cyan;
+}
+
+.bg-grey {
+  background-color: rgb(3, 11, 40);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-sub {
+  font-size: 75%;
 }
