@@ -1,0 +1,23 @@
+.post-container {
+  flex: 0 0 100%;
+  border: 2px solid lightblue;
+  background-color: var(--pale-pink);
+  margin: 10px auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.post {
+  /* background-color: var(--light-grey); */
+  border: 1px solid yellow;
+}
+
+.post h4 {
+  background-color: var(--light-grey);
+  text-transform: uppercase;
+}
+
+.post img {
+  width: 100%; /* set img width @ 100% of bounding container */
+  max-width: 550px; /* set maximum width of img @ 500px */
+}

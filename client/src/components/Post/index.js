@@ -1,5 +1,7 @@
 import './index.css';
 
+import { Link } from 'react-router-dom';
+
 const Post = ({ postDetails }) => {
   // console.log(postDetails);
 
@@ -7,12 +9,18 @@ const Post = ({ postDetails }) => {
   const { _id, title, image, description, createdBy } = postDetails;
 
   return (
-    <div className="post">
-      <h4>{title}</h4>
-      <img src={`data:image/png;base64,${image}`} alt={description} />
-      <p>{description}</p>
-      <p>created by: {createdBy}</p>
-    </div>
+    <>
+      <Link to="/posts/:postId" className="link-card">
+        <div className="post">
+          <h3 className="post-title">
+            {title}
+            <br />
+            <span className="post-artist">{createdBy}</span>
+          </h3>
+          <img src={`data:image/png;base64,${image}`} alt={description} />
+        </div>
+      </Link>
+    </>
   );
 };
 
