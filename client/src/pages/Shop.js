@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
 import { QUERY_USER_MERCH } from '../utils/queries';
-import { ADD_MERCH } from '../utils/mutations';
+import { ADD_MERCH, REMOVE_MERCH } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import Shop from '../components/Shop';
@@ -39,6 +39,7 @@ const Store = () => {
   });
 
   const [addMerch] = useMutation(ADD_MERCH);
+  const [removeMerch] = useMutation(REMOVE_MERCH);
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
@@ -107,6 +108,20 @@ const Store = () => {
   //   border: '1px solid blue',
   //   backgroundColor: 'var(--pale-pink)',
   //   margin: '10px 0'
+
+  // delete event for deleting a post
+  const handleDeleteClick = async (event) => {
+    // get the merch ID out of the button
+    const merchId = event.target.getAttribute('merchid');
+
+    const deleteMerch = await removeMerch({
+      variables: {
+        merchId,
+        createdBy: loggedInArtist
+      }
+    });
+    console.log('deletedMerch: ', deleteMerch);
+  };
 
   return (
     <div>
@@ -187,6 +202,13 @@ const Store = () => {
             merch.map((item) => (
               <div key={item._id} className="post-container">
                 <Shop shopItems={item} />
+                <button
+                  type="button"
+                  merchid={item._id}
+                  onClick={handleDeleteClick}
+                >
+                  Delete Item
+                </button>
                 {/* <h3>{item.title}</h3>
                 <p>{item.description}</p>
                 <img

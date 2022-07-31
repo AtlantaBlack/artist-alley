@@ -136,6 +136,24 @@ const resolvers = {
       );
 
       return addToStore;
+    },
+    removeMerch: async (
+      parent,
+      // eslint-disable-next-line object-curly-newline
+      { createdBy, merchId }
+    ) => {
+      const removeMerch = await Merch.findByIdAndDelete({
+        _id: merchId
+      });
+
+      // https://stackoverflow.com/questions/48988019/mongoose-pull-objectid-from-array
+      await User.findOneAndUpdate(
+        { username: createdBy },
+        { $pullAll: { merch: [merchId] } },
+        { new: true }
+      );
+
+      return removeMerch;
     }
   },
   dateScalar

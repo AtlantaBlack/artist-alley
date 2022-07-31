@@ -97,6 +97,8 @@ const typeDefs = gql`
       quantity: Int!
       createdBy: String!
     ): Merch
+
+    removeMerch(merchId: ID!, createdBy: String): Merch
   }
 `;
 
