@@ -6,9 +6,9 @@ import { QUERY_USER_MERCH } from '../utils/queries';
 import { ADD_MERCH } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-import Post from '../components/Post';
+import Shop from '../components/Shop';
 
-const Shop = () => {
+const Store = () => {
   // console.log('load');
 
   const { loading, data } = useQuery(QUERY_USER_MERCH, {
@@ -42,18 +42,15 @@ const Shop = () => {
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
-    console.log('ARE U DOING ');
-
-    // console.log(value);
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
-    // console.log(image);
+    // set the image state
     setImage(image);
   };
 
+  // handler for adding march to store
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     const response = await addMerch({
       variables: {
         name: formState.name,
@@ -64,27 +61,33 @@ const Shop = () => {
         createdBy: loggedInArtist // set the artist as the person logged in
       }
     });
-    console.log('this is the response', response);
+    // console.log('this is the response', response);
   };
 
+  // for getting details from the add merch form
   const handleInputChange = async (event) => {
     const { name, value } = event.target;
-
-    let parsedPrice;
-    let parsedQuantity;
+    // let parsedPrice;
+    // let parsedQuantity;
     // console.log(name);
+
+    // parsing price and quantity as numbers to be passed into the database
     if (name === 'price') {
-      console.log('this is the price');
+      // console.log('this is the price');
       // console.log(value);
-      parsedPrice = Number(value);
+      let parsedPrice = Number(value);
       // console.log('int price', parsedPrice);
+
+      // set state for price
       setPrice(parsedPrice);
     }
     if (name === 'quantity') {
       // console.log('this is the quantity');
-      console.log(value);
-      parsedQuantity = Number(value);
+      // console.log(value);
+      let parsedQuantity = Number(value);
       // console.log('int quantity', parsedQuantity);
+
+      //set state for quantity
       setQuantity(parsedQuantity);
     }
     setFormState({
@@ -95,7 +98,7 @@ const Shop = () => {
       image: image,
       createdBy: loggedInArtist // set the artist as the person logged in
     });
-    console.log('this is the', formState);
+    // console.log('this is the', formState);
   };
 
   // const postContainerStyling = {
@@ -107,7 +110,6 @@ const Shop = () => {
   return (
     <div>
       <h1>My Artist Table</h1>
-      {/* add styling/ class namee add-merch? */}
       <div className="add-post">
         <h2>Add your merch!</h2>
         <form>
@@ -134,7 +136,7 @@ const Shop = () => {
 
           <div>
             <label htmlFor="img">Upload img:</label>
-            {/* <button type="button">click to upload image</button> */}
+
             <FileBase64
               name="file"
               type="file"
@@ -183,14 +185,15 @@ const Shop = () => {
           ) : (
             merch.map((item) => (
               <div key={item._id} className="post-container">
-                <h3>{item.title}</h3>
+                <Shop shopItems={item} />
+                {/* <h3>{item.title}</h3>
                 <p>{item.description}</p>
                 <img
                   src={`data:image/png;base64,${item.image}`}
                   alt={item.description}
                 />
                 <p>Price: {item.price}</p>
-                <p>Quantity: {item.quantity}</p>
+                <p>Quantity: {item.quantity}</p> */}
                 {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
               </div>
             ))
@@ -201,4 +204,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Store;

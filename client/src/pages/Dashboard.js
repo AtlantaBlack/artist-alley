@@ -140,7 +140,7 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <button type="submit" onSubmit={handleFormSubmit}>
+            <button type="submit" onClick={handleFormSubmit}>
               Submit
             </button>
           </div>
