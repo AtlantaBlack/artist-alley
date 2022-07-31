@@ -21,6 +21,8 @@ export const QUERY_USER = gql`
   query User($username: String!) {
     user(username: $username) {
       _id
+      username
+      userType
       # username
       # firstName
       # lastName
