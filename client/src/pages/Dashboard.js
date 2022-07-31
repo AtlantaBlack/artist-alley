@@ -9,18 +9,19 @@ import Auth from '../utils/auth';
 import Post from '../components/Post';
 
 const Dashboard = () => {
-  // console.log('load');
-
+  // console.log('load dashboard');
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { username: Auth.getProfile().data.username }
   });
-  // set a user variable to fill in later
+  // set user variables to fill in later
   let loggedInUser;
   let userType;
 
   // if query returns with a user
   if (data) {
-    console.log('data', data);
+    // console.log('data in dashboard', data);
+
+    // set the user variables when there's data
     loggedInUser = data.user.username;
     userType = data.user.userType;
 
@@ -28,14 +29,10 @@ const Dashboard = () => {
     console.log('user type: ', userType);
   }
 
-  // const loggedInUser = Auth.getProfile().data.username; // set username of logged in person
-  // const userType = user.userType; // set their user type (artist/non-artist)
-
-  // console.log('logged in user: ', loggedInUser);
-  // console.log('user type: ', userType);
-
+  // if user has any posts already made, get them
   const posts = data?.user.posts || [];
 
+  // use local states
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -49,18 +46,15 @@ const Dashboard = () => {
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
-    console.log('ARE U DOING ');
-
-    // console.log(value);
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
-    // console.log(image);
+    // set the image state
     setImage(image);
   };
 
+  // handler for submitting a new post
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     const response = await addPost({
       variables: {
         title: formState.title,
@@ -72,6 +66,7 @@ const Dashboard = () => {
     console.log(response);
   };
 
+  // for getting info from the add post form
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -81,7 +76,9 @@ const Dashboard = () => {
     });
   };
 
+  // delete event for deleting a post
   const handleDeleteClick = async (event) => {
+    // get the post ID out of the button
     const postId = event.target.getAttribute('postid');
 
     const deletePost = await removePost({
@@ -93,12 +90,7 @@ const Dashboard = () => {
     console.log('deletedPost: ', deletePost);
   };
 
-  // const postContainerStyling = {
-  //   flex: '0 0 45%',
-  //   border: '1px solid blue',
-  //   backgroundColor: 'var(--pale-pink)',
-  //   margin: '10px 0'
-
+  // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
     return (
       <div>
@@ -108,6 +100,7 @@ const Dashboard = () => {
     );
   }
 
+  // if user is an artist, they can see the Add Post form and a list of their previous posts
   return (
     <div>
       <h1>My Dashboard</h1>

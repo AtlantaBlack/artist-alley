@@ -1,16 +1,10 @@
 import './index.css';
 
-const Post = ({ postDetails }, { loggedInArtist }) => {
+const Post = ({ postDetails }) => {
   // console.log(postDetails);
-  const { _id, title, image, description, createdBy } = postDetails;
 
-  // let isPostCreator = false;
-  // if (loggedInArtist === createdBy) {
-  //   isPostCreator = true;
-  // }
-  // console.log('logged in artist: ', loggedInArtist);
-  // console.log('createdBy: ', createdBy);
-  // console.log('isPostCreator: ', isPostCreator);
+  // eslint-disable-next-line no-unused-vars
+  const { _id, title, image, description, createdBy } = postDetails;
 
   return (
     <div className="post">
