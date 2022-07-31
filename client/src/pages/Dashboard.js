@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
 import { QUERY_USER } from '../utils/queries';
-import { ADD_POST, REMOVE_POST } from '../utils/mutations';
+import { ADD_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import Post from '../components/Post';

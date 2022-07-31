@@ -5,7 +5,7 @@ import { REMOVE_POST } from '../../utils/mutations';
 const Post = ({ postDetails }, { loggedInArtist }) => {
   const [removePost] = useMutation(REMOVE_POST);
 
-  console.log(postDetails);
+  // console.log(postDetails);
   const { _id, title, image, description, createdBy } = postDetails;
 
   const handleDeleteClick = async (event) => {
