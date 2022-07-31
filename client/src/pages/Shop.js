@@ -68,7 +68,7 @@ const Store = () => {
   const handleInputChange = async (event) => {
     const { name, value } = event.target;
     // let parsedPrice;
-    // let parsedQuantity;
+    let parsedQuantity;
     // console.log(name);
 
     // parsing price and quantity as numbers to be passed into the database
@@ -84,17 +84,18 @@ const Store = () => {
     if (name === 'quantity') {
       // console.log('this is the quantity');
       // console.log(value);
-      let parsedQuantity = Number(value);
-      // console.log('int quantity', parsedQuantity);
+      parsedQuantity = parseInt(value);
+      console.log('int quantity', parsedQuantity);
 
       //set state for quantity
-      setQuantity(parsedQuantity);
+      // setQuantity(parsedQuantity);
+      // console.log('int quantity', parsedQuantity);
     }
     setFormState({
       ...formState,
       [name]: value,
       price: price,
-      quantity: quantity,
+      quantity: parsedQuantity,
       image: image,
       createdBy: loggedInArtist // set the artist as the person logged in
     });
