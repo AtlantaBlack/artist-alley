@@ -14,16 +14,15 @@ const resolvers = {
     },
     user: async (parent, { username }) => {
       const user = await User.findOne({ username }).populate('posts');
-      // console.log(user);
       return user;
     },
     posts: async () => {
       return await Post.find({});
-    },
-
-    userPost: async (parent, { username }) => {
-      return await User.findOne({ username }).populate('post');
     }
+
+    // userPost: async (parent, { username }) => {
+    //   return await User.findOne({ username }).populate('post');
+    // }
   },
 
   Mutation: {
@@ -99,6 +98,15 @@ const resolvers = {
       );
 
       return removePost;
+    },
+
+    updatePost: async (parent, { title, description, postId }) => {
+      const updatePost = await Post.findByIdAndUpdate(
+        { _id: postId },
+        { $set: { title, description } },
+        { new: true }
+      );
+      return updatePost;
     }
   },
   dateScalar

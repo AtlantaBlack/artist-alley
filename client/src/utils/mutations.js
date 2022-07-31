@@ -71,4 +71,14 @@ export const REMOVE_POST = gql`
   }
 `;
 
+export const UPDATE_POST = gql`
+  mutation updatePost($postId: ID!, $title: String, $description: String) {
+    updatePost(postId: $postId, title: $title, description: $description) {
+      _id
+      title
+      description
+    }
+  }
+`;
+
 //add token to the above once we've worked out the auth stuff
