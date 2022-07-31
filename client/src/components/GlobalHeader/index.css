@@ -1,3 +1,8 @@
 .header {
-  border: 1px solid red;
+  border: 1px solid cyan;
+  background-color: var(--deep-blue);
+}
+
+.header h1 {
+  font-size: 3rem;
 }

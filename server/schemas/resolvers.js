@@ -128,7 +128,7 @@ const resolvers = {
         quantity,
         createdBy
       });
-      console.log(addToStore);
+      // console.log(addToStore);
 
       await User.findOneAndUpdate(
         { username: createdBy },

@@ -160,6 +160,7 @@ const Dashboard = () => {
                 <Post postDetails={post} />
                 <button
                   type="button"
+                  className="float-right"
                   postid={post._id}
                   onClick={handleDeleteClick}
                 >
