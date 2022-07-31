@@ -1,66 +1,19 @@
-import { NavLink } from 'react-router-dom';
 import './index.css';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
+import Nav from '../Nav';
 
 const GlobalHeader = () => {
   return (
     <>
       <header className="header">
-        <h1>Artist Alley</h1>
-        <div style={{ margin: '10px' }}>
-          <NavLink
-            to="/"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? 'yellow' : 'pink'
-            })}
-          >
-            Home
-          </NavLink>
-        </div>
-        <div style={{ margin: '10px' }}>
-          <NavLink
-            to="/signup"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? 'yellow' : 'pink'
-            })}
-          >
-            Signup
-          </NavLink>
-        </div>
-        <div style={{ margin: '10px' }}>
-          <NavLink
-            to="/login"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? 'yellow' : 'pink'
-            })}
-          >
-            login
-          </NavLink>
-        </div>
-
-        <div style={{ margin: '10px' }}>
-          <NavLink
-            to="/dashboard"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? 'yellow' : 'pink'
-            })}
-          >
-            dashboard
-          </NavLink>
-        </div>
-
-        <div style={{ margin: '10px' }}>
-          <NavLink
-            to="/shop"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? 'yellow' : 'pink'
-            })}
-          >
-            artist table
-          </NavLink>
-        </div>
+        <Link to="/">
+          <h1>Artist Alley</h1>
+        </Link>
+        <Nav />
       </header>
 
       <div>

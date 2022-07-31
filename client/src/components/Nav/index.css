@@ -1,0 +1,15 @@
+.navbar {
+  background-color: var(--light-grey);
+}
+
+.navbar ul {
+  border: 1px solid greenyellow;
+}
+
+.navbar li {
+  display: inline;
+  color: white;
+}
+
+.navbar-link {
+}
