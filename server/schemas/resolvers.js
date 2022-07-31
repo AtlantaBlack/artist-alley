@@ -22,7 +22,7 @@ const resolvers = {
 
     merch: async (parent, { username }) => {
       const merch = await User.findOne({ username }).populate('merch');
-      console.log(merch);
+      // console.log(merch);
       return merch;
     }
 

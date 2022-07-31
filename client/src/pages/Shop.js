@@ -15,13 +15,9 @@ const Shop = () => {
     variables: { username: Auth.getProfile().data.username }
   });
 
-  console.log(data);
-  const merch = data?.merch || [];
-  console.log(merch);
-
-  for (const [key, value] of Object.entries(merch)) {
-    console.log(`${key}: ${value}`);
-  }
+  // console.log(data);
+  const merch = data?.merch.merch || [];
+  // console.log(merch);
 
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
@@ -169,7 +165,8 @@ const Shop = () => {
                   alt={item.description}
                 />
                 <p>posted by {item.createdBy}</p>
-                <p>likes:</p>
+                <p>Price: {item.price}</p>
+                <p>Quantity: {item.quantity}</p>
                 {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
               </div>
             ))
