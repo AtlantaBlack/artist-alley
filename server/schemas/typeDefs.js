@@ -17,6 +17,7 @@ const typeDefs = gql`
     birthday: dateScalar
     orders: [Order]
     posts: [Post]
+    merch: [Merch]
   }
 
   type Post {
@@ -61,6 +62,7 @@ const typeDefs = gql`
     user(username: String!): User
     posts: [Post]
     # userPost: [Post]
+    merch(username: String!): User
   }
 
   type Mutation {
@@ -86,6 +88,15 @@ const typeDefs = gql`
     removePost(postId: ID!, createdBy: String): Post
 
     updatePost(postId: ID!, title: String, description: String): Post
+
+    addToStore(
+      name: String!
+      description: String!
+      image: String
+      price: Float!
+      quantity: Int!
+      createdBy: String!
+    ): Merch
   }
 `;
 

@@ -1,0 +1,47 @@
+.merch-container {
+  flex: 0 0 100%;
+  border: 2px solid lightblue;
+  /*background-color: var(--pale-pink); */
+  margin: 10px auto;
+  width: 90%;
+  overflow: hidden;
+}
+
+.merch {
+  background-color: var(--mid-blue);
+  border: 3px solid var(--pale-pink);
+  margin: 15px;
+  box-shadow: 2px 2px 5px 4px rgba(244, 25, 153, 0.5);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.merch-title {
+  color: var(--hot-pink);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0;
+  padding-top: 1rem;
+}
+
+.merch-artist {
+  color: var(--hot-pink);
+  text-transform: none;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 90%;
+  text-align: center;
+  line-height: 0;
+  padding-top: 0.8rem;
+  padding-bottom: 1rem;
+}
+
+.merch img {
+  width: 100%; /* set img width @ 100% of bounding container */
+}
+
+.link-card {
+  color: var(--hot-pink);
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -14,6 +14,9 @@ const Nav = () => {
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li>
+            <Link to="/table">Artist Table</Link>
+          </li>
+          <li>
             {/* use regular anchor tag to force app to refresh when user logs out */}
             <a href="/" onClick={() => Auth.logout()}>
               Logout

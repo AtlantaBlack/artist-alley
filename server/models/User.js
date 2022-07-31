@@ -72,6 +72,12 @@ const userSchema = new Schema({
       ref: 'Post'
     }
   ],
+  merch: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Merch'
+    }
+  ],
   orders: [Order.schema]
 });
 
