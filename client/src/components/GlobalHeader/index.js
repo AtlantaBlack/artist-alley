@@ -50,6 +50,17 @@ const GlobalHeader = () => {
             dashboard
           </NavLink>
         </div>
+
+        <div style={{ margin: '10px' }}>
+          <NavLink
+            to="/shop"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? 'yellow' : 'pink'
+            })}
+          >
+            artist table
+          </NavLink>
+        </div>
       </header>
 
       <div>

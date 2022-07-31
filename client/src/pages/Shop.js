@@ -2,22 +2,26 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
-import { QUERY_USER } from '../utils/queries';
-import { ADD_POST, REMOVE_POST } from '../utils/mutations';
+import { QUERY_USER_MERCH } from '../utils/queries';
+import { ADD_MERCH } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import Post from '../components/Post';
 
-const Dashboard = () => {
+const Shop = () => {
   // console.log('load');
 
-  const { loading, data } = useQuery(QUERY_USER, {
+  const { loading, data } = useQuery(QUERY_USER_MERCH, {
     variables: { username: Auth.getProfile().data.username }
   });
 
   console.log(data);
-  const posts = data?.user.posts || [];
-  console.log(posts);
+  const merch = data?.merch || [];
+  console.log(merch);
+
+  for (const [key, value] of Object.entries(merch)) {
+    console.log(`${key}: ${value}`);
+  }
 
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
@@ -29,13 +33,14 @@ const Dashboard = () => {
 
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
-    title: '',
+    name: '',
     description: '',
-    createdBy: '',
+    price: '',
+    quantity: '',
     image: ''
   });
 
-  const [addPost] = useMutation(ADD_POST);
+  const [addMerch] = useMutation(ADD_MERCH);
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
@@ -51,10 +56,12 @@ const Dashboard = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await addPost({
+    const response = await addMerch({
       variables: {
-        title: formState.title,
+        name: formState.title,
         description: formState.description,
+        price: formState.price,
+        quantity: formState.quantity,
         image: image,
         createdBy: loggedInArtist // set the artist as the person logged in
       }
@@ -79,14 +86,15 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>My Dashboard</h1>
+      <h1>My Artist Table</h1>
+      {/* add styling/ class namee add-merch? */}
       <div className="add-post">
         <h2>add a post</h2>
         <form>
           <div>
-            <label htmlFor="title">Post title:</label>
+            <label htmlFor="title">Merch Name: </label>
             <input
-              placeholder="title of post"
+              placeholder="title of merch"
               name="title"
               type="title"
               id="title"
@@ -96,7 +104,7 @@ const Dashboard = () => {
           <div>
             <label htmlFor="description">Description:</label>
             <textarea
-              placeholder="description of post"
+              placeholder="description of merch"
               name="description"
               type="description"
               id="description"
@@ -116,6 +124,28 @@ const Dashboard = () => {
           </div>
 
           <div>
+            <label htmlFor="price">Price: </label>
+            <input
+              placeholder="price of merch"
+              name="price"
+              type="price"
+              id="price"
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="title">Quantity in Stock: </label>
+            <input
+              placeholder="quantity of merch"
+              name="quantity"
+              type="quantity"
+              id="quantity"
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div>
             <button type="submit" onClick={handleFormSubmit}>
               Submit
             </button>
@@ -130,17 +160,17 @@ const Dashboard = () => {
           {loading ? (
             <div> loading </div>
           ) : (
-            posts.map((post) => (
-              <div key={post._id} className="post-container">
-                {/* <h3>{post.title}</h3>
-                <p>{post.description}</p>
+            merch.map((item) => (
+              <div key={item._id} className="post-container">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
                 <img
-                  src={`data:image/png;base64,${post.image}`}
-                  alt={post.description}
+                  src={`data:image/png;base64,${item.image}`}
+                  alt={item.description}
                 />
-                <p>posted by {post.createdBy}</p>
-                <p>likes:</p> */}
-                <Post postDetails={post} loggedInArtist={loggedInArtist} />
+                <p>posted by {item.createdBy}</p>
+                <p>likes:</p>
+                {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
               </div>
             ))
           )}
@@ -150,4 +180,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Shop;

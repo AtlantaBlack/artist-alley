@@ -41,6 +41,7 @@ export const QUERY_USER_MERCH = gql`
         _id
         name
         description
+        image
         price
         quantity
       }

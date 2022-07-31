@@ -81,4 +81,28 @@ export const UPDATE_POST = gql`
   }
 `;
 
+export const ADD_MERCH = gql`
+  mutation addToStore(
+    $name: String!
+    $price: Float!
+    $quantity: Int!
+    $createdBy: String!
+    $description: String!
+  ) {
+    addToStore(
+      name: $name
+      price: $price
+      quantity: $quantity
+      createdBy: $createdBy
+      description: $description
+    ) {
+      name
+      description
+      image
+      price
+      quantity
+    }
+  }
+`;
+
 //add token to the above once we've worked out the auth stuff
