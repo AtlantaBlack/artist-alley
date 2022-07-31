@@ -1,14 +1,14 @@
 .post-container {
   flex: 0 0 100%;
-  border: 2px solid lightblue;
-  /*background-color: var(--pale-pink); */
+  /* border: 2px solid lightblue; */
+  /* background-color: var(--pale-pink); */
   margin: 10px auto;
   width: 90%;
   overflow: hidden;
 }
 
 .post {
-  background-color: var(--mid-blue);
+  background-color: var(--deep-blue);
   border: 3px solid var(--pale-pink);
   margin: 15px;
   box-shadow: 2px 2px 5px 4px rgba(244, 25, 153, 0.5);
@@ -25,7 +25,7 @@
 }
 
 .post-artist {
-  color: var(--hot-pink);
+  color: var(--pale-pink);
   text-transform: none;
   font-weight: 300;
   font-style: italic;
@@ -44,4 +44,8 @@
   color: var(--hot-pink);
   text-decoration: none;
   cursor: pointer;
+}
+
+.link-card:hover {
+  border-bottom: 2px dotted white;
 }

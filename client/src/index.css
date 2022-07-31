@@ -15,6 +15,10 @@
   --pale-pink: #f4d3db;
 }
 
+* {
+  box-sizing: 0;
+}
+
 /* 
 * 1. Correct the line height in all browsers.
 * 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -78,6 +82,14 @@ a:hover {
 
 .bg-grey {
   background-color: rgb(3, 11, 40);
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 .text-center {
