@@ -20,12 +20,20 @@
   color: var(--hot-pink);
   text-transform: uppercase;
   text-align: center;
+  line-height: 0;
+  padding-top: 1rem;
 }
 
 .post-artist {
+  color: var(--hot-pink);
   text-transform: none;
+  font-weight: 300;
   font-style: italic;
-  font-size: 75%;
+  font-size: 90%;
+  text-align: center;
+  line-height: 0;
+  padding-top: 0.8rem;
+  padding-bottom: 1rem;
 }
 
 .post img {
@@ -33,5 +41,7 @@
 }
 
 .link-card {
+  color: var(--hot-pink);
   text-decoration: none;
+  cursor: pointer;
 }

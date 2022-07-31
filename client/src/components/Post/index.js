@@ -10,16 +10,23 @@ const Post = ({ postDetails }) => {
 
   return (
     <>
-      <Link to="/posts/:postId" className="link-card">
-        <div className="post">
-          <h3 className="post-title">
+      <div className="post">
+        <h2 className="post-title">
+          <Link to="/posts/:postId" className="link-card">
             {title}
-            <br />
-            <span className="post-artist">{createdBy}</span>
-          </h3>
+          </Link>
+        </h2>
+
+        <h3 className="post-artist">
+          <Link to="/artists/:artistId" className="link-card">
+            {createdBy}
+          </Link>
+        </h3>
+
+        <Link to="/posts/:postId" className="link-card">
           <img src={`data:image/png;base64,${image}`} alt={description} />
-        </div>
-      </Link>
+        </Link>
+      </div>
     </>
   );
 };
