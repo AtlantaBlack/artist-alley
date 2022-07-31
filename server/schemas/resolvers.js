@@ -14,16 +14,16 @@ const resolvers = {
     },
     user: async (parent, { username }) => {
       const user = await User.findOne({ username }).populate('posts');
-      console.log(user);
+
       return user;
     },
     posts: async () => {
       return await Post.find({});
-    },
-
-    userPost: async (parent, { username }) => {
-      return await User.findOne({ username }).populate('post');
     }
+
+    // userPost: async (parent, { username }) => {
+    //   return await User.findOne({ username }).populate('post');
+    // }
   },
 
   Mutation: {
