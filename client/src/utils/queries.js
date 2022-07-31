@@ -36,3 +36,18 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_USER_MERCH = gql`
+  query userMerch($username: String!) {
+    merch(username: $username) {
+      merch {
+        _id
+        name
+        description
+        image
+        price
+        quantity
+      }
+    }
+  }
+`;
