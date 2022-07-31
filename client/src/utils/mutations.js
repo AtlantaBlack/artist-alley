@@ -86,6 +86,7 @@ export const ADD_MERCH = gql`
     $name: String!
     $price: Float!
     $quantity: Int!
+    $image: String
     $createdBy: String!
     $description: String!
   ) {
@@ -93,6 +94,7 @@ export const ADD_MERCH = gql`
       name: $name
       price: $price
       quantity: $quantity
+      image: $image
       createdBy: $createdBy
       description: $description
     ) {

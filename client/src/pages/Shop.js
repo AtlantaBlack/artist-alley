@@ -28,6 +28,8 @@ const Shop = () => {
   }, []);
 
   const [image, setImage] = useState('');
+  const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [formState, setFormState] = useState({
     name: '',
     description: '',
@@ -54,7 +56,7 @@ const Shop = () => {
 
     const response = await addMerch({
       variables: {
-        name: formState.title,
+        name: formState.name,
         description: formState.description,
         price: formState.price,
         quantity: formState.quantity,
@@ -62,16 +64,38 @@ const Shop = () => {
         createdBy: loggedInArtist // set the artist as the person logged in
       }
     });
-    console.log(response);
+    console.log('this is the response', response);
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = async (event) => {
     const { name, value } = event.target;
+
+    let parsedPrice;
+    let parsedQuantity;
+    // console.log(name);
+    if (name === 'price') {
+      console.log('this is the price');
+      // console.log(value);
+      parsedPrice = Number(value);
+      // console.log('int price', parsedPrice);
+      setPrice(parsedPrice);
+    }
+    if (name === 'quantity') {
+      // console.log('this is the quantity');
+      console.log(value);
+      parsedQuantity = Number(value);
+      // console.log('int quantity', parsedQuantity);
+      setQuantity(parsedQuantity);
+    }
     setFormState({
       ...formState,
       [name]: value,
+      price: price,
+      quantity: quantity,
+      image: image,
       createdBy: loggedInArtist // set the artist as the person logged in
     });
+    console.log('this is the', formState);
   };
 
   // const postContainerStyling = {
@@ -85,15 +109,15 @@ const Shop = () => {
       <h1>My Artist Table</h1>
       {/* add styling/ class namee add-merch? */}
       <div className="add-post">
-        <h2>add a post</h2>
+        <h2>Add your merch!</h2>
         <form>
           <div>
-            <label htmlFor="title">Merch Name: </label>
+            <label htmlFor="name">Merch Name: </label>
             <input
-              placeholder="title of merch"
-              name="title"
-              type="title"
-              id="title"
+              placeholder="name of merch"
+              name="name"
+              type="text"
+              id="name"
               onChange={handleInputChange}
             />
           </div>
@@ -102,18 +126,19 @@ const Shop = () => {
             <textarea
               placeholder="description of merch"
               name="description"
-              type="description"
+              type="text"
               id="description"
               onChange={handleInputChange}
             ></textarea>
           </div>
 
           <div>
-            <label htmlFor="img">upload img:</label>
+            <label htmlFor="img">Upload img:</label>
             {/* <button type="button">click to upload image</button> */}
             <FileBase64
               name="file"
               type="file"
+              accept="image/*"
               multiple={false}
               onDone={({ base64 }) => convert64({ base64 })}
             />
@@ -124,7 +149,7 @@ const Shop = () => {
             <input
               placeholder="price of merch"
               name="price"
-              type="price"
+              type="text"
               id="price"
               onChange={handleInputChange}
             />
@@ -135,7 +160,7 @@ const Shop = () => {
             <input
               placeholder="quantity of merch"
               name="quantity"
-              type="quantity"
+              type="text"
               id="quantity"
               onChange={handleInputChange}
             />
@@ -150,7 +175,7 @@ const Shop = () => {
       </div>
 
       <div className="posts">
-        <h2>posts</h2>
+        <h2>Merch</h2>
 
         <div style={{ border: '1px solid orange' }}>
           {loading ? (
@@ -164,7 +189,6 @@ const Shop = () => {
                   src={`data:image/png;base64,${item.image}`}
                   alt={item.description}
                 />
-                <p>posted by {item.createdBy}</p>
                 <p>Price: {item.price}</p>
                 <p>Quantity: {item.quantity}</p>
                 {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
