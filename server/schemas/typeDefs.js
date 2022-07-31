@@ -82,6 +82,8 @@ const typeDefs = gql`
     ): Post
 
     login(email: String!, password: String!): Auth
+
+    removePost(postId: ID!, createdBy: String): Post
   }
 `;
 
