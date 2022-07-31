@@ -107,4 +107,14 @@ export const ADD_MERCH = gql`
   }
 `;
 
+export const REMOVE_MERCH = gql`
+  mutation removeMerch($merchId: ID!) {
+    removeMerch(merchId: $merchId) {
+      _id
+      name
+      description
+    }
+  }
+`;
+
 //add token to the above once we've worked out the auth stuff
