@@ -6,6 +6,8 @@ import { QUERY_USER } from '../utils/queries';
 import { ADD_POST, REMOVE_POST } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+import Post from '../components/Post';
+
 const Dashboard = () => {
   // console.log('load');
 
@@ -34,9 +36,6 @@ const Dashboard = () => {
   });
 
   const [addPost] = useMutation(ADD_POST);
-
-  // trying to remove post
-  const [removePost] = useMutation(REMOVE_POST);
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
@@ -72,15 +71,11 @@ const Dashboard = () => {
     });
   };
 
-  // const handleClick = async (props, event) => {
-  //   const deletePost = await removePost({
-  //     variables: {
-  //       postId: props._id,
-  //       createdBy: loggedInArtist
-  //     }
-  //   });
-  //   console.log(deletePost);
-  // };
+  // const postContainerStyling = {
+  //   flex: '0 0 45%',
+  //   border: '1px solid blue',
+  //   backgroundColor: 'var(--pale-pink)',
+  //   margin: '10px 0'
 
   return (
     <div>
@@ -136,24 +131,16 @@ const Dashboard = () => {
             <div> loading </div>
           ) : (
             posts.map((post) => (
-              <div
-                key={post._id}
-                style={{ border: '1px solid green', margin: '10px 0' }}
-              >
-                <h3>{post.title}</h3>
+              <div key={post._id} className="post-container">
+                {/* <h3>{post.title}</h3>
                 <p>{post.description}</p>
                 <img
                   src={`data:image/png;base64,${post.image}`}
-                  alt={post.image}
+                  alt={post.description}
                 />
                 <p>posted by {post.createdBy}</p>
-                <p>likes:</p>
-                {/* 
-                <div>
-                  <button type="button" onClick={handleClick}>
-                    Delete Post
-                  </button>
-                </div> */}
+                <p>likes:</p> */}
+                <Post postDetails={post} loggedInArtist={loggedInArtist} />
               </div>
             ))
           )}
