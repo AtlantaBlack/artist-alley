@@ -41,7 +41,7 @@ export const LOGIN = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation Mutation(
+  mutation addPost(
     $title: String
     $description: String
     $image: String
@@ -57,6 +57,16 @@ export const ADD_POST = gql`
       image
       description
       createdBy
+    }
+  }
+`;
+
+export const REMOVE_POST = gql`
+  mutation removePost($postId: ID!, $createdBy: String) {
+    removePost(postId: $postId, createdBy: $createdBy) {
+      _id
+      title
+      description
     }
   }
 `;

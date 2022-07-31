@@ -13,7 +13,9 @@ const resolvers = {
       return await User.find();
     },
     user: async (parent, { username }) => {
-      return await User.findOne({ username }).populate('posts');
+      const user = await User.findOne({ username }).populate('posts');
+      console.log(user);
+      return user;
     },
     posts: async () => {
       return await Post.find({});
@@ -78,6 +80,25 @@ const resolvers = {
         { $addToSet: { posts: newPost.id } }
       );
       return newPost;
+    },
+
+    removePost: async (
+      parent,
+      // eslint-disable-next-line object-curly-newline
+      { createdBy, postId }
+    ) => {
+      const removePost = await Post.findByIdAndDelete({
+        _id: postId
+      });
+
+      // https://stackoverflow.com/questions/48988019/mongoose-pull-objectid-from-array
+      await User.findOneAndUpdate(
+        { username: createdBy },
+        { $pullAll: { posts: [postId] } },
+        { new: true }
+      );
+
+      return removePost;
     }
   },
   dateScalar
