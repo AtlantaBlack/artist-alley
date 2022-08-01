@@ -8,6 +8,7 @@ import Signup from './pages/Signup.js';
 import Login from './pages/Login.js';
 import Dashboard from './pages/Dashboard.js';
 import Shop from './pages/Shop.js';
+import PostDetails from './components/PostDetails';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -24,10 +25,23 @@ function App() {
         {/* prettier-ignore */}
         <Routes>
           <Route path="/" element={<Home />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="login" element={<Login />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="table" element={<Shop />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+
+            <Route path="dashboard" element={<Dashboard />} />
+              {/* <Route path="my/table" element={<Shop />} /> */}
+              {/* <Route index element={<Dashboard />} */}
+            <Route path="table" element={<Shop />} />
+
+            <Route path="posts/:postId" element={<PostDetails/>}/>
+
+{/* need an index element: artists w/ outlet to display artist profile page & artist store page */}
+            <Route path="artists"/>
+              {/* 
+              <Route path=":artistId" element={<ArtistProfile />} />
+              <Route path=":artistId/table" element={<ArtistShop} /> /> 
+              */}
+              {/* <Route index element={<Artists/>} /> */}
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
