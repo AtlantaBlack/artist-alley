@@ -44,7 +44,7 @@ const Store = () => {
 
   // handler for adding march to store
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     // eslint-disable-next-line no-unused-vars
     const response = await addMerch({
       variables: {
