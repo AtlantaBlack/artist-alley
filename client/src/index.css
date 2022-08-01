@@ -6,13 +6,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Lato:wght@100;300;400&display=swap');
 
 :root {
-  --deep-blue: #f1e1cf;
-  --mid-blue: #f8dda2;
-  --mid-grey: #9192a3;
-  --light-grey: #d3edf0;
-  --dark-pink: #f5b0c9;
-  --hot-pink: #300230;
-  --pale-pink: #f89dc2;
+  --light-beige: #f1e1cf;
+  /* deep-blue */
+  --peach: #f8dda2;
+  /* mid-blue */
+  /* --mid-grey: #9192a3; */
+  /* i don't think im using the mid grey */
+  --pale-blue: #d3edf0;
+  /* light grey */
+  --lightish-red: #f5b0c9;
+  /* dark-pink */
+  --deep-purple: #300230;
+  /* hot-pink */
+  --pink: #f89dc2;
+  /* pale-pink */
 
   /* ef898a */
 
@@ -62,7 +69,7 @@ h1 {
   font-family: 'Cabin Sketch', cursive;
   font-size: 5rem;
   font-weight: 700;
-  color: var(--hot-pink);
+  color: var(--deep-purple);
 }
 
 h2,
@@ -76,7 +83,7 @@ h6 {
 
 a {
   text-decoration: none;
-  color: var(--hot-pink);
+  color: var(--deep-purple);
 }
 
 a:hover {
@@ -86,16 +93,22 @@ a:hover {
 button {
   margin: 10px;
   padding: 10px 20px;
-  background-color: var(--pale-pink);
-  border: 3px solid var(--dark-pink);
+  background-color: var(--pink);
+  border: 3px solid var(--lightish-red);
   border-radius: 15px;
-  color: var(--deep-blue);
+  color: var(--light-beige);
 }
 
 button:hover {
-  background-color: var(--hot-pink);
-  border: 3px solid var(--mid-blue);
-  color: var(--mid-blue);
+  background-color: var(--deep-purple);
+  border: 3px solid var(--peach);
+  color: var(--peach);
+}
+
+/* prevent images from 'floating' a few pixels above the bottom of the div */
+img {
+  display: block;
+  /* vertical-align: bottom - also works */
 }
 
 .embolden {
@@ -135,8 +148,8 @@ button:hover {
 
 /* trying some form styling */
 form {
-  color: var(--deep-blue);
-  background-color: var(--pale-pink);
+  color: var(--light-beige);
+  background-color: var(--pink);
   margin: 15px;
   border-radius: 24px;
   width: 75vw;
@@ -154,20 +167,20 @@ input {
   margin: 20px 0px 20px 0px;
   line-height: 2rem;
   border-radius: 4px;
-  border-color: var(--mid-blue);
+  border-color: var(--peach);
   width: 90%;
   padding: 5px;
 }
 
 input:focus,
 textarea:focus {
-  outline: var(--hot-pink) 2px solid;
-  border-color: var(--hot-pink) 2px solid;
+  outline: var(--deep-purple) 2px solid;
+  border-color: var(--deep-purple) 2px solid;
 }
 
 input[type='file'] {
   background-color: white;
-  border-color: var(--mid-blue);
+  color: var(--deep-purple);
   line-height: 2rem;
 }
 
@@ -181,7 +194,7 @@ textarea {
   overflow-y: scroll;
   margin: 20px 0px 20px 0px;
   border-radius: 4px;
-  border-color: var(--mid-blue);
+  border-color: var(--peach);
   padding: 8px;
 }
 
@@ -196,13 +209,13 @@ textarea::placeholder {
 } */
 
 .dash-heading {
-  background-image: url('images/blue-green-splatter.png');
+  background-image: url('images/pink-splatter.png');
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .table-heading {
-  background-image: url('images/pink-splatter.png');
+  background-image: url('images/blue-green-splatter.png');
   background-repeat: no-repeat;
   background-size: contain;
 }
