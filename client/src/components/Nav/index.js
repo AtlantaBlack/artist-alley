@@ -11,13 +11,23 @@ const Nav = () => {
       return (
         <ul>
           <li>
+            <Link to="/" className="navbar-link">
+              Latest Posts
+            </Link>
+          </li>
+          <li>
             <Link to="/dashboard" className="navbar-link">
               Dashboard
             </Link>
           </li>
           <li>
-            <Link to="/table" className="navbar-link">
-              Artist Table
+            <Link to="/artists/:artistId/" className="navbar-link">
+              Portfolio
+            </Link>
+          </li>
+          <li>
+            <Link to="/artists/:artistId/store" className="navbar-link">
+              Artist's Table
             </Link>
           </li>
           <li>
