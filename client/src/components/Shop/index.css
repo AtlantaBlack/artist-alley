@@ -8,12 +8,18 @@
 }
 
 .merch {
-  background-color: var(--mid-blue);
+  background-color: var(--deep-blue);
   border: 3px solid var(--pale-pink);
+  color: var(--hot-pink);
   margin: 15px;
   box-shadow: 2px 2px 5px 4px rgba(244, 25, 153, 0.5);
   border-radius: 24px;
   overflow: hidden;
+}
+
+/* padding for paragraphs and img alt text in merch cards */
+.merch p {
+  padding: 5px;
 }
 
 .merch-title {
@@ -27,7 +33,7 @@
 .merch-artist {
   color: var(--hot-pink);
   text-transform: none;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: 90%;
   text-align: center;
@@ -44,4 +50,31 @@
   color: var(--hot-pink);
   text-decoration: none;
   cursor: pointer;
+}
+
+.merch-container form {
+  background-color: var(--pale-pink);
+}
+
+.merch-container label {
+  color: var(--hot-pink);
+  font-weight: 300;
+}
+
+.merch-container textarea,
+input {
+  border-color: var(--dark-pink);
+  color: var(--hot-pink);
+}
+
+.merch-container button {
+  background-color: var(--deep-blue);
+  border: 3px solid var(--hot-pink);
+  color: var(--hot-pink);
+}
+
+.merch-container button:hover {
+  background-color: var(--hot-pink);
+  border: 3px solid var(--deep-blue);
+  color: var(--light-blue);
 }

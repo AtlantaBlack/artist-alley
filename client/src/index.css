@@ -6,14 +6,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Lato:wght@100;300;400&display=swap');
 
 :root {
-  --deep-blue: #001a45;
-  --mid-blue: #032d5e;
+  --deep-blue: #f1e1cf;
+  --mid-blue: #f8dda2;
   --mid-grey: #9192a3;
-  --light-grey: #ededed;
-  --dark-pink: #f41999;
-  --hot-pink: #ff66ff;
-  --pale-pink: #f4d3db;
+  --light-grey: #d3edf0;
+  --dark-pink: #f5b0c9;
+  --hot-pink: #300230;
+  --pale-pink: #f89dc2;
+
+  /* ef898a */
+
+  --teal-green: #8be5d7;
+  --purple-blue: #3e6cad;
+  --purple: #9599ea;
+  --light-blue: #f1fafd;
+  --dark-purple: #3e2aaa;
 }
+/* ORIGINAL COLOURS
+--deep-blue: #001a45;
+--mid-blue: #032d5e;
+--mid-grey: #9192a3;
+--light-grey: #ededed;
+--dark-pink: #f41999;
+--hot-pink: #ff66ff;
+--pale-pink: #f4d3db; */
 
 * {
   box-sizing: 0;
@@ -37,7 +53,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 22px;
   font-weight: 300;
-  background-image: url(images/grunge-navy.jpg);
+  /* background-image: url(images/grunge-navy.jpg); */
+  background-image: url(images/watercolour.jpg);
   /* color: var(--light-grey); */
 }
 
@@ -59,10 +76,11 @@ h6 {
 
 a {
   text-decoration: none;
+  color: var(--hot-pink);
 }
 
 a:hover {
-  color: white;
+  color: var(--dark-purple);
 }
 
 button {
@@ -75,8 +93,8 @@ button {
 }
 
 button:hover {
-  background-color: var(--light-grey);
-  border: 3px solid var(--hot-pink);
+  background-color: var(--hot-pink);
+  border: 3px solid var(--mid-blue);
   color: var(--mid-blue);
 }
 
@@ -95,9 +113,9 @@ button:hover {
   border: 2px dotted cyan;
 }
 
-.bg-grey {
+/* .bg-grey {
   background-color: rgb(3, 11, 40);
-}
+} */
 
 .float-left {
   float: left;
@@ -113,4 +131,78 @@ button:hover {
 
 .text-sub {
   font-size: 75%;
+}
+
+/* trying some form styling */
+form {
+  color: var(--deep-blue);
+  background-color: var(--pale-pink);
+  margin: 15px;
+  border-radius: 24px;
+  width: 75vw;
+  padding: 20px;
+}
+/* 
+label {
+  margin: 5px;
+} */
+/* float input fields below labels */
+input {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 0px 20px 0px;
+  line-height: 2rem;
+  border-radius: 4px;
+  border-color: var(--mid-blue);
+  width: 90%;
+  padding: 5px;
+}
+
+input:focus,
+textarea:focus {
+  outline: var(--hot-pink) 2px solid;
+  border-color: var(--hot-pink) 2px solid;
+}
+
+input[type='file'] {
+  background-color: white;
+  border-color: var(--mid-blue);
+  line-height: 2rem;
+}
+
+textarea {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  resize: none;
+  width: 90%;
+  height: 20vh;
+  overflow-y: scroll;
+  margin: 20px 0px 20px 0px;
+  border-radius: 4px;
+  border-color: var(--mid-blue);
+  padding: 8px;
+}
+
+/* because i hated the default font on the placeholder textarea */
+textarea::placeholder {
+  font-family: 'Lato', 'Helvetica Neue', sans-serif;
+}
+
+/* form button {
+  display: flex;
+  justify-content: center;
+} */
+
+.dash-heading {
+  background-image: url('images/blue-green-splatter.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.table-heading {
+  background-image: url('images/pink-splatter.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }

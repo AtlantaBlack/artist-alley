@@ -1,5 +1,5 @@
 .navbar {
-  background-color: var(--light-grey);
+  background-color: var(--deep-blue);
 }
 
 .navbar ul {
@@ -9,7 +9,13 @@
 .navbar li {
   display: inline;
   color: white;
+  line-height: 2rem;
 }
 
 .navbar-link {
+  margin-right: 30px;
+}
+
+.logout-link {
+  margin-right: 30px;
 }
