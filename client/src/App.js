@@ -8,7 +8,8 @@ import Signup from './pages/Signup.js';
 import Login from './pages/Login.js';
 import Dashboard from './pages/Dashboard.js';
 import Shop from './components/Shop';
-import PostDetails from './components/PostDetails';
+
+// import PostDetails from './components/PostDetails';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -31,7 +32,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
               <Route path="dashboard/my/table" element={<Shop />} />
 
-            <Route path="posts/:postId" element={<PostDetails/>}/>
+            {/* <Route path="posts/:postId" element={<PostDetails/>}/> */}
 
 {/* need an index element: artists w/ outlet to display artist profile page & artist store page */}
             <Route path="artists"/>
