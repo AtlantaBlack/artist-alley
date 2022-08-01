@@ -54,7 +54,7 @@ const Dashboard = () => {
 
   // handler for submitting a new post
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const response = await addPost({
       variables: {
         title: formState.title,
