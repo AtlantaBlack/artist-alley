@@ -7,7 +7,7 @@ import Home from './pages/Home.js';
 import Signup from './pages/Signup.js';
 import Login from './pages/Login.js';
 import Dashboard from './pages/Dashboard.js';
-import Shop from './pages/Shop.js';
+import Shop from './components/Shop';
 import PostDetails from './components/PostDetails';
 
 const client = new ApolloClient({
@@ -29,9 +29,7 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="dashboard" element={<Dashboard />} />
-              {/* <Route path="my/table" element={<Shop />} /> */}
-              {/* <Route index element={<Dashboard />} */}
-            <Route path="table" element={<Shop />} />
+              <Route path="dashboard/my/table" element={<Shop />} />
 
             <Route path="posts/:postId" element={<PostDetails/>}/>
 
