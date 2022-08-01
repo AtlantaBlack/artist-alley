@@ -1,10 +1,10 @@
 import './index.css';
 
-const ShopItems = ({ shopItems }) => {
+const Merch = ({ merch }) => {
   // console.log(postDetails);
 
   // eslint-disable-next-line no-unused-vars
-  const { _id, name, image, description, price, quantity } = shopItems;
+  const { _id, name, image, description, price, quantity } = merch;
 
   return (
     <>
@@ -14,10 +14,9 @@ const ShopItems = ({ shopItems }) => {
         <p>{description}</p>
         <p>Price: ${price}</p>
         <p>Quantity: {quantity}</p>
-        {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
       </div>
     </>
   );
 };
 
-export default ShopItems;
+export default Merch;

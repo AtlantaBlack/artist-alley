@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
 import { QUERY_USER } from '../utils/queries';
 import { ADD_POST, REMOVE_POST } from '../utils/mutations';
@@ -108,9 +108,8 @@ const Dashboard = () => {
         <h1>My Dashboard</h1>
       </div>
       <div>
-        <p>place to add buttons</p>
         <Link to="/dashboard/my/table">
-          <button type="button">see my store</button>
+          <button type="button">Go to your Artist's Table</button>
         </Link>
       </div>
 

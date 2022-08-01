@@ -22,12 +22,12 @@ const Nav = () => {
           </li>
           <li>
             <Link to="/artists/:artistId/" className="navbar-link">
-              View My Portfolio
+              Portfolio
             </Link>
           </li>
           <li>
             <Link to="/artists/:artistId/store" className="navbar-link">
-              View My Artist's Table
+              Artist's Table
             </Link>
           </li>
           <li>
