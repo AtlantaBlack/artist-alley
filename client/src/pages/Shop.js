@@ -98,71 +98,73 @@ const Store = () => {
 
   return (
     <div>
-      <h1>My Artist Table</h1>
-      <div className="add-post">
-        <h2>Add your merch!</h2>
-        <form>
-          <div>
-            <label htmlFor="name">Merch Name: </label>
-            <input
-              placeholder="name of merch"
-              name="name"
-              type="text"
-              id="name"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="description">Description:</label>
-            <textarea
-              placeholder="description of merch"
-              name="description"
-              type="text"
-              id="description"
-              onChange={handleInputChange}
-            ></textarea>
-          </div>
+      <h1 className="table-heading">My Artist's Table</h1>
+      <div className="merch">
+        <h2 className="text-center">Add merch to your table!</h2>
+        <div className="merch-container">
+          <form>
+            <div>
+              <label htmlFor="name">Merch name: </label>
+              <input
+                placeholder="Name of merch"
+                name="name"
+                type="text"
+                id="name"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Description:</label>
+              <textarea
+                placeholder="Description of merch"
+                name="description"
+                type="text"
+                id="description"
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
 
-          <div>
-            <label htmlFor="img">Upload img:</label>
+            <div>
+              <label htmlFor="img">Upload image (Max file size 5MB):</label>
 
-            <FileBase64
-              name="file"
-              type="file"
-              accept="image/*"
-              multiple={false}
-              onDone={({ base64 }) => convert64({ base64 })}
-            />
-          </div>
+              <FileBase64
+                name="file"
+                type="file"
+                accept="image/*"
+                multiple={false}
+                onDone={({ base64 }) => convert64({ base64 })}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="price">Price: </label>
-            <input
-              placeholder="price of merch"
-              name="price"
-              type="text"
-              id="price"
-              onChange={handleInputChange}
-            />
-          </div>
+            <div>
+              <label htmlFor="price">Price: $</label>
+              <input
+                placeholder="Price of merch"
+                name="price"
+                type="text"
+                id="price"
+                onChange={handleInputChange}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="title">Quantity in Stock: </label>
-            <input
-              placeholder="quantity of merch"
-              name="quantity"
-              type="text"
-              id="quantity"
-              onChange={handleInputChange}
-            />
-          </div>
+            <div>
+              <label htmlFor="title">Quantity in Stock: </label>
+              <input
+                placeholder="Quantity of merch in stock"
+                name="quantity"
+                type="text"
+                id="quantity"
+                onChange={handleInputChange}
+              />
+            </div>
 
-          <div>
-            <button type="submit" onClick={handleFormSubmit}>
-              Submit
-            </button>
-          </div>
-        </form>
+            <div>
+              <button type="submit" onClick={handleFormSubmit}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <div className="posts">
@@ -173,7 +175,7 @@ const Store = () => {
             <div> loading </div>
           ) : (
             merch.map((item) => (
-              <div key={item._id} className="post-container">
+              <div key={item._id} className="merch-container">
                 <Shop shopItems={item} />
                 <button
                   type="button"

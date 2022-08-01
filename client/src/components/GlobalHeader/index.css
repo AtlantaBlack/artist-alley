@@ -1,6 +1,11 @@
 .header {
   border: 1px solid cyan;
-  background-color: var(--deep-blue);
+  /* background-color: var(--deep-blue); */
+  /* background-image: url(../../images/watercolour.jpg); */
+  /* background-image: url(../../images/brush.png); */
+  background-image: url(../../images/pink-yellow-splatter.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .header h1 {

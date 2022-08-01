@@ -103,48 +103,54 @@ const Dashboard = () => {
   // if user is an artist, they can see the Add Post form and a list of their previous posts
   return (
     <div>
-      <h1>My Dashboard</h1>
-      <div className="add-post">
-        <h2>add a post</h2>
-        <form>
-          <div>
-            <label htmlFor="title">Post title:</label>
-            <input
-              placeholder="title of post"
-              name="title"
-              type="title"
-              id="title"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="description">Description:</label>
-            <textarea
-              placeholder="description of post"
-              name="description"
-              type="description"
-              id="description"
-              onChange={handleInputChange}
-            ></textarea>
-          </div>
+      <div className="dash-heading">
+        <h1>My Dashboard</h1>
+      </div>
+      <div className="post">
+        <h2 className="text-center">Share your Art!</h2>
+        <div className="post-container">
+          <form>
+            <div>
+              <label htmlFor="title">Post title:</label>
+              <input
+                placeholder="Title of post"
+                name="title"
+                type="title"
+                id="title"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Description:</label>
+              <textarea
+                placeholder="Description of post"
+                name="description"
+                type="description"
+                id="description"
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
 
-          <div>
-            <label htmlFor="img">upload img:</label>
-            {/* <button type="button">click to upload image</button> */}
-            <FileBase64
-              name="file"
-              type="file"
-              multiple={false}
-              onDone={({ base64 }) => convert64({ base64 })}
-            />
-          </div>
+            <div className="image-upload">
+              <label htmlFor="img">Upload image (Max size 5MB):</label>
+              {/* <button type="button">click to upload image</button> */}
+              <FileBase64
+                name="file"
+                id="img-upload"
+                type="file"
+                accept="image/*"
+                multiple={false}
+                onDone={({ base64 }) => convert64({ base64 })}
+              />
+            </div>
 
-          <div>
-            <button type="submit" onClick={handleFormSubmit}>
-              Submit
-            </button>
-          </div>
-        </form>
+            <div>
+              <button type="submit" onClick={handleFormSubmit}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <div className="posts">

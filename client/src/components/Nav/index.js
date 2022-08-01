@@ -11,14 +11,22 @@ const Nav = () => {
       return (
         <ul>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard" className="navbar-link">
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link to="/table">Artist Table</Link>
+            <Link to="/table" className="navbar-link">
+              Artist Table
+            </Link>
           </li>
           <li>
             {/* use regular anchor tag to force app to refresh when user logs out */}
-            <a href="/" onClick={() => Auth.logout()}>
+            <a
+              href="/"
+              className="float-right logout-link"
+              onClick={() => Auth.logout()}
+            >
               Logout
             </a>
           </li>

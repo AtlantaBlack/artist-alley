@@ -9,9 +9,9 @@ const Shop = ({ shopItems }) => {
     <>
       <div className="merch">
         <h3 className="merch-artist">{name}</h3>
-        <p>{description}</p>
         <img src={`data:image/png;base64,${image}`} alt={description} />
-        <p>Price: {price}</p>
+        <p>{description}</p>
+        <p>Price: ${price}</p>
         <p>Quantity: {quantity}</p>
         {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
       </div>
