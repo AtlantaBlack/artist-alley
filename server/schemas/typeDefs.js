@@ -18,6 +18,7 @@ const typeDefs = gql`
     orders: [Order]
     posts: [Post]
     merch: [Merch]
+    likedPosts: [Post]
   }
 
   type Post {
@@ -25,7 +26,7 @@ const typeDefs = gql`
     title: String
     description: String
     image: String
-    likes: Int
+    likes: [User]
     user: User
     createdBy: String
   }
@@ -101,7 +102,7 @@ const typeDefs = gql`
 
     removeMerch(merchId: ID!, createdBy: String): Merch
 
-    addLike(postId: ID, likes: Int): Post
+    addLike(postId: ID!, userId: ID!): Post
   }
 `;
 

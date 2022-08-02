@@ -2,45 +2,57 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_LIKE } from '../../utils/mutations';
 import { QUERY_SINGLE_POST } from '../../utils/queries';
+import Auth from '../../utils/auth';
 
 const LikeCounter = ({ postId }) => {
+  let sessionUser;
+
+  if (Auth.loggedIn()) {
+    sessionUser = Auth.getProfile().data;
+  }
+
+  // console.log('sessionUser in likes: ', sessionUser);
+
   // console.log('postId in Likes: ', postId);
   const { loading, data } = useQuery(QUERY_SINGLE_POST, {
     variables: { postId: postId }
   });
-  // let totalLikes = 0;
 
   // if (data) {
   //   console.log(data);
   //   totalLikes = data.singlePost.likes;
   // }
 
-  const totalLikes = data?.singlePost.likes || 0;
+  let totalLikes = data?.singlePost.likes.length || 0;
+  // let totalLikes = thisPost.likes.length;
 
-  // let totalLikes = data?.singlePost.likes;
+  // console.log('thisPost: ', thisPost);
   console.log('totalLikes: ', totalLikes);
 
-  const [count, setCount] = useState(totalLikes);
+  // const [count, setCount] = useState(totalLikes);
   const [addLike] = useMutation(ADD_LIKE);
 
-  const handleIncrement = async () => {
-    setCount(count + 1);
-    const diff = count - totalLikes;
-    console.log(diff);
+  const handleAddLike = async () => {
+    console.log(`likes before click!
+    count: ${totalLikes}`);
 
-    console.log(`
-    count: ${count}
-    totalLikes: ${totalLikes}
-    diff: ${diff}`);
+    // setCount(count + 1);
+    // const diff = count - totalLikes;
+    // console.log(diff);
+
+    // console.log(`
+    // count: ${count}
+    // totalLikes: ${totalLikes}
+    // diff: ${diff}`);
 
     const response = await addLike({
       variables: {
         postId: postId,
-        likes: diff
+        userId: sessionUser._id
       }
     });
-    console.log(`click!
-    count: ${count}`);
+    console.log(`likes after click!
+    count: ${totalLikes}`);
     console.log('response', response);
   };
 
@@ -66,7 +78,7 @@ const LikeCounter = ({ postId }) => {
         <div> loading... </div>
       ) : (
         <div>
-          <button type="button" onClick={handleIncrement}>
+          <button type="button" onClick={handleAddLike}>
             Like
           </button>
           <p>{totalLikes} Likes</p>

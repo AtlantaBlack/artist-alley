@@ -7,8 +7,11 @@ export const QUERY_POSTS = gql`
       title
       description
       image
-      likes
       createdBy
+      likes {
+        _id
+        username
+      }
     }
   }
 `;
@@ -20,8 +23,11 @@ export const QUERY_SINGLE_POST = gql`
       title
       image
       description
-      likes
       createdBy
+      likes {
+        _id
+        username
+      }
     }
   }
 `;

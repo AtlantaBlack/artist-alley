@@ -10,14 +10,17 @@ const { User, Post, Merch } = require('../models');
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find();
+      return await User.find({});
+      // .populate('posts')
+      // .populate('merch')
+      // .populate('likedPosts');
     },
     user: async (parent, { username }) => {
       const user = await User.findOne({ username }).populate('posts');
       return user;
     },
     posts: async () => {
-      return await Post.find({});
+      return await Post.find({}).populate('likes');
     },
 
     singlePost: async (parent, { postId }) => {
@@ -160,12 +163,19 @@ const resolvers = {
       return removeMerch;
     },
 
-    addLike: async (parent, { postId, likes }) => {
+    addLike: async (parent, { postId, userId }) => {
       const addLike = await Post.findByIdAndUpdate(
         { _id: postId },
-        { $inc: { likes } },
+        { $addToSet: { likes: userId } },
         { new: true }
       );
+
+      await User.findByIdAndUpdate(
+        { _id: userId },
+        { $addToSet: { likedPosts: postId } },
+        { new: true }
+      );
+
       return addLike;
     }
   },

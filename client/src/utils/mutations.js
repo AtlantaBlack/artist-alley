@@ -118,12 +118,15 @@ export const REMOVE_MERCH = gql`
 `;
 
 export const ADD_LIKE = gql`
-  mutation addLike($postId: ID!, $likes: Int) {
-    addLike(postId: $postId, likes: $likes) {
+  mutation addLike($postId: ID!, $userId: ID!) {
+    addLike(postId: $postId, userId: $userId) {
       _id
       title
       createdBy
-      likes
+      likes {
+        _id
+        username
+      }
     }
   }
 `;
