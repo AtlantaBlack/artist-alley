@@ -9,15 +9,13 @@ const Home = () => {
   if (Auth.loggedIn()) {
     return (
       <div className="bg-grey">
-        HOME PAGE
         <LatestPosts />
       </div>
     );
   }
   // if not logged in, render welcome screen:
   return (
-    <div className="bg-grey">
-      HOME PAGE
+    <div className="welcome">
       <WelcomeScreen />
     </div>
   );

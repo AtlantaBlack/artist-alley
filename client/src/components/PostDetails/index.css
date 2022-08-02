@@ -2,8 +2,9 @@
   flex: 0 0 100%;
   border: 2px solid lightblue;
   background-color: var(--pink);
+  border-radius: 20px;
   margin: 10px auto;
-  width: 100%;
+  width: 90%;
   overflow: hidden;
 }
 

@@ -115,12 +115,12 @@ const Dashboard = () => {
       <div className="dash-heading">
         <h1>My Dashboard</h1>
       </div>
-      <div>
+      <nav className="dash-nav">
         <Link to="/dashboard/my/table">
           <button type="button">Go to your Artist's Table</button>
         </Link>
         <button onClick={showFormHandler}>Make a post!</button>
-      </div>
+      </nav>
       {showForm && (
         <div className="post">
           <h2 className="text-center">Share your Art!</h2>
@@ -170,7 +170,6 @@ const Dashboard = () => {
       )}
 
       <div className="posts">
-        <h2>posts</h2>
         <div style={{ border: '1px solid orange' }}>
           {loading ? (
             <div> loading </div>
