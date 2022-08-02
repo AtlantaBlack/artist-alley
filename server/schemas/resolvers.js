@@ -37,7 +37,6 @@ const resolvers = {
   Mutation: {
     addUser: async (
       parent,
-      // eslint-disable-next-line object-curly-newline
       { userType, username, firstName, lastName, email, password, birthday }
     ) => {
       const user = await User.create({
@@ -66,11 +65,7 @@ const resolvers = {
       return { token, user };
     },
 
-    addPost: async (
-      parent,
-      // eslint-disable-next-line object-curly-newline
-      { title, description, image, createdBy }
-    ) => {
+    addPost: async (parent, { title, description, image, createdBy }) => {
       // console.log(createdBy);
       const newPost = await Post.create({
         title,
@@ -86,11 +81,7 @@ const resolvers = {
       return newPost;
     },
 
-    removePost: async (
-      parent,
-      // eslint-disable-next-line object-curly-newline
-      { createdBy, postId }
-    ) => {
+    removePost: async (parent, { postId, createdBy }) => {
       const removePost = await Post.findByIdAndDelete({
         _id: postId
       });
