@@ -1,5 +1,6 @@
 import './index.css';
 import { useParams } from 'react-router-dom';
+import DisplayLikes from './DisplayLikes';
 
 const PostDetails = ({ postDetails }) => {
   const { postId } = useParams();
@@ -16,6 +17,7 @@ const PostDetails = ({ postDetails }) => {
       <img src={`data:image/png;base64,${image}`} alt={description} />
       <p>{description}</p>
       <p>created by: {createdBy}</p>
+      <DisplayLikes />
     </div>
   );
 };

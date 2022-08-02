@@ -1,4 +1,5 @@
 import './index.css';
+import DisplayLikes from '../Likes';
 
 import { Link } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ const Post = ({ postDetails }) => {
         <Link to={`/posts/${_id}`} className="link-card">
           <img src={`data:image/png;base64,${image}`} alt={description} />
         </Link>
+        <DisplayLikes />
       </div>
     </>
   );
