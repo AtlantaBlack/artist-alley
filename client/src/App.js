@@ -31,15 +31,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="dashboard/my/table" element={<Shop />} />
+          <Route path="dashboard/my/store" element={<Shop />} />
 
           <Route path="posts/:postId" element={<SinglePost />} />
 
           {/* need an index element: artists w/ outlet to display artist profile page & artist store page */}
           <Route path="artists" element={<Artists />} />
-          <Route path="artists/:artistId" element={<ArtistDetails />} />
+          <Route path="artists/:artistName" element={<ArtistDetails />} />
           <Route
-            path="artists/:artistId/table"
+            path="artists/:artistName/store"
             element={<ArtistShopDetails />}
           />
 

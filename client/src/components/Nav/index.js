@@ -20,8 +20,8 @@ const Nav = () => {
               Dashboard
             </Link>
           </li>
-          <li>
-            <Link to="/artists/:artistId/" className="navbar-link">
+          {/* <li>
+            <Link to={`/artists/${artistName}`} className="navbar-link">
               Portfolio
             </Link>
           </li>
@@ -29,7 +29,7 @@ const Nav = () => {
             <Link to="/artists/:artistId/store" className="navbar-link">
               Artist's Table
             </Link>
-          </li>
+          </li> */}
           <li>
             {/* use regular anchor tag to force app to refresh when user logs out */}
             <a

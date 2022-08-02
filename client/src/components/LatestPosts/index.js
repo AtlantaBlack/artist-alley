@@ -8,7 +8,7 @@ const LatestPosts = () => {
   // get all the posts
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
-  // console.log('posts', posts);
+  console.log('posts in post: ', posts);
 
   return (
     <>

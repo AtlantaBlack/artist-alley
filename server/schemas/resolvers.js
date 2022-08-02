@@ -19,8 +19,21 @@ const resolvers = {
     user: async (parent, { username }) => {
       const user = await User.findOne({ username })
         .populate('posts')
+        .populate('merch')
         .populate('likedPosts');
       return user;
+    },
+    artist: async (parent, { artistId }) => {
+      const artist = await User.findOne({ _id: artistId })
+        .populate('posts')
+        .populate('likedPosts');
+      return artist;
+    },
+    artistShop: async (parent, { artistId }) => {
+      const artistShop = await User.findOne({ _id: artistId }).populate(
+        'merch'
+      );
+      return artistShop;
     },
     posts: async () => {
       return await Post.find({}).populate('likes');
