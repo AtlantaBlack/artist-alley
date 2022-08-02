@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import FileBase64 from 'react-file-base64';
 import { QUERY_USER_MERCH } from '../utils/queries';
 import { ADD_MERCH, REMOVE_MERCH } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-import Shop from '../components/Shop';
+import Merch from '../components/Merch';
 
-const Store = () => {
+const Shop = () => {
   // console.log('load shop');
   const { loading, data } = useQuery(QUERY_USER_MERCH, {
     variables: { username: Auth.getProfile().data.username }
@@ -98,6 +99,7 @@ const Store = () => {
 
   return (
     <div>
+      <Link to="/dashboard">← Return to Dashboard</Link>
       <h1 className="table-heading">My Artist's Table</h1>
       <div className="merch">
         <h2 className="text-center">Add merch to your table!</h2>
@@ -176,7 +178,7 @@ const Store = () => {
           ) : (
             merch.map((item) => (
               <div key={item._id} className="merch-container">
-                <Shop shopItems={item} />
+                <Merch merch={item} />
                 <button
                   type="button"
                   merchid={item._id}
@@ -193,4 +195,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default Shop;

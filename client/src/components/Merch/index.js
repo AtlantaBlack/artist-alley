@@ -1,9 +1,10 @@
 import './index.css';
 
-// import { Link } from 'react-router-dom';
+const Merch = ({ merch }) => {
+  // console.log(postDetails);
 
-const Shop = ({ shopItems }) => {
-  const { _id, name, image, description, price, quantity } = shopItems;
+  // eslint-disable-next-line no-unused-vars
+  const { _id, name, image, description, price, quantity } = merch;
 
   return (
     <>
@@ -13,10 +14,9 @@ const Shop = ({ shopItems }) => {
         <p>{description}</p>
         <p>Price: ${price}</p>
         <p>Quantity: {quantity}</p>
-        {/* <Post postDetails={items} loggedInArtist={loggedInArtist} /> */}
       </div>
     </>
   );
 };
 
-export default Shop;
+export default Merch;
