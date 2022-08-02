@@ -66,18 +66,9 @@ const userSchema = new Schema({
     type: Date,
     required: true
   },
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Post'
-    }
-  ],
-  merch: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Merch'
-    }
-  ],
+  posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
+  merch: [{ type: Schema.Types.ObjectId, ref: 'Merch' }],
+  likedPosts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
   orders: [Order.schema]
 });
 

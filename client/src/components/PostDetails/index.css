@@ -19,5 +19,4 @@
 
 .post img {
   width: 100%; /* set img width @ 100% of bounding container */
-  max-width: 550px; /* set maximum width of img @ 500px */
 }

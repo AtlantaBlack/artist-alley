@@ -7,12 +7,27 @@ export const QUERY_POSTS = gql`
       title
       description
       image
-      likes
       createdBy
-      # user {
-      #   _id
-      #   username
-      # }
+      likes {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_POST = gql`
+  query getSinglePost($postId: ID!) {
+    singlePost(postId: $postId) {
+      _id
+      title
+      image
+      description
+      createdBy
+      likes {
+        _id
+        username
+      }
     }
   }
 `;
@@ -23,15 +38,16 @@ export const QUERY_USER = gql`
       _id
       username
       userType
-      # username
-      # firstName
-      # lastName
       posts {
         _id
         title
         description
         image
         createdBy
+      }
+      likedPosts {
+        _id
+        title
       }
     }
   }

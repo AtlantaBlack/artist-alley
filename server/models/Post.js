@@ -15,11 +15,7 @@ const postSchema = new Schema({
   image: {
     type: String
   },
-  likes: {
-    type: Number,
-    min: 0,
-    default: 0
-  },
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   createdBy: {
     type: String,
     required: true
@@ -27,7 +23,6 @@ const postSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-    // required: true
   }
 });
 

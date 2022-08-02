@@ -19,7 +19,6 @@ function Login(props) {
 
       const token = mutationResponse.data.login.token;
       Auth.login(token);
-      // console.log('heres the', token);
     } catch (e) {
       console.log(e);
     }
