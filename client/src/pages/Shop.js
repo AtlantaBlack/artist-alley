@@ -10,6 +10,15 @@ import Auth from '../utils/auth';
 import Merch from '../components/Merch';
 
 const Shop = () => {
+  const [image, setImage] = useState('');
+  const [price, setPrice] = useState('');
+  const [formState, setFormState] = useState({
+    name: '',
+    description: '',
+    price: '',
+    quantity: '',
+    image: ''
+  });
   // console.log('load shop');
   const { loading, data } = useQuery(QUERY_USER_MERCH, {
     variables: { username: Auth.getProfile().data.username }
@@ -21,16 +30,6 @@ const Shop = () => {
 
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
-
-  const [image, setImage] = useState('');
-  const [price, setPrice] = useState('');
-  const [formState, setFormState] = useState({
-    name: '',
-    description: '',
-    price: '',
-    quantity: '',
-    image: ''
-  });
 
   const [addMerch] = useMutation(ADD_MERCH);
   const [removeMerch] = useMutation(REMOVE_MERCH);
