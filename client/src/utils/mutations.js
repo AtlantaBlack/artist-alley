@@ -128,4 +128,17 @@ export const ADD_LIKE = gql`
   }
 `;
 
+export const SINGLE_POST = gql`
+  query singlePost($postId: ID!) {
+    singlePost(postId: $postId) {
+      _id
+      title
+      image
+      description
+      likes
+      createdBy
+    }
+  }
+`;
+
 //add token to the above once we've worked out the auth stuff

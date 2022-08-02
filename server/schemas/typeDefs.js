@@ -63,6 +63,7 @@ const typeDefs = gql`
     posts: [Post]
     # userPost: [Post]
     merch(username: String!): User
+    singlePost(postId: ID!): Post
   }
 
   type Mutation {
