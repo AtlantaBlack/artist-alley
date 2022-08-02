@@ -20,9 +20,13 @@ const resolvers = {
       return await Post.find({});
     },
 
+    singlePost: async (parent, { postId }) => {
+      return await Post.findOne({ postId });
+    },
+
     merch: async (parent, { username }) => {
       const merch = await User.findOne({ username }).populate('merch');
-      // console.log(merch);
+
       return merch;
     }
 
@@ -154,6 +158,15 @@ const resolvers = {
       );
 
       return removeMerch;
+    },
+
+    addLike: async (parent, { postId, likes }) => {
+      const addLike = await Post.findByIdAndUpdate(
+        { _id: postId },
+        { $inc: { likes } },
+        { new: true }
+      );
+      return addLike;
     }
   },
   dateScalar
