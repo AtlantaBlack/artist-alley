@@ -45,6 +45,13 @@ const Dashboard = () => {
   const [addPost] = useMutation(ADD_POST);
   const [removePost] = useMutation(REMOVE_POST);
 
+  // reveal 'make a post' on button click
+  // https://stackoverflow.com/questions/71784034/react-how-to-add-a-button-click-handler-to-reveal-text
+  const [showForm, setShowForm] = useState(false);
+  const showFormHandler = async () => {
+    setShowForm((showForm) => !showForm);
+  };
+
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
@@ -111,54 +118,57 @@ const Dashboard = () => {
         <Link to="/dashboard/my/table">
           <button type="button">Go to your Artist's Table</button>
         </Link>
+        <button onClick={showFormHandler}>Make a post!</button>
       </div>
 
-      <div className="post">
-        <h2 className="text-center">Share your Art!</h2>
-        <div className="post-container">
-          <form>
-            <div>
-              <label htmlFor="title">Post title:</label>
-              <input
-                placeholder="Title of post"
-                name="title"
-                type="title"
-                id="title"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="description">Description:</label>
-              <textarea
-                placeholder="Description of post"
-                name="description"
-                type="description"
-                id="description"
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
+      {showForm && (
+        <div className="post">
+          <h2 className="text-center">Share your Art!</h2>
+          <div className="post-container">
+            <form>
+              <div>
+                <label htmlFor="title">Post title:</label>
+                <input
+                  placeholder="Title of post"
+                  name="title"
+                  type="title"
+                  id="title"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="description">Description:</label>
+                <textarea
+                  placeholder="Description of post"
+                  name="description"
+                  type="description"
+                  id="description"
+                  onChange={handleInputChange}
+                ></textarea>
+              </div>
 
-            <div className="image-upload">
-              <label htmlFor="img">Upload image (Max size 5MB):</label>
-              {/* <button type="button">click to upload image</button> */}
-              <FileBase64
-                name="file"
-                id="img-upload"
-                type="file"
-                accept="image/*"
-                multiple={false}
-                onDone={({ base64 }) => convert64({ base64 })}
-              />
-            </div>
+              <div className="image-upload">
+                <label htmlFor="img">Upload image (Max size 5MB):</label>
+                {/* <button type="button">click to upload image</button> */}
+                <FileBase64
+                  name="file"
+                  id="img-upload"
+                  type="file"
+                  accept="image/*"
+                  multiple={false}
+                  onDone={({ base64 }) => convert64({ base64 })}
+                />
+              </div>
 
-            <div>
-              <button type="submit" onClick={handleFormSubmit}>
-                Submit
-              </button>
-            </div>
-          </form>
+              <div>
+                <button type="submit" onClick={handleFormSubmit}>
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="posts">
         <h2>posts</h2>
