@@ -11,12 +11,12 @@ const ArtistShopDetails = () => {
     variables: { username: artistName }
   });
 
-  if (data) {
-    console.log('data:', data);
-  }
+  // if (data) {
+  //   console.log('data:', data);
+  // }
   const merch = data?.merch.merch || {};
 
-  console.log('merch by artist:', merch);
+  // console.log('merch by artist:', merch);
 
   if (loading) {
     return <div>Loading...</div>;

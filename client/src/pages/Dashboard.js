@@ -116,7 +116,7 @@ const Dashboard = () => {
         <h1>My Dashboard</h1>
       </div>
       <nav className="dash-nav">
-        <Link to="/dashboard/my">
+        <Link to="/dashboard/my/store">
           <button type="button">Go to your Artist's Table</button>
         </Link>
         <button onClick={showFormHandler}>Make a post!</button>
