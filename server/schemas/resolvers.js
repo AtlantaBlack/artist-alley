@@ -21,7 +21,7 @@ const resolvers = {
     },
 
     singlePost: async (parent, { postId }) => {
-      return await Post.findOne({ postId });
+      return await Post.findOne({ _id: postId });
     },
 
     merch: async (parent, { username }) => {

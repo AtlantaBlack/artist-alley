@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DisplayLikes from './DisplayLikes';
+// import DisplayLikes from './DisplayLikes';
 import { useMutation } from '@apollo/client';
 import { ADD_LIKE } from '../../utils/mutations';
 
@@ -20,7 +20,13 @@ const LikeCounter = () => {
 
   return (
     <div className="likes">
-      <DisplayLikes counter={counter} handleIncrement={handleIncrement} />
+      {/* <DisplayLikes counter={counter} handleIncrement={handleIncrement} /> */}
+      <button type="button" onClick={handleIncrement}>
+        Like
+      </button>
+      <div>
+        <p>{counter} Likes</p>
+      </div>
     </div>
   );
 };

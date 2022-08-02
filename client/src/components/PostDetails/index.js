@@ -1,11 +1,9 @@
 import './index.css';
-import { useParams } from 'react-router-dom';
-import DisplayLikes from './DisplayLikes';
+
+// import DisplayLikes from '../Likes/DisplayLikes';
+import LikeCounter from '../Likes';
 
 const PostDetails = ({ postDetails }) => {
-  const { postId } = useParams();
-  console.log('postId: ', postId);
-
   // console.log(postDetails);
 
   // eslint-disable-next-line no-unused-vars
@@ -17,7 +15,7 @@ const PostDetails = ({ postDetails }) => {
       <img src={`data:image/png;base64,${image}`} alt={description} />
       <p>{description}</p>
       <p>created by: {createdBy}</p>
-      <DisplayLikes />
+      <LikeCounter />
     </div>
   );
 };

@@ -10,13 +10,11 @@ import Login from './pages/Login.js';
 import Dashboard from './pages/Dashboard.js';
 import Shop from './pages/Shop.js';
 
-import PostDetails from './pages/PostDetails.js';
+import SinglePost from './pages/SinglePost.js';
 
 import Artists from './pages/Artists.js';
 import ArtistDetails from './pages/ArtistDetails.js';
 import ArtistShopDetails from './pages/ArtistShop.js';
-
-// import PostDetails from './components/PostDetails';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -35,7 +33,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="dashboard/my/table" element={<Shop />} />
 
-          <Route path="posts/:postId" element={<PostDetails />} />
+          <Route path="posts/:postId" element={<SinglePost />} />
 
           {/* need an index element: artists w/ outlet to display artist profile page & artist store page */}
           <Route path="artists" element={<Artists />} />

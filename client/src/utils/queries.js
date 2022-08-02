@@ -9,10 +9,19 @@ export const QUERY_POSTS = gql`
       image
       likes
       createdBy
-      # user {
-      #   _id
-      #   username
-      # }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_POST = gql`
+  query getSinglePost($postId: ID!) {
+    singlePost(postId: $postId) {
+      _id
+      title
+      image
+      description
+      likes
+      createdBy
     }
   }
 `;
