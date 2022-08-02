@@ -6,12 +6,15 @@ import GlobalHeader from './components/GlobalHeader';
 import Home from './pages/Home.js';
 import Signup from './pages/Signup.js';
 import Login from './pages/Login.js';
+
 import Dashboard from './pages/Dashboard.js';
 import Shop from './pages/Shop.js';
 
-import Artists from './components/Artists';
-import ArtistPortfolio from './components/ArtistPortfolio';
-import ArtistShop from './components/ArtistShop';
+import PostDetails from './pages/PostDetails.js';
+
+import Artists from './pages/Artists.js';
+import ArtistDetails from './pages/ArtistDetails.js';
+import ArtistShopDetails from './pages/ArtistShop.js';
 
 // import PostDetails from './components/PostDetails';
 
@@ -32,15 +35,18 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="dashboard/my/table" element={<Shop />} />
 
-          {/* <Route path="posts/:postId" element={<PostDetails/>}/> */}
+          <Route path="posts/:postId" element={<PostDetails />} />
 
           {/* need an index element: artists w/ outlet to display artist profile page & artist store page */}
           <Route path="artists" element={<Artists />} />
-          <Route path="artists/someArtist" element={<ArtistPortfolio />} />
-          <Route path="artists/someArtist/table" element={<ArtistShop />} />
+          <Route path="artists/:artistId" element={<ArtistDetails />} />
+          <Route
+            path="artists/:artistId/table"
+            element={<ArtistShopDetails />}
+          />
 
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

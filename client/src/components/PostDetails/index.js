@@ -1,6 +1,10 @@
 import './index.css';
+import { useParams } from 'react-router-dom';
 
-const Post = ({ postDetails }) => {
+const PostDetails = ({ postDetails }) => {
+  const { postId } = useParams();
+  console.log('postId: ', postId);
+
   // console.log(postDetails);
 
   // eslint-disable-next-line no-unused-vars
@@ -16,4 +20,4 @@ const Post = ({ postDetails }) => {
   );
 };
 
-export default Post;
+export default PostDetails;

@@ -12,18 +12,18 @@ const Post = ({ postDetails }) => {
     <>
       <div className="post">
         <h2 className="post-title">
-          <Link to="/posts/:postId" className="link-card">
+          <Link to={`/posts/${_id}`} className="link-card">
             {title}
           </Link>
         </h2>
 
         <h3 className="post-artist">
-          <Link to="/artists/:artistId" className="link-card">
+          <Link to="/artists/someArtist" className="link-card">
             {createdBy}
           </Link>
         </h3>
 
-        <Link to="/posts/:postId" className="link-card">
+        <Link to={`/posts/${_id}`} className="link-card">
           <img src={`data:image/png;base64,${image}`} alt={description} />
         </Link>
       </div>
