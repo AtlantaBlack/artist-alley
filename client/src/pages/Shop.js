@@ -35,6 +35,13 @@ const Shop = () => {
   const [addMerch] = useMutation(ADD_MERCH);
   const [removeMerch] = useMutation(REMOVE_MERCH);
 
+  // reveal 'make a post' on button click
+  // https://stackoverflow.com/questions/71784034/react-how-to-add-a-button-click-handler-to-reveal-text
+  const [showForm, setShowForm] = useState(false);
+  const showFormHandler = async () => {
+    setShowForm((showForm) => !showForm);
+  };
+
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
@@ -101,73 +108,77 @@ const Shop = () => {
     <div>
       <Link to="/dashboard">← Return to Dashboard</Link>
       <h1 className="table-heading">My Artist's Table</h1>
-      <div className="merch">
-        <h2 className="text-center">Add merch to your table!</h2>
-        <div className="merch-container">
-          <form>
-            <div>
-              <label htmlFor="name">Merch name: </label>
-              <input
-                placeholder="Name of merch"
-                name="name"
-                type="text"
-                id="name"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="description">Description:</label>
-              <textarea
-                placeholder="Description of merch"
-                name="description"
-                type="text"
-                id="description"
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
+      <button onClick={showFormHandler}>Add Merch!</button>
 
-            <div>
-              <label htmlFor="img">Upload image (Max file size 5MB):</label>
+      {showForm && (
+        <div className="merch">
+          <h2 className="text-center">Add merch to your table!</h2>
+          <div className="merch-container">
+            <form>
+              <div>
+                <label htmlFor="name">Merch name: </label>
+                <input
+                  placeholder="Name of merch"
+                  name="name"
+                  type="text"
+                  id="name"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="description">Description:</label>
+                <textarea
+                  placeholder="Description of merch"
+                  name="description"
+                  type="text"
+                  id="description"
+                  onChange={handleInputChange}
+                ></textarea>
+              </div>
 
-              <FileBase64
-                name="file"
-                type="file"
-                accept="image/*"
-                multiple={false}
-                onDone={({ base64 }) => convert64({ base64 })}
-              />
-            </div>
+              <div>
+                <label htmlFor="img">Upload image (Max file size 5MB):</label>
 
-            <div>
-              <label htmlFor="price">Price: $</label>
-              <input
-                placeholder="Price of merch"
-                name="price"
-                type="text"
-                id="price"
-                onChange={handleInputChange}
-              />
-            </div>
+                <FileBase64
+                  name="file"
+                  type="file"
+                  accept="image/*"
+                  multiple={false}
+                  onDone={({ base64 }) => convert64({ base64 })}
+                />
+              </div>
 
-            <div>
-              <label htmlFor="title">Quantity in Stock: </label>
-              <input
-                placeholder="Quantity of merch in stock"
-                name="quantity"
-                type="text"
-                id="quantity"
-                onChange={handleInputChange}
-              />
-            </div>
+              <div>
+                <label htmlFor="price">Price: $</label>
+                <input
+                  placeholder="Price of merch"
+                  name="price"
+                  type="text"
+                  id="price"
+                  onChange={handleInputChange}
+                />
+              </div>
 
-            <div>
-              <button type="submit" onClick={handleFormSubmit}>
-                Submit
-              </button>
-            </div>
-          </form>
+              <div>
+                <label htmlFor="title">Quantity in Stock: </label>
+                <input
+                  placeholder="Quantity of merch in stock"
+                  name="quantity"
+                  type="text"
+                  id="quantity"
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div>
+                <button type="submit" onClick={handleFormSubmit}>
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="posts">
         <h2>Merch</h2>

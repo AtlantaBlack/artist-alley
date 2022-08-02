@@ -94,15 +94,15 @@ button {
   margin: 10px;
   padding: 10px 20px;
   background-color: var(--pink);
-  border: 3px solid var(--lightish-red);
+  border: 3px solid var(--deep-purple);
   border-radius: 15px;
-  color: var(--light-beige);
+  color: var(--deep-purple);
 }
 
 button:hover {
-  background-color: var(--deep-purple);
-  border: 3px solid var(--peach);
-  color: var(--peach);
+  background-color: var(--teal-green);
+  border: 3px solid var(--deep-purple);
+  color: var(--deep-purple);
 }
 
 /* prevent images from 'floating' a few pixels above the bottom of the div */
@@ -148,13 +148,40 @@ img {
 
 /* trying some form styling */
 form {
-  color: var(--light-beige);
+  color: var(--deep-purple);
   background-color: var(--pink);
   margin: 15px;
   border-radius: 24px;
   width: 75vw;
   padding: 20px;
+  /* border: 3px solid var(--pink);
+  box-shadow: 2px 2px 5px 4px var(--purple-blue); */
 }
+
+/* form styling specifically for the signup-login page */
+
+.signup-container form,
+.login-container form {
+  color: var(--deep-purple);
+  background-color: var(--pink);
+  margin: 15px;
+  border-radius: 24px;
+  width: 75vw;
+  padding: 20px;
+  border: 3px solid var(--pink);
+  box-shadow: 2px 2px 5px 4px var(--purple-blue);
+}
+
+/* .signup-container button,
+.login-container button {
+  background-color: var(--light-beige);
+}
+
+.signup-container button:hover,
+.login-container button:hover {
+  background-color: var(--teal-green);
+} */
+
 /* 
 label {
   margin: 5px;
@@ -163,11 +190,11 @@ label {
 input {
   display: flex;
   flex-direction: column;
-
+  color: var(--deep-purple);
   margin: 20px 0px 20px 0px;
   line-height: 2rem;
   border-radius: 4px;
-  border-color: var(--peach);
+  border-color: var(--pink);
   width: 90%;
   padding: 5px;
 }
