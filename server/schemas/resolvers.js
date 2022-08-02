@@ -154,6 +154,15 @@ const resolvers = {
       );
 
       return removeMerch;
+    },
+
+    addLike: async (parent, { postId, likes }) => {
+      const addLike = await Post.findByIdAndUpdate(
+        { _id: postId },
+        { $inc: { likes } },
+        { new: true }
+      );
+      return addLike;
     }
   },
   dateScalar

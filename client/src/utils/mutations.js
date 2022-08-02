@@ -117,4 +117,15 @@ export const REMOVE_MERCH = gql`
   }
 `;
 
+export const ADD_LIKE = gql`
+  mutation addLike($postId: ID!, $likes: Int) {
+    addLike(postId: $postId, likes: $likes) {
+      _id
+      title
+      createdBy
+      likes
+    }
+  }
+`;
+
 //add token to the above once we've worked out the auth stuff

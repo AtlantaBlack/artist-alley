@@ -99,6 +99,8 @@ const typeDefs = gql`
     ): Merch
 
     removeMerch(merchId: ID!, createdBy: String): Merch
+
+    addLike(postId: ID, likes: Int): Post
   }
 `;
 
