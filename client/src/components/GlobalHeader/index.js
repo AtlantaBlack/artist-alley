@@ -15,10 +15,6 @@ const GlobalHeader = () => {
         </Link>
         <Nav />
       </header>
-
-      <div>
-        <FontAwesomeIcon icon={solid('coffee')} />
-      </div>
     </>
   );
 };

@@ -51,7 +51,9 @@ function Signup(props) {
       {/* if there is no user type defined, then show this first container that asks what type of user they are */}
       {!userType && (
         <div className="userType-container">
-          <h2>I am...</h2>
+          <h2>Welcome to the Artist Alley! Let's get started!</h2>
+          <h2>You are...</h2>
+
           <button type="button" onClick={() => setUserType('Artist')}>
             An Artist
           </button>
@@ -63,84 +65,92 @@ function Signup(props) {
 
       {/* if the user type is defined then show the sign up form */}
       {userType && (
-        <div className="signup-container">
+        <div>
           {/* this here for testing the local state */}
-          <p>the user is a(n):</p>
-          {userType}
+          {/* <p>the user is a(n):</p>
+          {userType} */}
 
-          <h2>Enter your details</h2>
-          <form>
-            <div>
-              <label htmlFor="username">Username:</label>
-              <input
-                placeholder="Username"
-                name="username"
-                type="username"
-                id="username"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="firstName">First name:</label>
-              <input
-                placeholder="First"
-                name="firstName"
-                type="firstName"
-                id="firstName"
-                onChange={handleInputChange}
-              />
-            </div>
+          <h2 className="text-center">
+            Join the Artist Alley! Fill out your details below.
+          </h2>
+          <div className="signup-container">
+            <form>
+              <div>
+                <label htmlFor="username">Username:</label>
+                <input
+                  placeholder="Username"
+                  name="username"
+                  type="username"
+                  id="username"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="firstName">First name:</label>
+                <input
+                  placeholder="First"
+                  name="firstName"
+                  type="firstName"
+                  id="firstName"
+                  onChange={handleInputChange}
+                />
+              </div>
 
-            <div>
-              <label htmlFor="lastName">Last name:</label>
-              <input
-                placeholder="Last"
-                name="lastName"
-                type="lastName"
-                id="lastName"
-                onChange={handleInputChange}
-              />
-            </div>
+              <div>
+                <label htmlFor="lastName">Last name:</label>
+                <input
+                  placeholder="Last"
+                  name="lastName"
+                  type="lastName"
+                  id="lastName"
+                  onChange={handleInputChange}
+                />
+              </div>
 
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input
-                placeholder="youremail@email.com"
-                name="email"
-                type="email"
-                id="email"
-                onChange={handleInputChange}
-              />
-            </div>
+              <div>
+                <label htmlFor="email">Email:</label>
+                <input
+                  placeholder="youremail@email.com"
+                  name="email"
+                  type="email"
+                  id="email"
+                  onChange={handleInputChange}
+                />
+              </div>
 
-            <div>
-              <label htmlFor="password">Password:</label>
-              <input
-                placeholder="*****"
-                name="password"
-                type="password"
-                id="pwd"
-                onChange={handleInputChange}
-              />
-            </div>
+              <div>
+                <label htmlFor="password">Password:</label>
+                <input
+                  placeholder="*****"
+                  name="password"
+                  type="password"
+                  id="pwd"
+                  onChange={handleInputChange}
+                />
+              </div>
 
-            <div>
-              <label htmlFor="birthday">Birthday:</label>
-              <input
-                placeholder="MM/DD/YYYY"
-                name="birthday"
-                type="birthday"
-                id="birthday"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
+              <div>
+                <label htmlFor="birthday">Birthday:</label>
+                <input
+                  placeholder="MM/DD/YYYY"
+                  name="birthday"
+                  type="birthday"
+                  id="birthday"
+                  onChange={handleInputChange}
+                />
+              </div>
+              {/* <div className="submit-button"> */}
               {/* CHANGE THIS TO TYPE=SUBMIT LATER */}
-              <button type="button" onClick={handleFormSubmit}>
+              <button
+                className="submit-button text-center"
+                type="button"
+                onClick={handleFormSubmit}
+              >
                 Submit
               </button>
-            </div>
-          </form>
+              {/* </div> */}
+            </form>
+          </div>
         </div>
       )}
     </div>

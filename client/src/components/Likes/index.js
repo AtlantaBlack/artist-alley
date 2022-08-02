@@ -4,6 +4,9 @@ import { ADD_LIKE } from '../../utils/mutations';
 import { QUERY_SINGLE_POST } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
 const LikeCounter = ({ postId }) => {
   let sessionUser;
   // grab session user data and store it in a variable
@@ -41,10 +44,10 @@ const LikeCounter = ({ postId }) => {
         <div> loading... </div>
       ) : (
         <div>
-          <button type="button" onClick={handleAddLike}>
-            Like
+          <button id="likes" type="button" onClick={handleAddLike}>
+            <FontAwesomeIcon icon={solid('heart-circle-plus')} /> {totalLikes}{' '}
+            Likes
           </button>
-          <p>{totalLikes} Likes</p>
         </div>
       )}
     </div>

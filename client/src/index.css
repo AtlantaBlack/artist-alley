@@ -105,6 +105,18 @@ button:hover {
   color: var(--deep-purple);
 }
 
+#merch-button {
+  background-color: var(--teal-green);
+  border: 3px solid var(--deep-purple);
+  color: var(--deep-purple);
+}
+
+#merch-button:hover {
+  background-color: var(--pink);
+  border: 3px solid var(--deep-purple);
+  color: var(--deep-purple);
+}
+
 /* prevent images from 'floating' a few pixels above the bottom of the div */
 img {
   display: block;
@@ -146,6 +158,14 @@ img {
   font-size: 75%;
 }
 
+.submit-button {
+  width: 90%;
+}
+
+#likes {
+  margin: 20px;
+}
+
 /* trying some form styling */
 form {
   color: var(--deep-purple);
@@ -154,38 +174,34 @@ form {
   border-radius: 24px;
   width: 75vw;
   padding: 20px;
-  /* border: 3px solid var(--pink);
-  box-shadow: 2px 2px 5px 4px var(--purple-blue); */
+}
+
+.userType-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userType-container button {
+  width: 50%;
 }
 
 /* form styling specifically for the signup-login page */
 
+.signup-container,
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
 .signup-container form,
 .login-container form {
-  color: var(--deep-purple);
-  background-color: var(--pink);
-  margin: 15px;
-  border-radius: 24px;
-  width: 75vw;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
   border: 3px solid var(--pink);
   box-shadow: 2px 2px 5px 4px var(--purple-blue);
 }
 
-/* .signup-container button,
-.login-container button {
-  background-color: var(--light-beige);
-}
-
-.signup-container button:hover,
-.login-container button:hover {
-  background-color: var(--teal-green);
-} */
-
-/* 
-label {
-  margin: 5px;
-} */
 /* float input fields below labels */
 input {
   display: flex;
@@ -195,7 +211,7 @@ input {
   line-height: 2rem;
   border-radius: 4px;
   border-color: var(--pink);
-  width: 90%;
+  width: 95%;
   padding: 5px;
 }
 
@@ -230,18 +246,19 @@ textarea::placeholder {
   font-family: 'Lato', 'Helvetica Neue', sans-serif;
 }
 
-/* form button {
-  display: flex;
-  justify-content: center;
-} */
-
 .dash-heading {
   background-image: url('images/pink-splatter.png');
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.table-heading {
+.dash-nav {
+  text-align: center;
+}
+
+.table-heading,
+.welcome,
+.userType-container {
   background-image: url('images/blue-green-splatter.png');
   background-repeat: no-repeat;
   background-size: contain;
