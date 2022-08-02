@@ -81,14 +81,20 @@ const Dashboard = () => {
   };
 
   // delete event for deleting a post
-  const handleDeleteClick = async (event) => {
+  const handleDeleteClick = async (postId) => {
     // get the post ID out of the button
-    const postId = event.target.getAttribute('postid');
     const deletePost = await removePost({
       variables: {
         postId,
         createdBy: loggedInUser
-      }
+      },
+      /* to have react reload after deleting the post, one way is to use refetch queries, which will get all the posts again (but is bad for people with slow internet). The other, more performant way is to attach Apollo cache update to the mutation in question itself */
+      refetchQueries: [
+        {
+          query: QUERY_USER,
+          variables: { username: Auth.getProfile().data.username }
+        }
+      ]
     });
     console.log('deletedPost: ', deletePost);
   };
@@ -115,7 +121,6 @@ const Dashboard = () => {
         </Link>
         <button onClick={showFormHandler}>Make a post!</button>
       </nav>
-
       {showForm && (
         <div className="post">
           <h2 className="text-center">Share your Art!</h2>
@@ -144,7 +149,6 @@ const Dashboard = () => {
 
               <div className="image-upload">
                 <label htmlFor="img">Upload image (Max size 5MB):</label>
-                {/* <button type="button">click to upload image</button> */}
                 <FileBase64
                   name="file"
                   id="img-upload"
@@ -172,13 +176,12 @@ const Dashboard = () => {
           ) : (
             posts.map((post) => (
               <div key={post._id} className="post-container">
-                {/* <p>likes:</p> */}
                 <Post postDetails={post} />
                 <button
                   type="button"
                   className="float-right"
                   postid={post._id}
-                  onClick={handleDeleteClick}
+                  onClick={() => handleDeleteClick(post._id)}
                 >
                   Delete Post
                 </button>
