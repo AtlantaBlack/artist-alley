@@ -57,15 +57,15 @@
 }
 
 .post-container button {
-  background-color: var(--light-beige);
+  background-color: var(--pink);
   border: 3px solid var(--deep-purple);
   color: var(--deep-purple);
 }
 
 .post-container button:hover {
-  background-color: var(--deep-purple);
-  border: 3px solid var(--pink);
-  color: var(--light-blue);
+  background-color: var(--teal-green);
+  border: 3px solid var(--deep-purple);
+  color: var(--deep-purple);
 }
 
 .link-card {
