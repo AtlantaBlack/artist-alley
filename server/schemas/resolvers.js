@@ -22,6 +22,12 @@ const resolvers = {
         .populate('likedPosts');
       return user;
     },
+    artist: async (parent, { artistId }) => {
+      const user = await User.findOne({ _id: artistId })
+        .populate('posts')
+        .populate('likedPosts');
+      return user;
+    },
     posts: async () => {
       return await Post.find({}).populate('likes');
     },
