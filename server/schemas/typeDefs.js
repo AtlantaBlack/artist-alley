@@ -1,6 +1,5 @@
 // Add typeDefs for GraphQL
 const { gql } = require('apollo-server-express');
-
 // const { dateScalar } = require('../scalars/date');
 
 const typeDefs = gql`
@@ -62,7 +61,6 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     posts: [Post]
-    # userPost: [Post]
     merch(username: String!): User
     singlePost(postId: ID!): Post
   }

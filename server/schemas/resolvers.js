@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-return-await */
 const { AuthenticationError } = require('apollo-server-express');
@@ -10,32 +11,27 @@ const { User, Post, Merch } = require('../models');
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find({});
-      // .populate('posts')
-      // .populate('merch')
-      // .populate('likedPosts');
+      return await User.find({})
+        .populate('posts')
+        .populate('merch')
+        .populate('likedPosts');
     },
     user: async (parent, { username }) => {
-      const user = await User.findOne({ username }).populate('posts');
+      const user = await User.findOne({ username })
+        .populate('posts')
+        .populate('likedPosts');
       return user;
     },
     posts: async () => {
       return await Post.find({}).populate('likes');
     },
-
     singlePost: async (parent, { postId }) => {
-      return await Post.findOne({ _id: postId });
+      return await Post.findOne({ _id: postId }).populate('likes');
     },
-
     merch: async (parent, { username }) => {
       const merch = await User.findOne({ username }).populate('merch');
-
       return merch;
     }
-
-    // userPost: async (parent, { username }) => {
-    //   return await User.findOne({ username }).populate('post');
-    // }
   },
 
   Mutation: {
@@ -59,21 +55,17 @@ const resolvers = {
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const correctPw = await user.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
-
       return { token, user };
     },
+
     addPost: async (
       parent,
       // eslint-disable-next-line object-curly-newline
@@ -102,14 +94,12 @@ const resolvers = {
       const removePost = await Post.findByIdAndDelete({
         _id: postId
       });
-
       // https://stackoverflow.com/questions/48988019/mongoose-pull-objectid-from-array
       await User.findOneAndUpdate(
         { username: createdBy },
         { $pullAll: { posts: [postId] } },
         { new: true }
       );
-
       return removePost;
     },
 
@@ -124,7 +114,6 @@ const resolvers = {
 
     addToStore: async (
       parent,
-      // eslint-disable-next-line object-curly-newline
       { name, description, image, price, quantity, createdBy }
     ) => {
       const addToStore = await Merch.create({
@@ -135,31 +124,21 @@ const resolvers = {
         quantity,
         createdBy
       });
-      // console.log(addToStore);
-
       await User.findOneAndUpdate(
         { username: createdBy },
         { $addToSet: { merch: addToStore.id } }
       );
-
       return addToStore;
     },
-    removeMerch: async (
-      parent,
-      // eslint-disable-next-line object-curly-newline
-      { createdBy, merchId }
-    ) => {
-      const removeMerch = await Merch.findByIdAndDelete({
-        _id: merchId
-      });
 
+    removeMerch: async (parent, { createdBy, merchId }) => {
+      const removeMerch = await Merch.findByIdAndDelete({ _id: merchId });
       // https://stackoverflow.com/questions/48988019/mongoose-pull-objectid-from-array
       await User.findOneAndUpdate(
         { username: createdBy },
         { $pullAll: { merch: [merchId] } },
         { new: true }
       );
-
       return removeMerch;
     },
 
@@ -169,13 +148,11 @@ const resolvers = {
         { $addToSet: { likes: userId } },
         { new: true }
       );
-
       await User.findByIdAndUpdate(
         { _id: userId },
         { $addToSet: { likedPosts: postId } },
         { new: true }
       );
-
       return addLike;
     }
   },

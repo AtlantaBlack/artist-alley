@@ -38,15 +38,16 @@ export const QUERY_USER = gql`
       _id
       username
       userType
-      # username
-      # firstName
-      # lastName
       posts {
         _id
         title
         description
         image
         createdBy
+      }
+      likedPosts {
+        _id
+        title
       }
     }
   }

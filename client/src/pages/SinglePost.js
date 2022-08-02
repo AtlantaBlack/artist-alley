@@ -6,16 +6,12 @@ import PostDetails from '../components/PostDetails';
 
 const SinglePost = () => {
   const { postId } = useParams();
-  // console.log('postId: ', postId);
-
+  // query the post information
   const { loading, data } = useQuery(QUERY_SINGLE_POST, {
     variables: { postId: postId }
   });
 
-  // if (data) {
-  //   console.log('data: ', data);
-  // }
-
+  // grab the data if any
   const post = data?.singlePost || {};
   // console.log('post: ', post);
 

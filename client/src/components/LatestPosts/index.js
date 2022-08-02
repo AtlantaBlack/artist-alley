@@ -5,10 +5,10 @@ import { QUERY_POSTS } from '../../utils/queries';
 import Post from '../Post';
 
 const LatestPosts = () => {
+  // get all the posts
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
-
-  console.log('posts', posts);
+  // console.log('posts', posts);
 
   return (
     <>

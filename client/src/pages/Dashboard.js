@@ -20,14 +20,11 @@ const Dashboard = () => {
 
   // if query returns with a user
   if (data) {
-    // console.log('data in dashboard', data);
-
     // set the user variables when there's data
     loggedInUser = data.user.username;
     userType = data.user.userType;
-
-    console.log('logged in user: ', loggedInUser);
-    console.log('user type: ', userType);
+    // console.log('logged in user: ', loggedInUser);
+    // console.log('user type: ', userType);
   }
 
   // if user has any posts already made, get them
@@ -62,7 +59,6 @@ const Dashboard = () => {
 
   // handler for submitting a new post
   const handleFormSubmit = async (event) => {
-    // event.preventDefault();
     const response = await addPost({
       variables: {
         title: formState.title,
@@ -88,7 +84,6 @@ const Dashboard = () => {
   const handleDeleteClick = async (event) => {
     // get the post ID out of the button
     const postId = event.target.getAttribute('postid');
-
     const deletePost = await removePost({
       variables: {
         postId,

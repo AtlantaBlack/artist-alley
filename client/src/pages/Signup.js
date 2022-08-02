@@ -1,16 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
 // import the useMutation function and ADD_USER mutation
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-/*
-
-1) make sign up form
-2) make a function that will set the temporary state of form
-3) 
-
-*/
 
 function Signup(props) {
   // set local state for userType
