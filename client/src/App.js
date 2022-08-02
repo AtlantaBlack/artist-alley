@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="dashboard/my/table" element={<Shop />} />
+          <Route path="dashboard/my/store" element={<Shop />} />
 
           <Route path="posts/:postId" element={<SinglePost />} />
 
@@ -39,7 +39,7 @@ function App() {
           <Route path="artists" element={<Artists />} />
           <Route path="artists/:artistName" element={<ArtistDetails />} />
           <Route
-            path="artists/:artistName/table"
+            path="artists/:artistName/store"
             element={<ArtistShopDetails />}
           />
 
