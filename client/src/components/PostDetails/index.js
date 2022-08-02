@@ -1,6 +1,5 @@
 import './index.css';
 
-// import DisplayLikes from '../Likes/DisplayLikes';
 import LikeCounter from '../Likes';
 
 const PostDetails = ({ postDetails }) => {
@@ -15,7 +14,7 @@ const PostDetails = ({ postDetails }) => {
       <img src={`data:image/png;base64,${image}`} alt={description} />
       <p>{description}</p>
       <p>created by: {createdBy}</p>
-      <LikeCounter />
+      <LikeCounter postId={_id} />
     </div>
   );
 };

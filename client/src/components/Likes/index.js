@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
-// import DisplayLikes from './DisplayLikes';
 import { useMutation } from '@apollo/client';
 import { ADD_LIKE } from '../../utils/mutations';
 
-const LikeCounter = () => {
+const LikeCounter = ({ postId }) => {
+  console.log('postId in Likes: ', postId);
+
   const [counter, setCounter] = useState(0);
 
   const [addLike] = useMutation(ADD_LIKE);
 
-  const handleIncrement = async () => {
+  const handleIncrement = async (event) => {
     setCounter(counter + 1);
 
     const response = await addLike({
-      postId: '62e51524c8ae825ff503246d',
-      likes: counter
+      variables: {
+        postId: postId,
+        likes: counter
+      }
     });
-    console.log('click!' + counter + response);
+    console.log(`click!
+    counter: ${counter}`);
+    console.log('response', response);
   };
 
   return (
     <div className="likes">
-      {/* <DisplayLikes counter={counter} handleIncrement={handleIncrement} /> */}
       <button type="button" onClick={handleIncrement}>
         Like
       </button>

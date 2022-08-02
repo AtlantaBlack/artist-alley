@@ -1,7 +1,8 @@
 import './index.css';
-import DisplayLikes from '../Likes';
 
 import { Link } from 'react-router-dom';
+
+import LikeCounter from '../Likes';
 
 const Post = ({ postDetails }) => {
   // console.log(postDetails);
@@ -11,7 +12,7 @@ const Post = ({ postDetails }) => {
 
   return (
     <>
-      <div className="post">
+      <div className="post" postid={_id}>
         <h2 className="post-title">
           <Link to={`/posts/${_id}`} className="link-card">
             {title}
@@ -27,7 +28,7 @@ const Post = ({ postDetails }) => {
         <Link to={`/posts/${_id}`} className="link-card">
           <img src={`data:image/png;base64,${image}`} alt={description} />
         </Link>
-        <DisplayLikes />
+        <LikeCounter postId={_id} />
       </div>
     </>
   );
