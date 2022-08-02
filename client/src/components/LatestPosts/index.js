@@ -12,7 +12,7 @@ const LatestPosts = () => {
 
   return (
     <>
-      <h2>Latest Posts</h2>
+      <h1 className="text-center">Latest Artworks</h1>
       <div style={{ border: '1px solid orange' }}>
         {loading ? (
           <div> loading </div>

@@ -108,7 +108,11 @@ const Shop = () => {
     <div>
       <Link to="/dashboard">← Return to Dashboard</Link>
       <h1 className="table-heading">My Artist's Table</h1>
-      <button onClick={showFormHandler}>Add Merch!</button>
+      <div className="text-center">
+        <button id="merch-button" onClick={showFormHandler}>
+          Add Merch!
+        </button>
+      </div>
 
       {showForm && (
         <div className="merch">
@@ -181,8 +185,6 @@ const Shop = () => {
       )}
 
       <div className="posts">
-        <h2>Merch</h2>
-
         <div style={{ border: '1px solid orange' }}>
           {loading ? (
             <div> loading </div>
@@ -191,6 +193,7 @@ const Shop = () => {
               <div key={item._id} className="merch-container">
                 <Merch merch={item} />
                 <button
+                  className="float-right"
                   type="button"
                   merchid={item._id}
                   onClick={handleDeleteClick}

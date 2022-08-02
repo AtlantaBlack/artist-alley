@@ -10,11 +10,13 @@ const PostDetails = ({ postDetails }) => {
 
   return (
     <div className="post">
-      <h4>{title}</h4>
-      <img src={`data:image/png;base64,${image}`} alt={description} />
-      <p>{description}</p>
-      <p>created by: {createdBy}</p>
-      <LikeCounter postId={_id} />
+      <div className="post-container">
+        <h4>{title}</h4>
+        <img src={`data:image/png;base64,${image}`} alt={description} />
+        <p>{description}</p>
+        <p>Created by: {createdBy}</p>
+        <LikeCounter postId={_id} />
+      </div>
     </div>
   );
 };
