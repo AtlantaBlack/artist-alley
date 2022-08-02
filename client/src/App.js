@@ -37,9 +37,9 @@ function App() {
 
           {/* need an index element: artists w/ outlet to display artist profile page & artist store page */}
           <Route path="artists" element={<Artists />} />
-          <Route path="artists/:artistId" element={<ArtistDetails />} />
+          <Route path="artists/:artistName" element={<ArtistDetails />} />
           <Route
-            path="artists/:artistId/table"
+            path="artists/:artistName/table"
             element={<ArtistShopDetails />}
           />
 

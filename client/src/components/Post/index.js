@@ -16,7 +16,7 @@ const Post = ({ postDetails }) => {
         </h2>
 
         <h3 className="post-artist">
-          <Link to="/artists/someArtist" className="link-card">
+          <Link to={`/artists/${createdBy}`} className="link-card">
             {createdBy}
           </Link>
         </h3>

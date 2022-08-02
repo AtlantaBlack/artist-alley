@@ -53,6 +53,43 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_ARTIST = gql`
+  query Artist($artistId: ID!) {
+    artist(artistId: $artistId) {
+      _id
+      username
+      userType
+      posts {
+        _id
+        title
+        description
+        image
+        createdBy
+      }
+      likedPosts {
+        _id
+        title
+      }
+    }
+  }
+`;
+
+export const QUERY_ARTIST_SHOP = gql`
+  query ArtistShop($artistId: ID!) {
+    artistShop(artistId: $artistId) {
+      _id
+      username
+      userType
+      merch {
+        _id
+        name
+        image
+        price
+      }
+    }
+  }
+`;
+
 export const QUERY_USER_MERCH = gql`
   query userMerch($username: String!) {
     merch(username: $username) {
