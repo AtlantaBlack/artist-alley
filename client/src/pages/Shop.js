@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,7 @@ import Auth from '../utils/auth';
 import Merch from '../components/Merch';
 
 const Shop = () => {
+  // console.log('load shop');
   const [image, setImage] = useState('');
   const [price, setPrice] = useState('');
   const [formState, setFormState] = useState({
@@ -19,14 +21,12 @@ const Shop = () => {
     quantity: '',
     image: ''
   });
-  // console.log('load shop');
+
   const { loading, data } = useQuery(QUERY_USER_MERCH, {
     variables: { username: Auth.getProfile().data.username }
   });
 
-  // console.log(data);
   const merch = data?.merch.merch || [];
-  // console.log(merch);
 
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
@@ -51,8 +51,6 @@ const Shop = () => {
 
   // handler for adding march to store
   const handleFormSubmit = async (event) => {
-    // event.preventDefault();
-    // eslint-disable-next-line no-unused-vars
     const response = await addMerch({
       variables: {
         name: formState.name,
@@ -86,19 +84,21 @@ const Shop = () => {
       image: image,
       createdBy: loggedInArtist // set the artist as the person logged in
     });
-    // console.log('this is the', formState);
   };
 
   // delete event for deleting a post
-  const handleDeleteClick = async (event) => {
-    // get the merch ID out of the button
-    const merchId = event.target.getAttribute('merchid');
-
+  const handleDeleteClick = async (merchId) => {
     const deleteMerch = await removeMerch({
       variables: {
         merchId,
         createdBy: loggedInArtist
-      }
+      },
+      refetchQueries: [
+        {
+          query: QUERY_USER_MERCH,
+          variables: { username: Auth.getProfile().data.username }
+        }
+      ]
     });
     console.log('deletedMerch: ', deleteMerch);
   };
@@ -134,10 +134,8 @@ const Shop = () => {
                   onChange={handleInputChange}
                 ></textarea>
               </div>
-
               <div>
                 <label htmlFor="img">Upload image (Max file size 5MB):</label>
-
                 <FileBase64
                   name="file"
                   type="file"
@@ -146,7 +144,6 @@ const Shop = () => {
                   onDone={({ base64 }) => convert64({ base64 })}
                 />
               </div>
-
               <div>
                 <label htmlFor="price">Price: $</label>
                 <input
@@ -157,7 +154,6 @@ const Shop = () => {
                   onChange={handleInputChange}
                 />
               </div>
-
               <div>
                 <label htmlFor="title">Quantity in Stock: </label>
                 <input
@@ -168,7 +164,6 @@ const Shop = () => {
                   onChange={handleInputChange}
                 />
               </div>
-
               <div>
                 <button type="submit" onClick={handleFormSubmit}>
                   Submit
@@ -181,7 +176,6 @@ const Shop = () => {
 
       <div className="posts">
         <h2>Merch</h2>
-
         <div style={{ border: '1px solid orange' }}>
           {loading ? (
             <div> loading </div>
@@ -192,7 +186,7 @@ const Shop = () => {
                 <button
                   type="button"
                   merchid={item._id}
-                  onClick={handleDeleteClick}
+                  onClick={() => handleDeleteClick(item._id)}
                 >
                   Delete Item
                 </button>
