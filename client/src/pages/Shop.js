@@ -23,7 +23,7 @@ const Shop = () => {
     image: ''
   });
 
-  const { loading, data, error } = useQuery(QUERY_USER_MERCH, {
+  const { loading, data } = useQuery(QUERY_USER_MERCH, {
     variables: { username: Auth.getProfile().data.username }
   });
 
@@ -217,7 +217,6 @@ const Shop = () => {
                   // onBlur={handleEmptyField}
                 />
               </div>
-
               <p className="error-handle embolden hidden">Field required.</p>
               <div>
                 <button type="submit" onClick={handleFormSubmit}>
