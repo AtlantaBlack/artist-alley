@@ -140,7 +140,7 @@ const Dashboard = () => {
         <p>What would you like to do today, {loggedInUser}?</p>
         <button onClick={showFormHandler}>Make a post!</button>
         <Link to="/dashboard/my/store">
-          <button type="button">Go to your Artist's Table</button>
+          <button type="button">Go to your Artist's Table →</button>
         </Link>
         {showForm && (
           <div className="post">

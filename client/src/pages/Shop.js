@@ -134,7 +134,7 @@ const Shop = () => {
         </button>
         <Link to="/dashboard">
           <button type="button" className="merch-button">
-            Back to Dashboard
+            ← Back to Dashboard
           </button>
         </Link>
         {showForm && (
