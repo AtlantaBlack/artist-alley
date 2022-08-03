@@ -49,7 +49,6 @@ const Shop = () => {
     //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
     const imageVal = JSON.stringify(Object.values(value));
 
-    // console.log(imageVal);
     // if/else to match data:image type and "conditionaly render" the error message.
     const reveal = document.querySelector('.error-handle');
 
@@ -120,7 +119,6 @@ const Shop = () => {
         }
       ]
     });
-    console.log('deletedMerch: ', deleteMerch);
   };
 
   return (
@@ -163,7 +161,10 @@ const Shop = () => {
                   ></textarea>
                 </div>
                 <div>
-                  <label htmlFor="img">Upload image (Max file size 5MB):</label>
+                  <label htmlFor="img">
+                    Upload image:{' '}
+                    <span className="text-subbier">(Max file size 5MB)</span>
+                  </label>
                   <FileBase64
                     name="file"
                     type="file"
@@ -176,7 +177,9 @@ const Shop = () => {
                   </p>
                 </div>
                 <div>
-                  <label htmlFor="price">Price: $</label>
+                  <label htmlFor="price">
+                    Price: <span className="text-subbier">$</span>
+                  </label>
                   <input
                     placeholder="Price of merch"
                     name="price"
@@ -187,11 +190,12 @@ const Shop = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="title">Quantity in Stock: </label>
+                  <label htmlFor="title">Quantity in stock:</label>
                   <input
                     placeholder="Quantity of merch in stock"
                     name="quantity"
-                    type="text"
+                    type="number"
+                    inputMode="numeric"
                     id="quantity"
                     onChange={handleInputChange}
                   />

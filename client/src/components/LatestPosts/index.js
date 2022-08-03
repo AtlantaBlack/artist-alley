@@ -1,4 +1,3 @@
-import './index.css';
 import { useQuery } from '@apollo/client';
 import { QUERY_POSTS } from '../../utils/queries';
 
@@ -16,7 +15,7 @@ const LatestPosts = () => {
         <h1 className="text-center">Latest Artworks</h1>
       </div>
       <div className="dash-flex-child dash-bg text-center">
-        <div style={{ border: '1px solid orange' }} className="flex-container">
+        <div className="flex-container">
           {loading ? (
             <div> loading </div>
           ) : (

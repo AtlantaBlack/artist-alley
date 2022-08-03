@@ -15,7 +15,6 @@ function Signup(props) {
   //use the addUser mutation
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  // CURRENTLY ONLY CONSOLE LOGGING THE SIGNUP RESPONSES
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const { data } = await addUser({
@@ -29,13 +28,7 @@ function Signup(props) {
         userType: userType
       }
     });
-    // add auths and stuff here also
-    console.log(data.addUser.token);
-
     Auth.login(data.addUser.token);
-
-    console.log('this worked!', data);
-    console.log('heres the', data.addUser.token);
   };
 
   const handleInputChange = (event) => {
@@ -47,11 +40,7 @@ function Signup(props) {
   };
 
   const handleEmptyField = (event) => {
-    console.log(event.target);
-    console.log(event.target.value.length);
-
     let reveal = document.querySelector('.error-handle');
-    // console.log(event.target.value.length);
     if (event.target.value.length === 0) {
       reveal.classList.remove('hidden');
     } else {
@@ -144,7 +133,14 @@ function Signup(props) {
                 </div>
 
                 <div>
-                  <label htmlFor="password">Password:</label>
+                  <label htmlFor="password">
+                    Password:{' '}
+                    <span className="text-subbier">
+                      (Min 8 length; must include upper, lower, special chars &
+                      numbers)
+                    </span>
+                  </label>
+
                   <input
                     placeholder="*****"
                     name="password"
@@ -156,7 +152,9 @@ function Signup(props) {
                 </div>
 
                 <div>
-                  <label htmlFor="birthday">Birthday:</label>
+                  <label htmlFor="birthday">
+                    Birthday: <span className="text-subbier">(MM/DD/YYYY)</span>
+                  </label>
                   <input
                     placeholder="MM/DD/YYYY"
                     name="birthday"
@@ -166,8 +164,6 @@ function Signup(props) {
                     onBlur={handleEmptyField}
                   />
                 </div>
-                {/* <div className="submit-button"> */}
-                {/* CHANGE THIS TO TYPE=SUBMIT LATER */}
                 <div>
                   <p className="error-handle hidden">Field is required!</p>
                   {error ? (

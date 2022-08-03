@@ -6,17 +6,13 @@ import Merch from '../components/Merch';
 
 const ArtistShopDetails = () => {
   const { artistName } = useParams();
-
   const { loading, data } = useQuery(QUERY_USER_MERCH, {
     variables: { username: artistName }
   });
-
   // if (data) {
   //   console.log('data:', data);
   // }
   const merch = data?.merch.merch || {};
-
-  // console.log('merch by artist:', merch);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -31,7 +27,7 @@ const ArtistShopDetails = () => {
         </Link>
       </div>
       <div className="dash-flex-child dash-bg text-center">
-        <div style={{ border: '1px solid orange' }} className="flex-container">
+        <div className="flex-container">
           {merch.length ? (
             merch.map((item) => (
               <div key={item._id} className="flex-child merch-container">

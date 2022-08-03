@@ -44,7 +44,7 @@
 }
 
 .merch img {
-  width: 100%; /* set img width @ 100% of bounding container */
+  max-width: 100%; /* set img width @ 100% of bounding container */
 }
 
 .merch-container form {

@@ -6,17 +6,14 @@ import Post from '../components/Post';
 
 const ArtistDetails = () => {
   const { artistName } = useParams();
-
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { username: artistName }
   });
-
-  if (data) {
-    console.log('data:', data);
-  }
+  // console.log the data to make sure the query is working
+  // if (data) {
+  //   console.log('data:', data);
+  // }
   const posts = data?.user.posts || {};
-
-  console.log('posts by artist:', posts);
 
   return (
     <div className="dash-flex">
@@ -27,7 +24,7 @@ const ArtistDetails = () => {
         </Link>
       </div>
       <div className="dash-flex-child dash-bg text-center">
-        <div style={{ border: '1px solid orange' }} className="flex-container">
+        <div className="flex-container">
           {loading ? (
             <div> loading </div>
           ) : (

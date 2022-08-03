@@ -8,7 +8,7 @@ const Home = () => {
   // if logged in, render latest posts:
   if (Auth.loggedIn()) {
     return (
-      <div className="bg-grey">
+      <div className="latest-posts">
         <LatestPosts />
       </div>
     );

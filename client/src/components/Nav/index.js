@@ -2,9 +2,6 @@ import './index.css';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-
 const Nav = () => {
   function showNavigation() {
     if (Auth.loggedIn()) {

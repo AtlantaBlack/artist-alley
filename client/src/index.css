@@ -66,12 +66,12 @@ h6 {
 a {
   text-decoration: none;
   color: var(--deep-purple);
-  border-bottom: 5px solid transparent;
+  border-bottom: 4px solid transparent;
 }
 
 a:hover {
   color: var(--dark-purple);
-  border-bottom: 5px dotted var(--light-blue);
+  border-bottom: 4px dotted var(--light-blue);
 }
 
 button {
@@ -111,7 +111,7 @@ img {
 .flex-container {
   display: flex;
   flex-flow: column wrap;
-  border: 2px dotted cyan;
+  margin: 0 5px;
 }
 
 .flex-child {
@@ -127,6 +127,7 @@ img {
 .backing-flex-child {
   flex: 0 0 auto;
   padding: 2rem;
+  min-width: 60%;
   max-width: 80%;
   border-radius: 20px;
   background-color: rgba(246, 246, 246, 0.8);
@@ -176,6 +177,10 @@ img {
 
 .text-sub {
   font-size: 80%;
+}
+
+.text-subbier {
+  font-size: 70%;
 }
 
 .submit-button {
@@ -254,7 +259,7 @@ textarea {
   width: 97%;
   height: 20vh;
   overflow-y: scroll;
-  margin: 20px 0px 20px 0px;
+  margin: 6px 0px 20px 0px;
   border-radius: 4px;
   border-color: var(--pink);
   padding: 8px;
@@ -326,9 +331,6 @@ textarea::placeholder {
   .flex-child {
     flex: 1 0 32%;
   }
-  .backing-flex-child {
-    max-width: 60%;
-  }
 }
 
 @media screen and (min-width: 992px) {
@@ -337,5 +339,8 @@ textarea::placeholder {
   }
   .flex-child {
     flex: 1 0 24%;
+  }
+  .backing-flex-child {
+    max-width: 60%;
   }
 }

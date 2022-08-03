@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
@@ -23,15 +24,12 @@ const Dashboard = () => {
     // set the user variables when there's data
     loggedInUser = data.user.username;
     userType = data.user.userType;
-    // console.log('logged in user: ', loggedInUser);
-    // console.log('user type: ', userType);
   }
 
   // if user has any posts already made, get them
   const posts = data?.user.posts || [];
 
   // use local states
-  // const [errorMsg, setErrorMessage] = useState(false);
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -57,7 +55,6 @@ const Dashboard = () => {
     //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
     const imageVal = JSON.stringify(Object.values(value));
 
-    // console.log(imageVal);
     // if/else to match data:image type and "conditionaly render" the error message.
     const reveal = document.querySelector('.error-handle');
 
@@ -72,7 +69,6 @@ const Dashboard = () => {
     }
 
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
-
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
     // set the image state
     setImage(image);
@@ -88,7 +84,6 @@ const Dashboard = () => {
         createdBy: loggedInUser // set the artist as the person logged in
       }
     });
-    console.log(response);
   };
 
   // for getting info from the add post form
@@ -154,7 +149,7 @@ const Dashboard = () => {
                   <input
                     placeholder="Title of post"
                     name="title"
-                    type="title"
+                    type="text"
                     id="title"
                     onChange={handleInputChange}
                   />
@@ -164,14 +159,17 @@ const Dashboard = () => {
                   <textarea
                     placeholder="Description of post"
                     name="description"
-                    type="description"
+                    type="text"
                     id="description"
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
 
                 <div className="image-upload">
-                  <label htmlFor="img">Upload image (Max size 5MB):</label>
+                  <label htmlFor="img">
+                    Upload image:{' '}
+                    <span className="text-subbier">(Max file size 5MB)</span>
+                  </label>
                   <FileBase64
                     name="file"
                     id="img-upload"
@@ -197,7 +195,7 @@ const Dashboard = () => {
       </div>
 
       <div className="dash-flex-child">
-        <div style={{ border: '1px solid orange' }} className="flex-container">
+        <div className="flex-container">
           {loading ? (
             <div> loading </div>
           ) : (

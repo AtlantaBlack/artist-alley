@@ -28,12 +28,10 @@ const merchSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category'
-    // required: true
   },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-    // required: true
   },
   createdBy: {
     type: String,

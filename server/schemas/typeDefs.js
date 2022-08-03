@@ -1,6 +1,5 @@
 // Add typeDefs for GraphQL
 const { gql } = require('apollo-server-express');
-// const { dateScalar } = require('../scalars/date');
 
 const typeDefs = gql`
   scalar dateScalar

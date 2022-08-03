@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import LikeCounter from '../Likes';
 
 const PostDetails = ({ postDetails }) => {
-  // console.log(postDetails);
-
   // eslint-disable-next-line no-unused-vars
   const { _id, title, image, description, createdBy } = postDetails;
 

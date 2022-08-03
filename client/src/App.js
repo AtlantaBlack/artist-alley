@@ -24,8 +24,6 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    // FONT AWESOME ICONS - currently imported in global header
-    // check there to see how to get icons
     <ApolloProvider client={client}>
       <BrowserRouter>
         <GlobalHeader />
@@ -36,7 +34,6 @@ function App() {
 
           <Route path="posts/:postId" element={<SinglePost />} />
 
-          {/* need an index element: artists w/ outlet to display artist profile page & artist store page */}
           <Route path="artists" element={<Artists />} />
           <Route path="artists/:artistName" element={<ArtistDetails />} />
           <Route
@@ -46,6 +43,7 @@ function App() {
 
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
