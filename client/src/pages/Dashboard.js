@@ -31,6 +31,7 @@ const Dashboard = () => {
   const posts = data?.user.posts || [];
 
   // use local states
+  // const [errorMsg, setErrorMessage] = useState(false);
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -51,7 +52,27 @@ const Dashboard = () => {
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
+    //https://stackoverflow.com/questions/25763533/how-to-identify-file-type-by-base64-encoded-string-of-a-image
+
+    //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
+    const imageVal = JSON.stringify(Object.values(value));
+
+    // console.log(imageVal);
+    // if/else to match data:image type and "conditionaly render" the error message.
+    const reveal = document.querySelector('.error-handle');
+
+    if (imageVal.includes('["data:image/png')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/jpeg')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/jpg')) {
+      reveal.classList.add('hidden');
+    } else {
+      reveal.classList.remove('hidden');
+    }
+
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
+
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
     // set the image state
     setImage(image);
@@ -153,10 +174,13 @@ const Dashboard = () => {
                   name="file"
                   id="img-upload"
                   type="file"
-                  accept="image/*"
+                  accept=".jpg, .jpeg, .png"
                   multiple={false}
                   onDone={({ base64 }) => convert64({ base64 })}
                 />
+                <p className="error-handle embolden hidden">
+                  Incorrect file type.
+                </p>
               </div>
 
               <div>

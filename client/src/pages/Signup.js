@@ -45,6 +45,19 @@ function Signup(props) {
     });
   };
 
+  const handleEmptyField = (event) => {
+    console.log(event.target);
+    console.log(event.target.value.length);
+
+    let reveal = document.querySelector('.error-handle');
+    // console.log(event.target.value.length);
+    if (event.target.value.length === 0) {
+      reveal.classList.remove('hidden');
+    } else {
+      reveal.classList.add('hidden');
+    }
+  };
+
   // rendering form
   return (
     <div>
@@ -83,6 +96,7 @@ function Signup(props) {
                   type="username"
                   id="username"
                   onChange={handleInputChange}
+                  onBlur={handleEmptyField}
                 />
               </div>
               <div>
@@ -93,6 +107,7 @@ function Signup(props) {
                   type="firstName"
                   id="firstName"
                   onChange={handleInputChange}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -104,6 +119,7 @@ function Signup(props) {
                   type="lastName"
                   id="lastName"
                   onChange={handleInputChange}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -115,6 +131,7 @@ function Signup(props) {
                   type="email"
                   id="email"
                   onChange={handleInputChange}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -126,6 +143,7 @@ function Signup(props) {
                   type="password"
                   id="pwd"
                   onChange={handleInputChange}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -137,10 +155,19 @@ function Signup(props) {
                   type="birthday"
                   id="birthday"
                   onChange={handleInputChange}
+                  onBlur={handleEmptyField}
                 />
               </div>
               {/* <div className="submit-button"> */}
               {/* CHANGE THIS TO TYPE=SUBMIT LATER */}
+              <div>
+                <p className="error-handle hidden">Field is required!</p>
+                {error ? (
+                  <div>
+                    <p>Sorry! One of your details are incorrect!</p>
+                  </div>
+                ) : null}
+              </div>
               <button
                 className="submit-button text-center"
                 type="button"

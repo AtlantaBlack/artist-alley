@@ -6,6 +6,7 @@ import Auth from '../utils/auth';
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
+
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
@@ -61,7 +62,7 @@ function Login(props) {
           </div>
           {error ? (
             <div>
-              <p>The user details are incorrect.</p>
+              <p>The user details are incorrect. {error}</p>
             </div>
           ) : null}
           <div>

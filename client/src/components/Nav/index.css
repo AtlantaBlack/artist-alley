@@ -3,13 +3,16 @@
 }
 
 .navbar ul {
+  display: flex;
   border: 1px solid greenyellow;
 }
 
 .navbar li {
+  flex: 0 1 10%;
   display: inline;
   color: white;
   line-height: 2rem;
+  margin-right: 30px;
 }
 
 .navbar-link {
