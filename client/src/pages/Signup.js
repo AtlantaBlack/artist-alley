@@ -64,7 +64,10 @@ function Signup(props) {
       {/* if there is no user type defined, then show this first container that asks what type of user they are */}
       {!userType && (
         <div className="userType-container">
-          <h2>Welcome to the Artist Alley! Let's get started!</h2>
+          <h2>Sign up to Artist Alley</h2>
+
+          <p>First, let's determine what kind of alley-goer you are.</p>
+
           <h2>You are...</h2>
 
           <button type="button" onClick={() => setUserType('Artist')}>

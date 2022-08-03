@@ -11,17 +11,19 @@ const WelcomeScreen = () => {
         <h1>
           Welcome to
           <br />
-          Artist Alley
+          Artist Alley!
         </h1>
 
         <p className="embolden">
-          Hello there, friend, you've stumbled across the Artist Alley!
+          Hello there, friend, you've stumbled across the Artist Alley.
         </p>
-        <p>This is a place for artists to share their work with the world.</p>
         <p>
-          (And a haven of art to look at for those of us not quite as skilled
-          with a paintbrush, or pencil, or clay, or...)
+          Artist Alley is a place for artists to share and sell their creative
+          work. Build a portfolio by making posts, set up a store and fill it
+          with merchandise. With everything in the one location, it couldn't be
+          easier for our artsy folks to do business -- or more convenient!
         </p>
+        <p>Interested? Sign up for a free account now!</p>
         <Link to="/signup">
           <button>
             <FontAwesomeIcon icon={solid('forward-step')} /> GET STARTED
