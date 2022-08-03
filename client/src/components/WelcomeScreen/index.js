@@ -26,6 +26,14 @@ const WelcomeScreen = () => {
           LOGIN <FontAwesomeIcon icon={solid('right-to-bracket')} />
         </button>
       </Link>
+
+      <p className="embolden">
+        A place for artists to share their work with the world!
+      </p>
+      <p className="embolden">
+        (And a haven of art to look at for those of us not quite as skilled with
+        a paintbrush, or pencil, or clay, or...)
+      </p>
     </div>
   );
 };

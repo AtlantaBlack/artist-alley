@@ -14,6 +14,7 @@ const Shop = () => {
   // console.log('load shop');
   const [image, setImage] = useState('');
   const [price, setPrice] = useState('');
+  const [errorMsg, setErrorMessage] = useState(false);
   const [formState, setFormState] = useState({
     name: '',
     description: '',
@@ -103,10 +104,34 @@ const Shop = () => {
     console.log('deletedMerch: ', deleteMerch);
   };
 
+  // file upload validation
+  // https://stackoverflow.com/questions/69793785/react-file-validation
+  const fileUploadVal = (event) => {
+    // set error message to true so it will conditionally display if an image is the incorrect format
+    setErrorMessage((errorMsg) => !errorMsg);
+    // console.log('change!', event.target);
+    // console.log(event.type);
+
+    // obtain file type from the event object
+    const file = event.type;
+
+    //cases for image file types and default if file upload does not match cases
+    switch (file) {
+      case 'image/jpeg':
+        break;
+      case 'image/jpg':
+        break;
+      case 'image/png':
+        break;
+      default:
+        setErrorMessage('Invalid file type! Please upload an image.');
+    }
+  };
+
   return (
-    <div>
+    <div className="table-heading">
       <Link to="/dashboard">← Return to Dashboard</Link>
-      <h1 className="table-heading">My Artist's Table</h1>
+      <h1>My Artist's Table</h1>
       <div className="text-center">
         <button id="merch-button" onClick={showFormHandler}>
           Add Merch!
@@ -145,8 +170,13 @@ const Shop = () => {
                   type="file"
                   accept="image/*"
                   multiple={false}
-                  onDone={({ base64 }) => convert64({ base64 })}
+                  onDone={
+                    (({ base64 }) => convert64({ base64 }), fileUploadVal)
+                  }
                 />
+                {errorMsg && (
+                  <p className="error-handle embolden">{errorMsg}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="price">Price: $</label>

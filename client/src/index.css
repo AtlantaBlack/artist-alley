@@ -7,21 +7,11 @@
 
 :root {
   --light-beige: #f1e1cf;
-  /* deep-blue */
   --peach: #f8dda2;
-  /* mid-blue */
-  /* --mid-grey: #9192a3; */
-  /* i don't think im using the mid grey */
   --pale-blue: #d3edf0;
-  /* light grey */
   --lightish-red: #f5b0c9;
-  /* dark-pink */
   --deep-purple: #300230;
-  /* hot-pink */
   --pink: #f89dc2;
-  /* pale-pink */
-
-  /* ef898a */
 
   --teal-green: #8be5d7;
   --purple-blue: #3e6cad;
@@ -29,14 +19,6 @@
   --light-blue: #f1fafd;
   --dark-purple: #3e2aaa;
 }
-/* ORIGINAL COLOURS
---deep-blue: #001a45;
---mid-blue: #032d5e;
---mid-grey: #9192a3;
---light-grey: #ededed;
---dark-pink: #f41999;
---hot-pink: #ff66ff;
---pale-pink: #f4d3db; */
 
 * {
   box-sizing: 0;
@@ -60,9 +42,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 22px;
   font-weight: 300;
-  /* background-image: url(images/grunge-navy.jpg); */
   background-image: url(images/watercolour.jpg);
-  /* color: var(--light-grey); */
 }
 
 h1 {
@@ -70,6 +50,7 @@ h1 {
   font-size: 5rem;
   font-weight: 700;
   color: var(--deep-purple);
+  margin: 20px;
 }
 
 h2,
@@ -138,10 +119,6 @@ img {
   border: 2px dotted cyan;
 }
 
-/* .bg-grey {
-  background-color: rgb(3, 11, 40);
-} */
-
 .float-left {
   float: left;
 }
@@ -166,40 +143,34 @@ img {
   margin: 20px;
 }
 
-/* trying some form styling */
+.error-handle {
+  background-color: var(--teal-green);
+  border-radius: 24px;
+  padding: 10px;
+}
+
+/* background images for headers */
+.welcome {
+  background-image: url('images/pink-yellow-splatter.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.userType-container,
+.table-heading {
+  background-image: url('images/blue-green-splatter.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* basic form styling */
 form {
   color: var(--deep-purple);
   background-color: var(--pink);
   margin: 15px;
   border-radius: 24px;
-  width: 75vw;
+  width: 90%;
   padding: 20px;
-}
-
-.userType-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userType-container button {
-  width: 50%;
-}
-
-/* form styling specifically for the signup-login page */
-
-.signup-container,
-.login-container {
-  display: flex;
-  justify-content: center;
-}
-
-.signup-container form,
-.login-container form {
-  display: flex;
-  flex-direction: column;
-  border: 3px solid var(--pink);
-  box-shadow: 2px 2px 5px 4px var(--purple-blue);
 }
 
 /* float input fields below labels */
@@ -232,18 +203,44 @@ textarea {
   flex-direction: column;
   box-sizing: border-box;
   resize: none;
-  width: 90%;
+  width: 97%;
   height: 20vh;
   overflow-y: scroll;
   margin: 20px 0px 20px 0px;
   border-radius: 4px;
-  border-color: var(--peach);
+  border-color: var(--pink);
   padding: 8px;
 }
 
 /* because i hated the default font on the placeholder textarea */
 textarea::placeholder {
   font-family: 'Lato', 'Helvetica Neue', sans-serif;
+}
+
+/* form styling specifically for the signup and login page */
+
+.signup-container,
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+.signup-container form,
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid var(--pink);
+  box-shadow: 2px 2px 5px 4px var(--purple-blue);
+}
+
+.userType-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userType-container button {
+  width: 50%;
 }
 
 .dash-heading {
@@ -254,12 +251,4 @@ textarea::placeholder {
 
 .dash-nav {
   text-align: center;
-}
-
-.table-heading,
-.welcome,
-.userType-container {
-  background-image: url('images/blue-green-splatter.png');
-  background-repeat: no-repeat;
-  background-size: contain;
 }

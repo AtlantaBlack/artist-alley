@@ -31,6 +31,7 @@ const Dashboard = () => {
   const posts = data?.user.posts || [];
 
   // use local states
+  const [errorMsg, setErrorMessage] = useState(false);
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -99,6 +100,30 @@ const Dashboard = () => {
     console.log('deletedPost: ', deletePost);
   };
 
+  // file upload validation
+  // https://stackoverflow.com/questions/69793785/react-file-validation
+  const fileUploadVal = (event) => {
+    // set error message to true so it will conditionally display if an image is the incorrect format
+    setErrorMessage((errorMsg) => !errorMsg);
+    // console.log('change!', event);
+    // console.log(event.type);
+
+    // obtain file type from the event object
+    const file = event.type;
+
+    //cases for image file types and default if file upload does not match cases
+    switch (file) {
+      case 'image/jpeg':
+        break;
+      case 'image/jpg':
+        break;
+      case 'image/png':
+        break;
+      default:
+        setErrorMessage('Invalid file type! Please upload an image.');
+    }
+  };
+
   // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
     return (
@@ -155,8 +180,13 @@ const Dashboard = () => {
                   type="file"
                   accept="image/*"
                   multiple={false}
-                  onDone={({ base64 }) => convert64({ base64 })}
+                  onDone={
+                    (({ base64 }) => convert64({ base64 }), fileUploadVal)
+                  }
                 />
+                {errorMsg && (
+                  <p className="error-handle embolden">{errorMsg}</p>
+                )}
               </div>
 
               <div>
