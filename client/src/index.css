@@ -143,6 +143,10 @@ img {
   margin: 20px;
 }
 
+.hidden {
+  display: none;
+}
+
 .error-handle {
   background-color: var(--teal-green);
   border-radius: 24px;

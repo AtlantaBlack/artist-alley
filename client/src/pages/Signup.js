@@ -11,9 +11,6 @@ function Signup(props) {
   const [userType, setUserType] = useState('');
   const [formState, setFormState] = useState({ email: '', password: '' });
 
-  // set local state for error handling
-  const [errorMsg, setErrorMessage] = useState(false);
-
   //use the addUser mutation
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -49,14 +46,15 @@ function Signup(props) {
   };
 
   const handleEmptyField = (event) => {
-    // console.log(event.target);
+    console.log(event.target);
     console.log(event.target.value.length);
-    setErrorMessage((errorMsg) => !errorMsg);
+
+    let reveal = document.querySelector('.error-handle');
+    // console.log(event.target.value.length);
     if (event.target.value.length === 0) {
-      setErrorMessage(`${event.target.name} field is required.`);
-      console.log(errorMsg);
+      reveal.classList.remove('hidden');
     } else {
-      setErrorMessage(false);
+      reveal.classList.add('hidden');
     }
   };
 
@@ -98,7 +96,7 @@ function Signup(props) {
                   type="username"
                   id="username"
                   onChange={handleInputChange}
-                  onBlurCapture={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
               <div>
@@ -109,7 +107,7 @@ function Signup(props) {
                   type="firstName"
                   id="firstName"
                   onChange={handleInputChange}
-                  onBlurCapture={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -121,7 +119,7 @@ function Signup(props) {
                   type="lastName"
                   id="lastName"
                   onChange={handleInputChange}
-                  onBlurCapture={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -133,7 +131,7 @@ function Signup(props) {
                   type="email"
                   id="email"
                   onChange={handleInputChange}
-                  onBlurCapture={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -145,7 +143,7 @@ function Signup(props) {
                   type="password"
                   id="pwd"
                   onChange={handleInputChange}
-                  onBlurCapture={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
 
@@ -157,13 +155,13 @@ function Signup(props) {
                   type="birthday"
                   id="birthday"
                   onChange={handleInputChange}
-                  onBlurCapture={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
               {/* <div className="submit-button"> */}
               {/* CHANGE THIS TO TYPE=SUBMIT LATER */}
               <div>
-                {errorMsg && <p className="error-handle">{errorMsg}</p>}
+                <p className="error-handle hidden">Field is required!</p>
                 {error ? (
                   <div>
                     <p>Sorry! One of your details are incorrect!</p>

@@ -31,7 +31,7 @@ const Dashboard = () => {
   const posts = data?.user.posts || [];
 
   // use local states
-  const [errorMsg, setErrorMessage] = useState(false);
+  // const [errorMsg, setErrorMessage] = useState(false);
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -53,21 +53,22 @@ const Dashboard = () => {
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
     //https://stackoverflow.com/questions/25763533/how-to-identify-file-type-by-base64-encoded-string-of-a-image
-    console.log(Object.values(value));
 
-    //image validation to ensure file types are jpg or png
+    //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
     const imageVal = JSON.stringify(Object.values(value));
 
-    console.log(imageVal);
+    // console.log(imageVal);
+    // if/else to match data:image type and "conditionaly render" the error message.
+    const reveal = document.querySelector('.error-handle');
 
     if (imageVal.includes('["data:image/png')) {
-      setErrorMessage(false);
+      reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpeg')) {
-      setErrorMessage(false);
+      reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpg')) {
-      setErrorMessage('');
+      reveal.classList.add('hidden');
     } else {
-      setErrorMessage('Invalid file type');
+      reveal.classList.remove('hidden');
     }
 
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
@@ -119,40 +120,6 @@ const Dashboard = () => {
     console.log('deletedPost: ', deletePost);
   };
 
-  // file upload validation
-  // https://stackoverflow.com/questions/69793785/react-file-validation
-  // const fileUploadVal = (event) => {
-  // setErrorMessage((errorMsg) => !errorMsg);
-  //   // set error message to true so it will conditionally display if an image is the incorrect format
-  // console.log('change!', event);
-  // console.log(event.type);
-
-  // obtain file type from the event object
-  //   const file = event.type;
-
-  //   if (file === 'image/jpeg') {
-  //     setErrorMessage('');
-  //   } else if (file === 'image/jpg') {
-  //     setErrorMessage('');
-  //   } else if (file === 'image/png') {
-  //     setErrorMessage('');
-  //   } else {
-  //     setErrorMessage('Invalid file type!');
-  //   }
-  // };
-
-  //   //cases for image file types and default if file upload does not match cases
-  // switch (file) {
-  //   case 'image/jpeg':
-  //     break;
-  //   case 'image/jpg':
-  //     break;
-  //   case 'image/png':
-  //     break;
-  //   default:
-  //     setErrorMessage('Invalid file type!');
-  // }
-
   // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
     return (
@@ -202,31 +169,22 @@ const Dashboard = () => {
               </div>
 
               <div className="image-upload">
-                <label htmlFor="img">
-                  Upload image (.jpg or .jpeg. Max size 5MB):
-                </label>
+                <label htmlFor="img">Upload image (Max size 5MB):</label>
                 <FileBase64
                   name="file"
                   id="img-upload"
                   type="file"
                   accept=".jpg, .jpeg, .png"
                   multiple={false}
-                  onDone={
-                    ({ base64 }) => convert64({ base64 })
-                    // , fileUploadVal)
-                  }
+                  onDone={({ base64 }) => convert64({ base64 })}
                 />
-                {errorMsg && (
-                  <p className="error-handle embolden">{errorMsg}</p>
-                )}
+                <p className="error-handle embolden hidden">
+                  Incorrect file type.
+                </p>
               </div>
 
               <div>
-                <button
-                  type="submit"
-                  disabled={errorMsg}
-                  onClick={handleFormSubmit}
-                >
+                <button type="submit" onClick={handleFormSubmit}>
                   Submit
                 </button>
               </div>
