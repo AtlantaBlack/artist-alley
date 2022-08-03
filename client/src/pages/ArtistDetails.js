@@ -19,21 +19,25 @@ const ArtistDetails = () => {
   console.log('posts by artist:', posts);
 
   return (
-    <div style={{ border: '1px solid orange' }}>
-      <h3>{artistName}'s Portfolio</h3>
-      <Link to={`/artists/${artistName}/store`}>
-        <button type="button">Check out their Artist's Table!</button>
-      </Link>
-      <div style={{ border: '1px solid orange' }} className="flex-container">
-        {loading ? (
-          <div> loading </div>
-        ) : (
-          posts.map((post) => (
-            <div key={post._id} className="flex-child post-container">
-              <Post postDetails={post} />
-            </div>
-          ))
-        )}
+    <div className="dash-flex">
+      <div className="dash-flex-child dash-bg text-center">
+        <h1>{artistName}'s Posts</h1>
+        <Link to={`/artists/${artistName}/store`}>
+          <button type="button">Check out their Artist's Table →</button>
+        </Link>
+      </div>
+      <div className="dash-flex-child dash-bg text-center">
+        <div style={{ border: '1px solid orange' }} className="flex-container">
+          {loading ? (
+            <div> loading </div>
+          ) : (
+            posts.map((post) => (
+              <div key={post._id} className="flex-child post-container">
+                <Post postDetails={post} />
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

@@ -80,7 +80,7 @@ function Signup(props) {
             </button>
             <Link to="/login">
               <p className="text-sub">
-                (Actually, I'm a user already. Go to Login →)
+                (Actually, I'm already a user. Go to Login →)
               </p>
             </Link>
           </div>
@@ -90,7 +90,7 @@ function Signup(props) {
       {/* if the user type is defined then show the sign up form */}
       {userType && (
         <div className="backing-container">
-          <div className="backing-flex-child">
+          <div className="backing-flex-child text-center">
             <h2>New {userType} incoming!</h2>
             <p>Please fill out your details below.</p>
             <div className="signup-container">

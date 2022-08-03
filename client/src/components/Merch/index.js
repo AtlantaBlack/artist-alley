@@ -10,8 +10,8 @@ const Merch = ({ merch }) => {
     <>
       <div className="merch">
         <h3 className="merch-artist">{name}</h3>
-        <img src={`data:image/png;base64,${image}`} alt={description} />
-        <p>{description}</p>
+        <img src={`data:image/png;base64,${image}`} alt={name} />
+        <p className="italicised">{description}</p>
         <p>Price: ${price}</p>
         <p>Quantity: {quantity}</p>
       </div>

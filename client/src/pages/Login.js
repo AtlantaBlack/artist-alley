@@ -37,7 +37,8 @@ function Login(props) {
   return (
     <div className="backing-container userType-container">
       <div className="backing-flex-child text-center">
-        <h2 className="text-center">Welcome back, friend!</h2>
+        <h2>Logging in!</h2>
+        <p>Welcome back. ☺</p>
         <div className="login-container">
           <form onSubmit={handleFormSubmit}>
             <div>
@@ -73,7 +74,7 @@ function Login(props) {
           </form>
         </div>
         <Link to="/signup">
-          <p>← Go to Signup</p>
+          <p className="text-sub">← Go to Signup</p>
         </Link>
       </div>
     </div>

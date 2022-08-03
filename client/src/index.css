@@ -66,10 +66,12 @@ h6 {
 a {
   text-decoration: none;
   color: var(--deep-purple);
+  border-bottom: 5px solid transparent;
 }
 
 a:hover {
   color: var(--dark-purple);
+  border-bottom: 5px dotted var(--light-blue);
 }
 
 button {
@@ -131,11 +133,6 @@ img {
   box-shadow: 0 0 5px 4px rgba(244, 25, 153, 0.5);
 }
 
-.backing-container h1 {
-  margin: 0;
-  color: #e53279;
-}
-
 .dash-flex {
   display: flex;
   flex-direction: column;
@@ -146,6 +143,11 @@ img {
 }
 
 /* ======================== */
+
+.dash-flex-child h1 {
+  margin: 0;
+  color: var(--deep-purple);
+}
 
 .embolden {
   font-weight: bolder;
@@ -216,6 +218,7 @@ form {
   border-radius: 24px;
   width: 90%;
   padding: 20px;
+  text-align: left;
 }
 
 /* float input fields below labels */

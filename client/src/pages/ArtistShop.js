@@ -23,25 +23,27 @@ const ArtistShopDetails = () => {
   }
 
   return (
-    <div className="posts">
-      <div style={{ border: '1px solid orange' }}>
-        <div>
-          <h3>{artistName}'s Artist's Table</h3>
-          <Link to={`/artists/${artistName}`}>
-            <button type="button">Return to {artistName}'s portfolio</button>
-          </Link>
-        </div>
-        {merch.length ? (
-          merch.map((item) => (
-            <div key={item._id} className="merch-container">
-              <Merch merch={item} />
+    <div className="dash-flex">
+      <div className="dash-flex-child dash-bg text-center">
+        <h1>{artistName}'s Artist's Table</h1>
+        <Link to={`/artists/${artistName}`}>
+          <button type="button">← Return to {artistName}'s posts</button>
+        </Link>
+      </div>
+      <div className="dash-flex-child dash-bg text-center">
+        <div style={{ border: '1px solid orange' }} className="flex-container">
+          {merch.length ? (
+            merch.map((item) => (
+              <div key={item._id} className="flex-child merch-container">
+                <Merch merch={item} />
+              </div>
+            ))
+          ) : (
+            <div className="flex-child">
+              <h4>Looks like there's nothing here ...</h4>
             </div>
-          ))
-        ) : (
-          <div>
-            <h4>Looks like there's nothing here ...</h4>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

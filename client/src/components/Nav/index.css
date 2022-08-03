@@ -16,6 +16,11 @@
   line-height: 2rem;
 }
 
+.navbar li::before {
+  content: '|';
+  margin-right: 1rem;
+}
+
 .navbar-link,
 .logout-link {
   margin-right: 30px;

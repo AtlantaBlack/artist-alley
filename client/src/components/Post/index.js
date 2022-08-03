@@ -17,11 +17,11 @@ const Post = ({ postDetails }) => {
           </Link>
         </h2>
 
-        <h3 className="post-artist">
+        <h4 className="post-artist">
           <Link to={`/artists/${createdBy}`} className="link-card">
             {createdBy}
           </Link>
-        </h3>
+        </h4>
 
         <Link to={`/posts/${_id}`} className="link-card">
           <img src={`data:image/png;base64,${image}`} alt={description} />

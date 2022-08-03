@@ -7,9 +7,10 @@
   overflow: hidden;
 }
 
-.post h4 {
+.post h3 {
   background-color: var(--pale-blue);
   text-transform: uppercase;
+  padding: 0.5rem 0;
 }
 
 .post img {

@@ -123,9 +123,11 @@ const Dashboard = () => {
   // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
     return (
-      <div>
-        <h3>Non-Artist features coming soon!</h3>
-        <p>In the meantime, why not check out some artists?</p>
+      <div className="backing-container">
+        <div className="backing-flex-child text-center">
+          <h3>Non-Artist features coming soon!</h3>
+          <p>In the meantime, why not check out some artists?</p>
+        </div>
       </div>
     );
   }
