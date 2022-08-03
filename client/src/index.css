@@ -147,7 +147,8 @@ img {
   display: none;
 }
 
-.error-handle {
+.error-handle,
+.file-val-handle {
   background-color: var(--teal-green);
   border-radius: 24px;
   padding: 10px;
