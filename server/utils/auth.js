@@ -2,8 +2,9 @@
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const secret = 'this project sucks';
+const secret = process.env.AUTH_SECRET;
 const expiration = '2h';
 
 module.exports = {
