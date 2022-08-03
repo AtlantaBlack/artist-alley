@@ -50,13 +50,15 @@ const Shop = () => {
     const imageVal = JSON.stringify(Object.values(value));
 
     // if/else to match data:image type and "conditionaly render" the error message.
-    const reveal = document.querySelector('.error-handle');
+    const reveal = document.querySelector('.file-val-handle');
 
     if (imageVal.includes('["data:image/png')) {
       reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpeg')) {
       reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpg')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/gif')) {
       reveal.classList.add('hidden');
     } else {
       reveal.classList.remove('hidden');
@@ -119,6 +121,20 @@ const Shop = () => {
         }
       ]
     });
+  };
+
+  // handler for empty field values that we want users to add a value to
+  const handleEmptyField = (event) => {
+    // console.log(event.target);
+    // console.log(event.target.value.length);
+
+    let reveal = document.querySelector('.error-handle');
+    console.log(event.target.value.length);
+    if (event.target.value.length === 0) {
+      reveal.classList.remove('hidden');
+    } else {
+      reveal.classList.add('hidden');
+    }
   };
 
   return (

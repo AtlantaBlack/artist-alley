@@ -158,12 +158,13 @@ function Signup(props) {
                   <input
                     placeholder="MM/DD/YYYY"
                     name="birthday"
-                    type="birthday"
+                    type="date"
                     id="birthday"
                     onChange={handleInputChange}
                     onBlur={handleEmptyField}
                   />
                 </div>
+
                 <div>
                   <p className="error-handle hidden">Field is required!</p>
                   {error ? (
