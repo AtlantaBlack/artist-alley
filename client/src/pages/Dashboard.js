@@ -57,23 +57,23 @@ const Dashboard = () => {
     // console.log(value);
 
     //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
-    // const imageVal = JSON.stringify(Object.values(value));
+    const imageVal = JSON.stringify(Object.values(value));
 
     // console.log(imageVal);
     // if/else to match data:image type and "conditionaly render" the error message.
-    // const reveal = document.querySelector('.file-val-handle');
+    const reveal = document.querySelector('.file-val-handle');
 
-    // if (imageVal.includes('["data:image/png')) {
-    //   reveal.classList.add('hidden');
-    // } else if (imageVal.startsWith('["data:image/jpeg')) {
-    //   reveal.classList.add('hidden');
-    // } else if (imageVal.startsWith('["data:image/jpg')) {
-    //   reveal.classList.add('hidden');
-    // } else if (imageVal.startsWith('["data:image/gif')) {
-    //   reveal.classList.add('hidden');
-    // } else {
-    //   reveal.classList.remove('hidden');
-    // }
+    if (imageVal.includes('["data:image/png')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/jpeg')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/jpg')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/gif')) {
+      reveal.classList.add('hidden');
+    } else {
+      reveal.classList.remove('hidden');
+    }
 
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
 
@@ -164,7 +164,7 @@ const Dashboard = () => {
         <div className="post">
           <h2 className="text-center">Share your Art!</h2>
           <div className="post-container">
-            <form onSubmit={handleFormSubmit}>
+            <form>
               <div>
                 <label htmlFor="title">Post title:</label>
                 <input
