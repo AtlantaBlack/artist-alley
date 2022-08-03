@@ -1,4 +1,4 @@
-.welcome-container {
+/* .welcome-container {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
@@ -11,7 +11,7 @@
   border-radius: 20px;
   background-color: rgba(246, 246, 246, 0.8);
   box-shadow: 0 0 5px 4px rgba(244, 25, 153, 0.5);
-}
+} */
 
 .welcome h1 {
   margin: 0;

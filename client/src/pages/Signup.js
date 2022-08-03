@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // import the useMutation function and ADD_USER mutation
 import { useMutation } from '@apollo/client';
@@ -60,22 +61,29 @@ function Signup(props) {
 
   // rendering form
   return (
-    <div>
+    <>
       {/* if there is no user type defined, then show this first container that asks what type of user they are */}
       {!userType && (
-        <div className="userType-container">
-          <h2>Sign up to Artist Alley</h2>
+        <div className="backing-container userType-container">
+          <div className="backing-flex-child text-center">
+            <h2>Signing up to Artist Alley</h2>
 
-          <p>First, let's determine what kind of alley-goer you are.</p>
+            <p>First, let's determine what kind of alley-goer you are.</p>
 
-          <h2>You are...</h2>
+            <h2>I am ...</h2>
 
-          <button type="button" onClick={() => setUserType('Artist')}>
-            An Artist
-          </button>
-          <button type="button" onClick={() => setUserType('Non-Artist')}>
-            A Wizard
-          </button>
+            <button type="button" onClick={() => setUserType('Artist')}>
+              An Artist
+            </button>
+            <button type="button" onClick={() => setUserType('Non-Artist')}>
+              A Wizard
+            </button>
+            <Link to="/login">
+              <p className="text-sub">
+                (Actually, I'm a user already. Go to Login →)
+              </p>
+            </Link>
+          </div>
         </div>
       )}
 
@@ -183,7 +191,7 @@ function Signup(props) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 // import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
@@ -34,45 +35,48 @@ function Login(props) {
   };
 
   return (
-    <>
-      <h2 className="text-center">Welcome back, friend!</h2>
-      <div className="login-container">
-        {/* <Link to="/signup">← Go to Signup</Link> */}
-
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <label htmlFor="email">Email address:</label>
-            <input
-              placeholder="youremail@test.com"
-              name="email"
-              type="email"
-              id="email"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="pwd">Password:</label>
-            <input
-              placeholder="******"
-              name="password"
-              type="password"
-              id="pwd"
-              onChange={handleChange}
-            />
-          </div>
-          {error ? (
+    <div className="backing-container userType-container">
+      <div className="backing-flex-child text-center">
+        <h2 className="text-center">Welcome back, friend!</h2>
+        <div className="login-container">
+          <form onSubmit={handleFormSubmit}>
             <div>
-              <p>The user details are incorrect.</p>
+              <label htmlFor="email">Email address:</label>
+              <input
+                placeholder="youremail@test.com"
+                name="email"
+                type="email"
+                id="email"
+                onChange={handleChange}
+              />
             </div>
-          ) : null}
-          <div>
-            <button className="submit-button" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+            <div>
+              <label htmlFor="pwd">Password:</label>
+              <input
+                placeholder="******"
+                name="password"
+                type="password"
+                id="pwd"
+                onChange={handleChange}
+              />
+            </div>
+            {error ? (
+              <div>
+                <p>The user details are incorrect.</p>
+              </div>
+            ) : null}
+            <div>
+              <button className="submit-button" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+        <Link to="/signup">
+          <p>← Go to Signup</p>
+        </Link>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -6,8 +6,8 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const WelcomeScreen = () => {
   return (
-    <div className="welcome-container">
-      <div className="welcome-flex-child text-center">
+    <div className="backing-container">
+      <div className="backing-flex-child text-center">
         <h1>
           Welcome to
           <br />

@@ -116,8 +116,24 @@ img {
   flex: 1 0 100%;
 }
 
-.align-items-center {
-  align-items: center;
+.backing-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.backing-flex-child {
+  flex: 0 0 auto;
+  padding: 2rem;
+  max-width: 80%;
+  border-radius: 20px;
+  background-color: rgba(246, 246, 246, 0.8);
+  box-shadow: 0 0 5px 4px rgba(244, 25, 153, 0.5);
+}
+
+.backing-container h1 {
+  margin: 0;
+  color: #e53279;
 }
 
 /* ======================== */
@@ -143,7 +159,7 @@ img {
 }
 
 .text-sub {
-  font-size: 75%;
+  font-size: 80%;
 }
 
 .submit-button {
@@ -291,6 +307,9 @@ textarea::placeholder {
 
   .flex-child {
     flex: 1 0 32%;
+  }
+  .backing-flex-child {
+    max-width: 60%;
   }
 }
 
