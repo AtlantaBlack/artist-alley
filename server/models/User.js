@@ -38,7 +38,6 @@ const userSchema = new Schema({
     lowercase: true,
     validate: {
       // Custom validation for email https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
-
       validator(value) {
         // eslint-disable-next-line no-useless-escape
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);

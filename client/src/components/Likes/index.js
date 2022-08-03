@@ -25,16 +25,13 @@ const LikeCounter = ({ postId }) => {
 
   // handler for button click
   const handleAddLike = async () => {
-    // console.log(`likes before click!
-    // count: ${totalLikes}`);
+    // add like using postId and userId
     const response = await addLike({
       variables: {
         postId: postId,
         userId: sessionUser._id
       }
     });
-    // console.log(`likes after click!
-    // count: ${totalLikes}`);
     console.log('response', response);
   };
 

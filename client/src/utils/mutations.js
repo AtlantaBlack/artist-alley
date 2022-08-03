@@ -143,5 +143,3 @@ export const SINGLE_POST = gql`
     }
   }
 `;
-
-//add token to the above once we've worked out the auth stuff

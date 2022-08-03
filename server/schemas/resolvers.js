@@ -79,14 +79,12 @@ const resolvers = {
     },
 
     addPost: async (parent, { title, description, image, createdBy }) => {
-      // console.log(createdBy);
       const newPost = await Post.create({
         title,
         description,
         image,
         createdBy
       });
-      // console.log(newPost);
       await User.findOneAndUpdate(
         { username: createdBy },
         { $addToSet: { posts: newPost.id } }

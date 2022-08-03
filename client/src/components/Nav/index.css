@@ -1,24 +1,47 @@
 .navbar {
-  background-color: var(--light-beige);
+  background: rgba(241, 225, 207, 1);
 }
 
 .navbar ul {
   display: flex;
-  border: 1px solid greenyellow;
+  flex-flow: row wrap;
+  justify-content: flex-end;
 }
 
 .navbar li {
-  flex: 0 1 10%;
+  flex: 0 0 auto;
   display: inline;
   color: white;
   line-height: 2rem;
-  margin-right: 30px;
 }
 
-.navbar-link {
-  margin-right: 30px;
+.navbar li::before {
+  content: '|';
+  margin-right: 1rem;
 }
 
+.navbar-link,
 .logout-link {
   margin-right: 30px;
+}
+
+@media screen and (min-width: 500px) {
+  .navbar {
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0),
+      rgba(241, 225, 207, 1) 28%
+    );
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar {
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0),
+      rgba(241, 225, 207, 1) 60%
+    );
+    padding-right: 10%;
+  }
 }

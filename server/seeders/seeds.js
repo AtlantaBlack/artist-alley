@@ -2,7 +2,6 @@
 const db = require('../config/connection');
 const { User, Post } = require('../models');
 const userSeeds = require('./userSeeds.json');
-// const postSeeds = require('./postSeeds.json');
 
 db.once('open', async () => {
   try {
@@ -10,7 +9,6 @@ db.once('open', async () => {
     await Post.deleteMany({});
 
     await User.create(userSeeds);
-    // await Post.create(postSeeds);
   } catch (error) {
     console.error(error);
     process.exit(1);

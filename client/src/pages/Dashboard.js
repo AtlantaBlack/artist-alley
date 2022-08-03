@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
@@ -23,15 +24,12 @@ const Dashboard = () => {
     // set the user variables when there's data
     loggedInUser = data.user.username;
     userType = data.user.userType;
-    // console.log('logged in user: ', loggedInUser);
-    // console.log('user type: ', userType);
   }
 
   // if user has any posts already made, get them
   const posts = data?.user.posts || [];
 
   // use local states
-  // const [errorMsg, setErrorMessage] = useState(false);
   const [image, setImage] = useState('');
   const [formState, setFormState] = useState({
     title: '',
@@ -59,7 +57,6 @@ const Dashboard = () => {
     //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
     const imageVal = JSON.stringify(Object.values(value));
 
-    // console.log(imageVal);
     // if/else to match data:image type and "conditionaly render" the error message.
     const reveal = document.querySelector('.file-val-handle');
 
@@ -76,7 +73,6 @@ const Dashboard = () => {
     }
 
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
-
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
     // set the image state
     setImage(image);
@@ -92,7 +88,6 @@ const Dashboard = () => {
         createdBy: loggedInUser // set the artist as the person logged in
       }
     });
-    console.log(response);
   };
 
   // for getting info from the add post form
@@ -141,85 +136,89 @@ const Dashboard = () => {
   // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
     return (
-      <div>
-        <h3>Non-Artist features coming soon!</h3>
-        <p>In the meantime, why not check out some artists?</p>
+      <div className="backing-container">
+        <div className="backing-flex-child text-center">
+          <h3>Non-Artist features coming soon!</h3>
+          <p>In the meantime, why not check out some artists?</p>
+        </div>
       </div>
     );
   }
 
   // if user is an artist, they can see the Add Post form and a list of their previous posts
   return (
-    <div>
-      <div className="dash-heading">
-        <h1>My Dashboard</h1>
-      </div>
-      <nav className="dash-nav">
-        <Link to="/dashboard/my/store">
-          <button type="button">Go to your Artist's Table</button>
-        </Link>
-        <button onClick={showFormHandler}>Make a post!</button>
-      </nav>
-      {showForm && (
-        <div className="post">
-          <h2 className="text-center">Share your Art!</h2>
-          <div className="post-container">
-            <form>
-              <div>
-                <label htmlFor="title">Post title:</label>
-                <input
-                  placeholder="Title of post"
-                  name="title"
-                  type="title"
-                  id="title"
-                  onChange={handleInputChange}
-                  onBlur={handleEmptyField}
-                />
-              </div>
-              <div>
-                <label htmlFor="description">Description:</label>
-                <textarea
-                  placeholder="Description of post"
-                  name="description"
-                  type="text"
-                  id="description"
-                  onChange={handleInputChange}
-                ></textarea>
-              </div>
-
-              <div className="image-upload">
-                <label htmlFor="img">Upload image (Max size 5MB.):</label>
-                <FileBase64
-                  name="file"
-                  id="img-upload"
-                  type="file"
-                  accept=".jpg, .jpeg, .png, .gif"
-                  multiple={false}
-                  onDone={({ base64 }) => convert64({ base64 })}
-                />
-                <p className="file-val-handle embolden hidden">
-                  Please upload a jpg, jpeg, png or gif file.
-                </p>
-                <p className="error-handle embolden hidden">Field required.</p>
-              </div>
-
-              <div>
-                <button type="submit" onClick={handleFormSubmit}>
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+    <div className="dash-flex">
+      <div className="dash-flex-child dash-bg text-center">
+        <div className="dash-heading">
+          <h1>My Dashboard</h1>
         </div>
-      )}
+        <p>What would you like to do today, {loggedInUser}?</p>
+        <button onClick={showFormHandler}>Make a post!</button>
+        <Link to="/dashboard/my/store">
+          <button type="button">Go to your Artist's Table →</button>
+        </Link>
+        {showForm && (
+          <div className="post">
+            <h2 className="text-center">Share your Art!</h2>
+            <div className="post-container">
+              <form>
+                <div>
+                  <label htmlFor="title">Post title:</label>
+                  <input
+                    placeholder="Title of post"
+                    name="title"
+                    type="text"
+                    id="title"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="description">Description:</label>
+                  <textarea
+                    placeholder="Description of post"
+                    name="description"
+                    type="text"
+                    id="description"
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
 
-      <div className="posts">
-        <div style={{ border: '1px solid orange' }}>
+                <div className="image-upload">
+                  <label htmlFor="img">
+                    Upload image:{' '}
+                    <span className="text-subbier">(Max file size 5MB)</span>
+                  </label>
+                  <FileBase64
+                    name="file"
+                    id="img-upload"
+                    type="file"
+                    accept=".jpg, .jpeg, .png"
+                    multiple={false}
+                    onDone={({ base64 }) => convert64({ base64 })}
+                  />
+                  <p className="error-handle embolden hidden">
+                    Incorrect file type.
+                  </p>
+                </div>
+
+                <div>
+                  <button type="submit" onClick={handleFormSubmit}>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="dash-flex-child">
+        <div className="flex-container">
           {loading ? (
             <div> loading </div>
           ) : (
             posts.map((post) => (
-              <div key={post._id} className="post-container">
+              <div key={post._id} className="flex-child post-container">
                 <Post postDetails={post} />
                 <button
                   type="button"
