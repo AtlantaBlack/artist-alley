@@ -135,6 +135,7 @@ function Signup(props) {
                   <input
                     placeholder="youremail@email.com"
                     name="email"
+                    inputMode="email"
                     type="email"
                     id="email"
                     onChange={handleInputChange}

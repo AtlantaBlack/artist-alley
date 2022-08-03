@@ -87,13 +87,13 @@ button:hover {
   color: var(--deep-purple);
 }
 
-#merch-button {
+.merch-button {
   background-color: var(--teal-green);
   border: 3px solid var(--deep-purple);
   color: var(--deep-purple);
 }
 
-#merch-button:hover {
+.merch-button:hover {
   background-color: var(--pink);
   border: 3px solid var(--deep-purple);
   color: var(--deep-purple);
@@ -287,6 +287,11 @@ textarea::placeholder {
   background-image: url('images/pink-splatter.png');
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.dash-bg {
+  background-color: rgba(246, 246, 246, 0.3);
+  border-radius: 20px;
 }
 
 .link-card {

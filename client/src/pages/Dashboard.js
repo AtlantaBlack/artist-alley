@@ -133,10 +133,11 @@ const Dashboard = () => {
   // if user is an artist, they can see the Add Post form and a list of their previous posts
   return (
     <div className="dash-flex">
-      <div className="dash-flex-child">
+      <div className="dash-flex-child dash-bg text-center">
         <div className="dash-heading">
           <h1>My Dashboard</h1>
         </div>
+        <p>What would you like to do today, {loggedInUser}?</p>
         <button onClick={showFormHandler}>Make a post!</button>
         <Link to="/dashboard/my/store">
           <button type="button">Go to your Artist's Table</button>
