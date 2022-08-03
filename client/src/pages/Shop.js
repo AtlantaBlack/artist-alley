@@ -196,8 +196,8 @@ const Shop = () => {
                 <input
                   placeholder="Price of merch"
                   name="price"
-                  type="number"
-                  inputMode="numeric"
+                  type="decimal"
+                  inputMode="decimal"
                   id="price"
                   required="required"
                   onChange={handleInputChange}

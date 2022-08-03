@@ -3,7 +3,7 @@
 /* eslint-disable func-names */
 const jwt = require('jsonwebtoken');
 
-const secret = 'this project sucks';
+const secret = process.env.AUTH_SECRET;
 const expiration = '2h';
 
 module.exports = {
