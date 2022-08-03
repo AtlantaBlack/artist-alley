@@ -155,6 +155,11 @@ img {
   font-style: italic;
 }
 
+.embiggen {
+  font-size: 170%;
+  line-height: 0;
+}
+
 .float-left {
   float: left;
 }

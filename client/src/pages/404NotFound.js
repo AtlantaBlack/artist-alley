@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 
 const PageNotFound = () => {
   return (
-    <div>
-      <h2>404 Page Not Found!</h2>
-      <h4>Looks like we couldn't find the page you were after.</h4>
+    <div className="backing-container">
+      <div className="backing-flex-child text-center">
+        <h2>404 Page Not Found!</h2>
 
-      <Link to="/">
-        <button type="button">Back to Home</button>
-      </Link>
+        <p>It looks like we couldn't find the page you were after.</p>
+        <p className="embiggen">☹</p>
+        <Link to="/">
+          <button type="button">← Back to Home</button>
+        </Link>
+      </div>
     </div>
   );
 };
