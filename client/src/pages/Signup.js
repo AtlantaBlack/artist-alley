@@ -56,7 +56,7 @@ function Signup(props) {
       setErrorMessage(`${event.target.name} field is required.`);
       console.log(errorMsg);
     } else {
-      setErrorMessage('');
+      setErrorMessage(false);
     }
   };
 

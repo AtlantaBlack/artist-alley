@@ -62,7 +62,7 @@ function Login(props) {
           </div>
           {error ? (
             <div>
-              <p>The user details are incorrect.</p>
+              <p>The user details are incorrect. {error}</p>
             </div>
           ) : null}
           <div>

@@ -14,7 +14,7 @@ const Shop = () => {
   // console.log('load shop');
   const [image, setImage] = useState('');
   const [price, setPrice] = useState('');
-  const [errorMsg, setErrorMessage] = useState(false);
+  // const [errorMsg, setErrorMessage] = useState(false);
   const [formState, setFormState] = useState({
     name: '',
     description: '',
@@ -44,6 +44,24 @@ const Shop = () => {
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
+    // https://stackoverflow.com/questions/25763533/how-to-identify-file-type-by-base64-encoded-string-of-a-image
+    // console.log(Object.values(value));
+
+    //image validation to ensure file types are jpg or png
+    // const imageVal = JSON.stringify(Object.values(value));
+
+    // console.log(imageVal);
+
+    // if (imageVal.includes('["data:image/png')) {
+    //   setErrorMessage('');
+    // } else if (imageVal.startsWith('["data:image/jpeg')) {
+    //   setErrorMessage('');
+    // } else if (imageVal.startsWith('["data:image/jpg')) {
+    //   setErrorMessage('');
+    // } else {
+    //   setErrorMessage('Invalid file type');
+    // }
+
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
     // set the image state
@@ -106,27 +124,27 @@ const Shop = () => {
 
   // file upload validation
   // https://stackoverflow.com/questions/69793785/react-file-validation
-  const fileUploadVal = (event) => {
-    // set error message to true so it will conditionally display if an image is the incorrect format
-    setErrorMessage((errorMsg) => !errorMsg);
-    // console.log('change!', event.target);
-    // console.log(event.type);
+  // const fileUploadVal = (event) => {
+  // set error message to true so it will conditionally display if an image is the incorrect format
+  // setErrorMessage((errorMsg) => !errorMsg);
+  // console.log('change!', event.target);
+  // console.log(event.type);
 
-    // obtain file type from the event object
-    const file = event.type;
+  // obtain file type from the event object
+  // const file = event.type;
 
-    //cases for image file types and default if file upload does not match cases
-    switch (file) {
-      case 'image/jpeg':
-        break;
-      case 'image/jpg':
-        break;
-      case 'image/png':
-        break;
-      default:
-        setErrorMessage('Invalid file type! Please upload an image.');
-    }
-  };
+  //cases for image file types and default if file upload does not match cases
+  //   switch (file) {
+  //     case 'image/jpeg':
+  //       break;
+  //     case 'image/jpg':
+  //       break;
+  //     case 'image/png':
+  //       break;
+  //     default:
+  //       setErrorMessage('Invalid file type! Please upload an image.');
+  //   }
+  // };
 
   return (
     <div className="table-heading">
@@ -164,19 +182,20 @@ const Shop = () => {
                 ></textarea>
               </div>
               <div>
-                <label htmlFor="img">Upload image (Max file size 5MB):</label>
+                <label htmlFor="img">
+                  Upload image (.jpg or .jpeg. Max file size 5MB):
+                </label>
                 <FileBase64
                   name="file"
                   type="file"
-                  accept="image/*"
+                  accept=".jpg, .jpeg"
                   multiple={false}
-                  onDone={
-                    (({ base64 }) => convert64({ base64 }), fileUploadVal)
-                  }
+                  onDone={({ base64 }) => convert64({ base64 })}
                 />
-                {errorMsg && (
-                  <p className="error-handle embolden">{errorMsg}</p>
-                )}
+                {/* {errorMsg && ( */}
+                <p className="error-handle embolden"></p>
+                {/* {errorMsg}</p> */}
+                {/* )} */}
               </div>
               <div>
                 <label htmlFor="price">Price: $</label>
@@ -199,7 +218,11 @@ const Shop = () => {
                 />
               </div>
               <div>
-                <button type="submit" onClick={handleFormSubmit}>
+                <button
+                  type="submit"
+                  // disabled={errorMsg}
+                  onClick={handleFormSubmit}
+                >
                   Submit
                 </button>
               </div>

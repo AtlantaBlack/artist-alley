@@ -52,7 +52,26 @@ const Dashboard = () => {
 
   // convert the image into base64 and make it a string to send to the database
   const convert64 = async (value) => {
+    //https://stackoverflow.com/questions/25763533/how-to-identify-file-type-by-base64-encoded-string-of-a-image
+    console.log(Object.values(value));
+
+    //image validation to ensure file types are jpg or png
+    const imageVal = JSON.stringify(Object.values(value));
+
+    console.log(imageVal);
+
+    if (imageVal.includes('["data:image/png')) {
+      setErrorMessage(false);
+    } else if (imageVal.startsWith('["data:image/jpeg')) {
+      setErrorMessage(false);
+    } else if (imageVal.startsWith('["data:image/jpg')) {
+      setErrorMessage('');
+    } else {
+      setErrorMessage('Invalid file type');
+    }
+
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
+
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
     // set the image state
     setImage(image);
@@ -102,27 +121,37 @@ const Dashboard = () => {
 
   // file upload validation
   // https://stackoverflow.com/questions/69793785/react-file-validation
-  const fileUploadVal = (event) => {
-    // set error message to true so it will conditionally display if an image is the incorrect format
-    setErrorMessage((errorMsg) => !errorMsg);
-    // console.log('change!', event);
-    // console.log(event.type);
+  // const fileUploadVal = (event) => {
+  // setErrorMessage((errorMsg) => !errorMsg);
+  //   // set error message to true so it will conditionally display if an image is the incorrect format
+  // console.log('change!', event);
+  // console.log(event.type);
 
-    // obtain file type from the event object
-    const file = event.type;
+  // obtain file type from the event object
+  //   const file = event.type;
 
-    //cases for image file types and default if file upload does not match cases
-    switch (file) {
-      case 'image/jpeg':
-        break;
-      case 'image/jpg':
-        break;
-      case 'image/png':
-        break;
-      default:
-        setErrorMessage('Invalid file type! Please upload an image.');
-    }
-  };
+  //   if (file === 'image/jpeg') {
+  //     setErrorMessage('');
+  //   } else if (file === 'image/jpg') {
+  //     setErrorMessage('');
+  //   } else if (file === 'image/png') {
+  //     setErrorMessage('');
+  //   } else {
+  //     setErrorMessage('Invalid file type!');
+  //   }
+  // };
+
+  //   //cases for image file types and default if file upload does not match cases
+  // switch (file) {
+  //   case 'image/jpeg':
+  //     break;
+  //   case 'image/jpg':
+  //     break;
+  //   case 'image/png':
+  //     break;
+  //   default:
+  //     setErrorMessage('Invalid file type!');
+  // }
 
   // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
@@ -173,15 +202,18 @@ const Dashboard = () => {
               </div>
 
               <div className="image-upload">
-                <label htmlFor="img">Upload image (Max size 5MB):</label>
+                <label htmlFor="img">
+                  Upload image (.jpg or .jpeg. Max size 5MB):
+                </label>
                 <FileBase64
                   name="file"
                   id="img-upload"
                   type="file"
-                  accept="image/*"
+                  accept=".jpg, .jpeg, .png"
                   multiple={false}
                   onDone={
-                    (({ base64 }) => convert64({ base64 }), fileUploadVal)
+                    ({ base64 }) => convert64({ base64 })
+                    // , fileUploadVal)
                   }
                 />
                 {errorMsg && (
@@ -190,7 +222,11 @@ const Dashboard = () => {
               </div>
 
               <div>
-                <button type="submit" onClick={handleFormSubmit}>
+                <button
+                  type="submit"
+                  disabled={errorMsg}
+                  onClick={handleFormSubmit}
+                >
                   Submit
                 </button>
               </div>
