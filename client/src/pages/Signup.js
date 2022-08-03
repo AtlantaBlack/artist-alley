@@ -93,8 +93,9 @@ function Signup(props) {
                 <input
                   placeholder="Username"
                   name="username"
-                  type="username"
+                  type="text"
                   id="username"
+                  required="required"
                   onChange={handleInputChange}
                   onBlur={handleEmptyField}
                 />
@@ -104,8 +105,9 @@ function Signup(props) {
                 <input
                   placeholder="First"
                   name="firstName"
-                  type="firstName"
+                  type="text"
                   id="firstName"
+                  required="required"
                   onChange={handleInputChange}
                   onBlur={handleEmptyField}
                 />
@@ -116,8 +118,9 @@ function Signup(props) {
                 <input
                   placeholder="Last"
                   name="lastName"
-                  type="lastName"
+                  type="text"
                   id="lastName"
+                  required="required"
                   onChange={handleInputChange}
                   onBlur={handleEmptyField}
                 />
@@ -130,6 +133,7 @@ function Signup(props) {
                   name="email"
                   type="email"
                   id="email"
+                  required="required"
                   onChange={handleInputChange}
                   onBlur={handleEmptyField}
                 />
@@ -142,6 +146,7 @@ function Signup(props) {
                   name="password"
                   type="password"
                   id="pwd"
+                  required="required"
                   onChange={handleInputChange}
                   onBlur={handleEmptyField}
                 />
@@ -152,8 +157,9 @@ function Signup(props) {
                 <input
                   placeholder="MM/DD/YYYY"
                   name="birthday"
-                  type="birthday"
+                  type="date"
                   id="birthday"
+                  required="required"
                   onChange={handleInputChange}
                   onBlur={handleEmptyField}
                 />

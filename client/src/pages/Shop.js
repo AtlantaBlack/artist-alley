@@ -23,7 +23,7 @@ const Shop = () => {
     image: ''
   });
 
-  const { loading, data } = useQuery(QUERY_USER_MERCH, {
+  const { loading, data, error } = useQuery(QUERY_USER_MERCH, {
     variables: { username: Auth.getProfile().data.username }
   });
 
@@ -51,13 +51,15 @@ const Shop = () => {
 
     // console.log(imageVal);
     // if/else to match data:image type and "conditionaly render" the error message.
-    const reveal = document.querySelector('.error-handle');
+    const reveal = document.querySelector('.file-val-handle');
 
     if (imageVal.includes('["data:image/png')) {
       reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpeg')) {
       reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpg')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/gif')) {
       reveal.classList.add('hidden');
     } else {
       reveal.classList.remove('hidden');
@@ -123,6 +125,20 @@ const Shop = () => {
     console.log('deletedMerch: ', deleteMerch);
   };
 
+  // handler for empty field values that we want users to add a value to
+  // const handleEmptyField = (event) => {
+  //   console.log(event.target);
+  //   console.log(event.target.value.length);
+
+  //   let reveal = document.querySelector('.error-handle');
+  // console.log(event.target.value.length);
+  //   if (event.target.value.length === 0) {
+  //     reveal.classList.remove('hidden');
+  //   } else {
+  //     reveal.classList.add('hidden');
+  //   }
+  // };
+
   return (
     <div className="table-heading">
       <Link to="/dashboard">← Return to Dashboard</Link>
@@ -145,7 +161,9 @@ const Shop = () => {
                   name="name"
                   type="text"
                   id="name"
+                  required="required"
                   onChange={handleInputChange}
+                  // onBlur={handleEmptyField}
                 />
               </div>
               <div>
@@ -155,7 +173,9 @@ const Shop = () => {
                   name="description"
                   type="text"
                   id="description"
+                  required="required"
                   onChange={handleInputChange}
+                  // onBlur={handleEmptyField}
                 ></textarea>
               </div>
               <div>
@@ -163,12 +183,12 @@ const Shop = () => {
                 <FileBase64
                   name="file"
                   type="file"
-                  accept=".jpg, .jpeg, .png"
+                  accept=".jpg, .jpeg, .png, .gif"
                   multiple={false}
                   onDone={({ base64 }) => convert64({ base64 })}
                 />
-                <p className="error-handle embolden hidden">
-                  Incorrect file type.
+                <p className="file-val-handle embolden hidden">
+                  Please upload a jpg, jpeg, png or gif file.
                 </p>
               </div>
               <div>
@@ -176,9 +196,12 @@ const Shop = () => {
                 <input
                   placeholder="Price of merch"
                   name="price"
-                  type="text"
+                  type="number"
+                  inputMode="numeric"
                   id="price"
+                  required="required"
                   onChange={handleInputChange}
+                  // onBlur={handleEmptyField}
                 />
               </div>
               <div>
@@ -186,11 +209,16 @@ const Shop = () => {
                 <input
                   placeholder="Quantity of merch in stock"
                   name="quantity"
-                  type="text"
+                  type="number"
+                  inputMode="numeric"
                   id="quantity"
+                  required="required"
                   onChange={handleInputChange}
+                  // onBlur={handleEmptyField}
                 />
               </div>
+
+              <p className="error-handle embolden hidden">Field required.</p>
               <div>
                 <button type="submit" onClick={handleFormSubmit}>
                   Submit

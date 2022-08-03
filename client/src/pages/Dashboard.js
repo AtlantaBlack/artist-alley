@@ -54,18 +54,22 @@ const Dashboard = () => {
   const convert64 = async (value) => {
     //https://stackoverflow.com/questions/25763533/how-to-identify-file-type-by-base64-encoded-string-of-a-image
 
+    console.log(value);
+
     //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
     const imageVal = JSON.stringify(Object.values(value));
 
     // console.log(imageVal);
     // if/else to match data:image type and "conditionaly render" the error message.
-    const reveal = document.querySelector('.error-handle');
+    const reveal = document.querySelector('.file-val-handle');
 
     if (imageVal.includes('["data:image/png')) {
       reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpeg')) {
       reveal.classList.add('hidden');
     } else if (imageVal.startsWith('["data:image/jpg')) {
+      reveal.classList.add('hidden');
+    } else if (imageVal.startsWith('["data:image/gif')) {
       reveal.classList.add('hidden');
     } else {
       reveal.classList.remove('hidden');
@@ -120,6 +124,20 @@ const Dashboard = () => {
     console.log('deletedPost: ', deletePost);
   };
 
+  // handler for empty field values that we want users to add a value to
+  const handleEmptyField = (event) => {
+    console.log(event.target);
+    console.log(event.target.value.length);
+
+    let reveal = document.querySelector('.error-handle');
+    // console.log(event.target.value.length);
+    if (event.target.value.length === 0) {
+      reveal.classList.remove('hidden');
+    } else {
+      reveal.classList.add('hidden');
+    }
+  };
+
   // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
     return (
@@ -155,6 +173,7 @@ const Dashboard = () => {
                   type="title"
                   id="title"
                   onChange={handleInputChange}
+                  onBlur={handleEmptyField}
                 />
               </div>
               <div>
@@ -169,18 +188,19 @@ const Dashboard = () => {
               </div>
 
               <div className="image-upload">
-                <label htmlFor="img">Upload image (Max size 5MB):</label>
+                <label htmlFor="img">Upload image (Max size 5MB.):</label>
                 <FileBase64
                   name="file"
                   id="img-upload"
                   type="file"
-                  accept=".jpg, .jpeg, .png"
+                  accept=".jpg, .jpeg, .png, .gif"
                   multiple={false}
                   onDone={({ base64 }) => convert64({ base64 })}
                 />
-                <p className="error-handle embolden hidden">
-                  Incorrect file type.
+                <p className="file-val-handle embolden hidden">
+                  Please upload a jpg, jpeg, png or gif file.
                 </p>
+                <p className="error-handle embolden hidden">Field required.</p>
               </div>
 
               <div>
