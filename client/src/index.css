@@ -60,6 +60,7 @@ h5,
 h6 {
   font-family: 'Lato', 'Helvetica Neue', sans-serif;
   font-weight: 400;
+  margin: 16px;
 }
 
 a {
@@ -100,9 +101,22 @@ button:hover {
 
 /* prevent images from 'floating' a few pixels above the bottom of the div */
 img {
-  display: block;
-  /* vertical-align: bottom - also works */
+  vertical-align: bottom;
 }
+
+/* ====== FLEX STUFF ====== */
+
+.flex-container {
+  display: flex;
+  flex-flow: column wrap;
+  border: 2px dotted cyan;
+}
+
+.flex-child {
+  flex: 1 0 100%;
+}
+
+/* ======================== */
 
 .embolden {
   font-weight: bolder;
@@ -110,13 +124,6 @@ img {
 
 .italicised {
   font-style: italic;
-}
-
-.flex-row {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  border: 2px dotted cyan;
 }
 
 .float-left {
@@ -255,4 +262,33 @@ textarea::placeholder {
 
 .dash-nav {
   text-align: center;
+}
+
+.link-card {
+  color: var(--deep-purple);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-card:hover {
+  border-bottom: 4px dotted white;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 500px) {
+  .flex-container {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+
+  .flex-child {
+    flex: 1 0 32%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .flex-child {
+    flex: 1 0 24%;
+  }
 }

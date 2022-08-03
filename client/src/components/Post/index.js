@@ -2,6 +2,8 @@ import './index.css';
 import { Link } from 'react-router-dom';
 import LikeCounter from '../Likes';
 
+// this component is for the 'preview'/thumbnail/simplified version of an artist's post.
+
 const Post = ({ postDetails }) => {
   // console.log(postDetails);
   const { _id, title, image, description, createdBy } = postDetails;

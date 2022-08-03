@@ -1,17 +1,10 @@
 .post-container {
-  flex: 0 0 100%;
   border: 2px solid lightblue;
   background-color: var(--pink);
   border-radius: 20px;
   margin: 10px auto;
-  /* width: 90%; */
   max-width: 650px;
   overflow: hidden;
-}
-
-.post {
-  /* background-color: var(--pale-blue); */
-  border: 1px solid yellow;
 }
 
 .post h4 {
@@ -20,5 +13,5 @@
 }
 
 .post img {
-  width: 100%; /* set img width @ 100% of bounding container */
+  max-width: 100%; /* set img width @ 100% of bounding container */
 }
