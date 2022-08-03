@@ -3,18 +3,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import GlobalHeader from './components/GlobalHeader';
-import Home from './pages/Home.js';
-import Signup from './pages/Signup.js';
-import Login from './pages/Login.js';
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
-import Dashboard from './pages/Dashboard.js';
-import Shop from './pages/Shop.js';
+import Dashboard from './pages/Dashboard';
+import Shop from './pages/Shop';
 
-import SinglePost from './pages/SinglePost.js';
+import SinglePost from './pages/SinglePost';
 
-import Artists from './pages/Artists.js';
-import ArtistDetails from './pages/ArtistDetails.js';
-import ArtistShopDetails from './pages/ArtistShop.js';
+import Artists from './pages/Artists';
+import ArtistDetails from './pages/ArtistDetails';
+import ArtistShopDetails from './pages/ArtistShop';
+import PageNotFound from './pages/404NotFound';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -45,6 +46,7 @@ function App() {
 
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
