@@ -49,7 +49,6 @@ const Shop = () => {
     //image validation to ensure file types are jpg or png - using Object.values as the value is returned as an Object and stringifying it includes the key name. Which we don't want.
     const imageVal = JSON.stringify(Object.values(value));
 
-    // console.log(imageVal);
     // if/else to match data:image type and "conditionaly render" the error message.
     const reveal = document.querySelector('.file-val-handle');
 
@@ -122,7 +121,6 @@ const Shop = () => {
         }
       ]
     });
-    console.log('deletedMerch: ', deleteMerch);
   };
 
   // handler for empty field values that we want users to add a value to
@@ -140,101 +138,102 @@ const Shop = () => {
   };
 
   return (
-    <div className="table-heading">
-      <Link to="/dashboard">← Return to Dashboard</Link>
-      <h1>My Artist's Table</h1>
-      <div className="text-center">
-        <button id="merch-button" onClick={showFormHandler}>
+    <div className="dash-flex">
+      <div className="dash-flex-child dash-bg text-center">
+        <div className="table-heading">
+          <h1>My Artist's Table</h1>
+        </div>
+        <button className="merch-button" onClick={showFormHandler}>
           Add Merch!
         </button>
+        <Link to="/dashboard">
+          <button type="button" className="merch-button">
+            ← Back to Dashboard
+          </button>
+        </Link>
+        {showForm && (
+          <div className="merch">
+            <h2 className="text-center">Add merch to your table!</h2>
+            <div className="merch-container">
+              <form>
+                <div>
+                  <label htmlFor="name">Merch name: </label>
+                  <input
+                    placeholder="Name of merch"
+                    name="name"
+                    type="text"
+                    id="name"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="description">Description:</label>
+                  <textarea
+                    placeholder="Description of merch"
+                    name="description"
+                    type="text"
+                    id="description"
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
+                <div>
+                  <label htmlFor="img">
+                    Upload image:{' '}
+                    <span className="text-subbier">(Max file size 5MB)</span>
+                  </label>
+                  <FileBase64
+                    name="file"
+                    type="file"
+                    accept=".jpg, .jpeg, .png"
+                    multiple={false}
+                    onDone={({ base64 }) => convert64({ base64 })}
+                  />
+                  <p className="error-handle embolden hidden">
+                    Incorrect file type.
+                  </p>
+                </div>
+                <div>
+                  <label htmlFor="price">
+                    Price: <span className="text-subbier">$</span>
+                  </label>
+                  <input
+                    placeholder="Price of merch"
+                    name="price"
+                    type="decimal"
+                    inputMode="decimal"
+                    id="price"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="title">Quantity in stock:</label>
+                  <input
+                    placeholder="Quantity of merch in stock"
+                    name="quantity"
+                    type="number"
+                    inputMode="numeric"
+                    id="quantity"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <button type="submit" onClick={handleFormSubmit}>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
 
-      {showForm && (
-        <div className="merch">
-          <h2 className="text-center">Add merch to your table!</h2>
-          <div className="merch-container">
-            <form>
-              <div>
-                <label htmlFor="name">Merch name: </label>
-                <input
-                  placeholder="Name of merch"
-                  name="name"
-                  type="text"
-                  id="name"
-                  required="required"
-                  onChange={handleInputChange}
-                  onBlur={handleEmptyField}
-                />
-              </div>
-              <div>
-                <label htmlFor="description">Description:</label>
-                <textarea
-                  placeholder="Description of merch"
-                  name="description"
-                  type="text"
-                  id="description"
-                  required="required"
-                  onChange={handleInputChange}
-                  onBlur={handleEmptyField}
-                ></textarea>
-              </div>
-              <div>
-                <label htmlFor="img">Upload image (Max file size 5MB):</label>
-                <FileBase64
-                  name="file"
-                  type="file"
-                  accept=".jpg, .jpeg, .png, .gif"
-                  multiple={false}
-                  onDone={({ base64 }) => convert64({ base64 })}
-                />
-                <p className="file-val-handle embolden hidden">
-                  Please upload a jpg, jpeg, png or gif file.
-                </p>
-              </div>
-              <div>
-                <label htmlFor="price">Price: $</label>
-                <input
-                  placeholder="Price of merch"
-                  name="price"
-                  type="decimal"
-                  inputMode="decimal"
-                  id="price"
-                  required="required"
-                  onChange={handleInputChange}
-                  onBlur={handleEmptyField}
-                />
-              </div>
-              <div>
-                <label htmlFor="title">Quantity in Stock: </label>
-                <input
-                  placeholder="Quantity of merch in stock"
-                  name="quantity"
-                  type="number"
-                  inputMode="numeric"
-                  id="quantity"
-                  required="required"
-                  onChange={handleInputChange}
-                  onBlur={handleEmptyField}
-                />
-              </div>
-              <p className="error-handle embolden hidden">Field required.</p>
-              <div>
-                <button type="submit" onClick={handleFormSubmit}>
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      <div className="posts">
-        <div style={{ border: '1px solid orange' }}>
+      <div className="dash-flex-child">
+        <div style={{ border: '1px solid orange' }} className="flex-container">
           {loading ? (
             <div> loading </div>
           ) : (
             merch.map((item) => (
-              <div key={item._id} className="merch-container">
+              <div key={item._id} className="flex-child merch-container">
                 <Merch merch={item} />
                 <button
                   className="float-right"

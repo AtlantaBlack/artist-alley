@@ -1,11 +1,11 @@
 .merch-container {
-  flex: 0 0 100%;
   border: 2px solid lightblue;
   background-color: var(--purple-blue);
   border-radius: 20px;
   margin: 10px auto;
   width: 90%;
   overflow: hidden;
+  text-align: center;
 }
 
 .merch {
@@ -44,13 +44,7 @@
 }
 
 .merch img {
-  width: 100%; /* set img width @ 100% of bounding container */
-}
-
-.link-card {
-  color: var(--deep-purple);
-  text-decoration: none;
-  cursor: pointer;
+  max-width: 100%; /* set img width @ 100% of bounding container */
 }
 
 .merch-container form {

@@ -5,7 +5,7 @@
     "firstName": "Quinn",
     "lastName": "Donohue",
     "email": "quinn@email.com",
-    "password": "Pass1234!",
+    "password": "Pass123!",
     "birthday": "07/21/1990"
   },
   {
@@ -14,7 +14,7 @@
     "firstName": "Vincent",
     "lastName": "Curley",
     "email": "vincent@email.com",
-    "password": "Pass1234!",
+    "password": "Pass123!",
     "birthday": "06/23/1990"
   }
 ]

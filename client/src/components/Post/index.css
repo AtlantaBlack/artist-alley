@@ -6,13 +6,13 @@
   box-shadow: 2px 2px 5px 4px rgba(244, 25, 153, 0.5);
   border-radius: 24px;
   overflow: hidden;
+  text-align: center;
 }
 
 .post-title {
   color: var(--deep-purple);
   text-transform: uppercase;
   text-align: center;
-  line-height: 0;
   padding-top: 1rem;
 }
 
@@ -23,13 +23,7 @@
   font-style: italic;
   font-size: 90%;
   text-align: center;
-  line-height: 0;
-  padding-top: 0.8rem;
   padding-bottom: 1rem;
-}
-
-.post img {
-  width: 100%; /* set img width @ 100% of bounding container */
 }
 
 .post-container form {
@@ -58,15 +52,3 @@
   border: 3px solid var(--deep-purple);
   color: var(--deep-purple);
 }
-
-.link-card {
-  color: var(--deep-purple);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.link-card:hover {
-  border-bottom: 2px dotted white;
-}
-
-/* Media queries for posts page */

@@ -10,15 +10,12 @@ const SinglePost = () => {
   const { loading, data } = useQuery(QUERY_SINGLE_POST, {
     variables: { postId: postId }
   });
-
   // grab the data if any
   const post = data?.singlePost || {};
-  // console.log('post: ', post);
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
   return (
     <>
       <PostDetails postDetails={post} />

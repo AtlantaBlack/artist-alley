@@ -47,7 +47,7 @@ body {
 
 h1 {
   font-family: 'Cabin Sketch', cursive;
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--deep-purple);
   margin: 20px;
@@ -60,15 +60,18 @@ h5,
 h6 {
   font-family: 'Lato', 'Helvetica Neue', sans-serif;
   font-weight: 400;
+  margin: 16px 0;
 }
 
 a {
   text-decoration: none;
   color: var(--deep-purple);
+  border-bottom: 4px solid transparent;
 }
 
 a:hover {
   color: var(--dark-purple);
+  border-bottom: 4px dotted var(--light-blue);
 }
 
 button {
@@ -86,13 +89,13 @@ button:hover {
   color: var(--deep-purple);
 }
 
-#merch-button {
+.merch-button {
   background-color: var(--teal-green);
   border: 3px solid var(--deep-purple);
   color: var(--deep-purple);
 }
 
-#merch-button:hover {
+.merch-button:hover {
   background-color: var(--pink);
   border: 3px solid var(--deep-purple);
   color: var(--deep-purple);
@@ -100,8 +103,51 @@ button:hover {
 
 /* prevent images from 'floating' a few pixels above the bottom of the div */
 img {
-  display: block;
-  /* vertical-align: bottom - also works */
+  vertical-align: bottom;
+}
+
+/* ====== FLEX STUFF ====== */
+
+.flex-container {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 0 5px;
+}
+
+.flex-child {
+  flex: 1 0 100%;
+}
+
+.backing-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.backing-flex-child {
+  flex: 0 0 auto;
+  padding: 2rem;
+  min-width: 60%;
+  max-width: 80%;
+  border-radius: 20px;
+  background-color: rgba(246, 246, 246, 0.8);
+  box-shadow: 0 0 5px 4px rgba(244, 25, 153, 0.5);
+}
+
+.dash-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-flex-child {
+  flex: 0 0 auto;
+}
+
+/* ======================== */
+
+.dash-flex-child h1 {
+  margin: 0;
+  color: var(--deep-purple);
 }
 
 .embolden {
@@ -112,11 +158,9 @@ img {
   font-style: italic;
 }
 
-.flex-row {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  border: 2px dotted cyan;
+.embiggen {
+  font-size: 170%;
+  line-height: 0;
 }
 
 .float-left {
@@ -132,7 +176,11 @@ img {
 }
 
 .text-sub {
-  font-size: 75%;
+  font-size: 80%;
+}
+
+.text-subbier {
+  font-size: 70%;
 }
 
 .submit-button {
@@ -176,6 +224,7 @@ form {
   border-radius: 24px;
   width: 90%;
   padding: 20px;
+  text-align: left;
 }
 
 /* float input fields below labels */
@@ -183,7 +232,7 @@ input {
   display: flex;
   flex-direction: column;
   color: var(--deep-purple);
-  margin: 20px 0px 20px 0px;
+  margin: 5px 0px 20px 0px;
   line-height: 2rem;
   border-radius: 4px;
   border-color: var(--pink);
@@ -211,7 +260,7 @@ textarea {
   width: 97%;
   height: 20vh;
   overflow-y: scroll;
-  margin: 20px 0px 20px 0px;
+  margin: 6px 0px 20px 0px;
   border-radius: 4px;
   border-color: var(--pink);
   padding: 8px;
@@ -254,6 +303,45 @@ textarea::placeholder {
   background-size: contain;
 }
 
-.dash-nav {
-  text-align: center;
+.dash-bg {
+  background-color: rgba(246, 246, 246, 0.3);
+  border-radius: 20px;
+}
+
+.link-card {
+  color: var(--deep-purple);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-card:hover {
+  border-bottom: 4px dotted white;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 500px) {
+  h1 {
+    font-size: 4rem;
+  }
+  .flex-container {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+
+  .flex-child {
+    flex: 1 0 32%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  h1 {
+    font-size: 5rem;
+  }
+  .flex-child {
+    flex: 1 0 24%;
+  }
+  .backing-flex-child {
+    max-width: 60%;
+  }
 }

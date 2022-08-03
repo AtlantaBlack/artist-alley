@@ -6,36 +6,35 @@ import Post from '../components/Post';
 
 const ArtistDetails = () => {
   const { artistName } = useParams();
-
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { username: artistName }
   });
-
-  if (data) {
-    console.log('data:', data);
-  }
+  // console.log the data to make sure the query is working
+  // if (data) {
+  //   console.log('data:', data);
+  // }
   const posts = data?.user.posts || {};
 
-  console.log('posts by artist:', posts);
-
   return (
-    <div className="posts">
-      <div style={{ border: '1px solid orange' }}>
-        <div>
-          <h3>{artistName}'s Portfolio</h3>
-          <Link to={`/artists/${artistName}/store`}>
-            <button type="button">Check out their Artist's Table!</button>
-          </Link>
+    <div className="dash-flex">
+      <div className="dash-flex-child dash-bg text-center">
+        <h1>{artistName}'s Posts</h1>
+        <Link to={`/artists/${artistName}/store`}>
+          <button type="button">Check out their Artist's Table →</button>
+        </Link>
+      </div>
+      <div className="dash-flex-child dash-bg text-center">
+        <div className="flex-container">
+          {loading ? (
+            <div> loading </div>
+          ) : (
+            posts.map((post) => (
+              <div key={post._id} className="flex-child post-container">
+                <Post postDetails={post} />
+              </div>
+            ))
+          )}
         </div>
-        {loading ? (
-          <div> loading </div>
-        ) : (
-          posts.map((post) => (
-            <div key={post._id} className="post-container">
-              <Post postDetails={post} />
-            </div>
-          ))
-        )}
       </div>
     </div>
   );
