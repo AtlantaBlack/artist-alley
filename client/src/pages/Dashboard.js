@@ -132,74 +132,74 @@ const Dashboard = () => {
 
   // if user is an artist, they can see the Add Post form and a list of their previous posts
   return (
-    <div>
-      <div className="dash-heading">
-        <h1>My Dashboard</h1>
-      </div>
-      <nav className="dash-nav">
+    <div className="dash-flex">
+      <div className="dash-flex-child">
+        <div className="dash-heading">
+          <h1>My Dashboard</h1>
+        </div>
+        <button onClick={showFormHandler}>Make a post!</button>
         <Link to="/dashboard/my/store">
           <button type="button">Go to your Artist's Table</button>
         </Link>
-        <button onClick={showFormHandler}>Make a post!</button>
-      </nav>
-      {showForm && (
-        <div className="post">
-          <h2 className="text-center">Share your Art!</h2>
-          <div className="post-container">
-            <form>
-              <div>
-                <label htmlFor="title">Post title:</label>
-                <input
-                  placeholder="Title of post"
-                  name="title"
-                  type="title"
-                  id="title"
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="description">Description:</label>
-                <textarea
-                  placeholder="Description of post"
-                  name="description"
-                  type="description"
-                  id="description"
-                  onChange={handleInputChange}
-                ></textarea>
-              </div>
+        {showForm && (
+          <div className="post">
+            <h2 className="text-center">Share your Art!</h2>
+            <div className="post-container">
+              <form>
+                <div>
+                  <label htmlFor="title">Post title:</label>
+                  <input
+                    placeholder="Title of post"
+                    name="title"
+                    type="title"
+                    id="title"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="description">Description:</label>
+                  <textarea
+                    placeholder="Description of post"
+                    name="description"
+                    type="description"
+                    id="description"
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
 
-              <div className="image-upload">
-                <label htmlFor="img">Upload image (Max size 5MB):</label>
-                <FileBase64
-                  name="file"
-                  id="img-upload"
-                  type="file"
-                  accept=".jpg, .jpeg, .png"
-                  multiple={false}
-                  onDone={({ base64 }) => convert64({ base64 })}
-                />
-                <p className="error-handle embolden hidden">
-                  Incorrect file type.
-                </p>
-              </div>
+                <div className="image-upload">
+                  <label htmlFor="img">Upload image (Max size 5MB):</label>
+                  <FileBase64
+                    name="file"
+                    id="img-upload"
+                    type="file"
+                    accept=".jpg, .jpeg, .png"
+                    multiple={false}
+                    onDone={({ base64 }) => convert64({ base64 })}
+                  />
+                  <p className="error-handle embolden hidden">
+                    Incorrect file type.
+                  </p>
+                </div>
 
-              <div>
-                <button type="submit" onClick={handleFormSubmit}>
-                  Submit
-                </button>
-              </div>
-            </form>
+                <div>
+                  <button type="submit" onClick={handleFormSubmit}>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
-      <div className="posts">
-        <div style={{ border: '1px solid orange' }}>
+      <div className="dash-flex-child">
+        <div style={{ border: '1px solid orange' }} className="flex-container">
           {loading ? (
             <div> loading </div>
           ) : (
             posts.map((post) => (
-              <div key={post._id} className="post-container">
+              <div key={post._id} className="flex-child post-container">
                 <Post postDetails={post} />
                 <button
                   type="button"

@@ -136,6 +136,15 @@ img {
   color: #e53279;
 }
 
+.dash-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-flex-child {
+  flex: 0 0 auto;
+}
+
 /* ======================== */
 
 .embolden {
@@ -278,10 +287,6 @@ textarea::placeholder {
   background-image: url('images/pink-splatter.png');
   background-repeat: no-repeat;
   background-size: contain;
-}
-
-.dash-nav {
-  text-align: center;
 }
 
 .link-card {
