@@ -1,13 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 
 const Artists = () => {
   return (
     <div>
-      <h2>search for artists here</h2>
-      <h4>outlet:</h4>
-
-      <Outlet />
+      <h2>Search for an artist:</h2>
+      <h4>Feature coming soon!</h4>
     </div>
   );
 };
