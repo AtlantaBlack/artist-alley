@@ -126,18 +126,18 @@ const Shop = () => {
   };
 
   // handler for empty field values that we want users to add a value to
-  // const handleEmptyField = (event) => {
-  //   console.log(event.target);
-  //   console.log(event.target.value.length);
+  const handleEmptyField = (event) => {
+    // console.log(event.target);
+    // console.log(event.target.value.length);
 
-  //   let reveal = document.querySelector('.error-handle');
-  // console.log(event.target.value.length);
-  //   if (event.target.value.length === 0) {
-  //     reveal.classList.remove('hidden');
-  //   } else {
-  //     reveal.classList.add('hidden');
-  //   }
-  // };
+    let reveal = document.querySelector('.error-handle');
+    console.log(event.target.value.length);
+    if (event.target.value.length === 0) {
+      reveal.classList.remove('hidden');
+    } else {
+      reveal.classList.add('hidden');
+    }
+  };
 
   return (
     <div className="table-heading">
@@ -163,7 +163,7 @@ const Shop = () => {
                   id="name"
                   required="required"
                   onChange={handleInputChange}
-                  // onBlur={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
               <div>
@@ -175,7 +175,7 @@ const Shop = () => {
                   id="description"
                   required="required"
                   onChange={handleInputChange}
-                  // onBlur={handleEmptyField}
+                  onBlur={handleEmptyField}
                 ></textarea>
               </div>
               <div>
@@ -201,7 +201,7 @@ const Shop = () => {
                   id="price"
                   required="required"
                   onChange={handleInputChange}
-                  // onBlur={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
               <div>
@@ -214,7 +214,7 @@ const Shop = () => {
                   id="quantity"
                   required="required"
                   onChange={handleInputChange}
-                  // onBlur={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
               <p className="error-handle embolden hidden">Field required.</p>

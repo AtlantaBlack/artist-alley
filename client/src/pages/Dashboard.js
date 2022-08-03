@@ -125,18 +125,18 @@ const Dashboard = () => {
   };
 
   // handler for empty field values that we want users to add a value to
-  // const handleEmptyField = async (event) => {
-  //   console.log(event.target);
-  //   console.log(event.target.value.length);
+  const handleEmptyField = async (event) => {
+    // console.log(event.target);
+    // console.log(event.target.value.length);
 
-  //   let reveal = document.querySelector('.error-handle');
-  //   // console.log(event.target.value.length);
-  //   if (event.target.value.length === 0) {
-  //     reveal.classList.remove('hidden');
-  //   } else {
-  //     reveal.classList.add('hidden');
-  //   }
-  // };
+    let reveal = document.querySelector('.error-handle');
+    // console.log(event.target.value.length);
+    if (event.target.value.length === 0) {
+      reveal.classList.remove('hidden');
+    } else {
+      reveal.classList.add('hidden');
+    }
+  };
 
   // conditional render for if user is not an artist
   if (userType === 'Non-Artist') {
@@ -173,7 +173,7 @@ const Dashboard = () => {
                   type="title"
                   id="title"
                   onChange={handleInputChange}
-                  // onBlur={handleEmptyField}
+                  onBlur={handleEmptyField}
                 />
               </div>
               <div>
