@@ -1,9 +1,8 @@
 // Merch categories
-// hard code these options, such as:
-// mug, badge, print, cushion, tote bag, sticker, etc
 
 const mongoose = require('mongoose');
 
+// category model for future use
 const { Schema } = mongoose;
 
 const categorySchema = new Schema({

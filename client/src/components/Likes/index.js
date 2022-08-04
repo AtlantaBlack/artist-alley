@@ -1,9 +1,14 @@
 import React from 'react';
+
+// import the userQuery, useMutation function and applicable mutations/queries
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_LIKE } from '../../utils/mutations';
 import { QUERY_SINGLE_POST } from '../../utils/queries';
+
+// import Auth util
 import Auth from '../../utils/auth';
 
+// import Font Awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -32,9 +37,10 @@ const LikeCounter = ({ postId }) => {
         userId: sessionUser._id
       }
     });
-    console.log('response', response);
+    // console.log('response', response);
   };
 
+  // rendering
   return (
     <div className="likes">
       {loading ? (

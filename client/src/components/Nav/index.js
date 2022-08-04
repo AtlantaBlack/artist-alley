@@ -4,6 +4,7 @@ import Auth from '../../utils/auth';
 
 const Nav = () => {
   function showNavigation() {
+    // render for if user is successfully logged in
     if (Auth.loggedIn()) {
       return (
         <ul>
@@ -30,6 +31,7 @@ const Nav = () => {
         </ul>
       );
     } else {
+      // render for if a user is not logged in
       return (
         <ul>
           <li>

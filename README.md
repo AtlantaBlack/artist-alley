@@ -2,9 +2,9 @@
 
 ## Description
 
----
+Artist Alley is a place for artists to share and sell their creative work. Build a portfolio by making posts, set up a store and fill it with merchandise. With everything in the one location, it couldn't be easier — or more convenient — for our artsy folks to do business!
 
-A place for artists to showcase and sell their work.
+Once an artist has registered for an account they can create posts and add merch to their store for all the world to see. Users can also like a post to give the artist and their work some love!
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ Technologies used in this collaboration:
 - React
 - Node.js
 
-### **Additional Tech**
+### **Additional Tech:**
 
 - Mongoose ODM
 - GraphQL and Apollo Server
@@ -50,11 +50,13 @@ Technologies used in this collaboration:
 
 No need to clone or download the repo. Simply head on over to the application's page and create an account!
 
-Artists can register for an account and, once they have access, can create posts and add merch to their store for all the world to see.
+In order to experience Artist Alley, a user must first sign up for an account.
 
-Artists are able to upload images and/or text for their posts to share their art. They can also add images and/or for their storefront. Full e-commerce capabilities are planned for stage 2 development.
+Once an account has been created, the user is brought to the homepage which lists all of the latest posts. Users are able to scroll through and like whatever posts appeal to them. Only one like is allowed per user per post!
 
-Users are also able to like posts, to give the Artist and their work some love!
+Clicking on a post will bring up that post’s details. Clicking on the artist’s name will bring up their showcase. There is a button that can take you to their store, which on Artist Alley is called an Artist’s Table. Here you can see all of the merch an artist has available.
+
+In the dashboard, an artist will be able to see all their current posts as well as make a new post using the form provided. They can swap to their store where they can add new merch. Artists have the option to remove any posts or merch. At the end of the session, a user can log out and be returned to the main screen.
 
 ## Demo
 
@@ -64,13 +66,18 @@ Users are also able to like posts, to give the Artist and their work some love!
 
 ---
 
-- Full integration with Stripe to be a true e-commerce platform
+### **Stage Two**
+
+In future development, the Artist's Table section will be turned into a working store with payment functionalities. Regular users will be able to add and remove an artist’s items from their cart, purchase items, and view their order history.
+
+**Additional development plans:**
+
 - Ability for users to edit existing posts
 - Search functionality
 - Follow Artist
 - Personal Wishlist to add merchandise to
 - Curated dash based on your following list
-- Artists to enable/Disable comments on posts
+- Artists to enable/disable comments on posts
 
 ## License
 

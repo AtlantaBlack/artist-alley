@@ -3,6 +3,7 @@
 // https://www.graphql-tools.com/docs/scalars#using-a-package
 
 // https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/
+// custom scalar so that the date for DOB in the database is correct
 
 const { GraphQLScalarType } = require('graphql');
 
