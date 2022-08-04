@@ -1,6 +1,7 @@
-// Shop products
+// Merch products
 const mongoose = require('mongoose');
 
+// merch model
 const { Schema } = mongoose;
 
 const merchSchema = new Schema({

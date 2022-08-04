@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// custom 404 page
+
 const PageNotFound = () => {
   return (
     <div className="backing-container">

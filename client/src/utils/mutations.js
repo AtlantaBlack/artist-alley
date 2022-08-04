@@ -1,5 +1,8 @@
+// import GraphQL from Apollo
 import { gql } from '@apollo/client';
 
+// database mutations with GraphQL
+// add new user
 export const ADD_USER = gql`
   mutation addUser(
     $userType: String!
@@ -28,6 +31,7 @@ export const ADD_USER = gql`
   }
 `;
 
+// login authentication
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -40,6 +44,7 @@ export const LOGIN = gql`
   }
 `;
 
+// add post
 export const ADD_POST = gql`
   mutation addPost(
     $title: String
@@ -56,11 +61,11 @@ export const ADD_POST = gql`
       title
       image
       description
-      createdBy
     }
   }
 `;
 
+// remove post
 export const REMOVE_POST = gql`
   mutation removePost($postId: ID!, $createdBy: String) {
     removePost(postId: $postId, createdBy: $createdBy) {
@@ -71,6 +76,7 @@ export const REMOVE_POST = gql`
   }
 `;
 
+// update post for future use
 export const UPDATE_POST = gql`
   mutation updatePost($postId: ID!, $title: String, $description: String) {
     updatePost(postId: $postId, title: $title, description: $description) {
@@ -81,6 +87,7 @@ export const UPDATE_POST = gql`
   }
 `;
 
+// add merch to artist store
 export const ADD_MERCH = gql`
   mutation addToStore(
     $name: String!
@@ -107,6 +114,7 @@ export const ADD_MERCH = gql`
   }
 `;
 
+// remove merch from artist store
 export const REMOVE_MERCH = gql`
   mutation removeMerch($merchId: ID!) {
     removeMerch(merchId: $merchId) {
@@ -117,6 +125,7 @@ export const REMOVE_MERCH = gql`
   }
 `;
 
+// add a like to a post
 export const ADD_LIKE = gql`
   mutation addLike($postId: ID!, $userId: ID!) {
     addLike(postId: $postId, userId: $userId) {
@@ -131,6 +140,7 @@ export const ADD_LIKE = gql`
   }
 `;
 
+// edit single post for future use
 export const SINGLE_POST = gql`
   query singlePost($postId: ID!) {
     singlePost(postId: $postId) {

@@ -4,7 +4,9 @@ import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+// login functions
 function Login(props) {
+  //set form state
   const [formState, setFormState] = useState({ email: '', password: '' });
 
   const [login, { error }] = useMutation(LOGIN);
@@ -33,6 +35,7 @@ function Login(props) {
     });
   };
 
+  // render form
   return (
     <div className="backing-container userType-container">
       <div className="backing-flex-child text-center">

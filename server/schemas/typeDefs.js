@@ -2,8 +2,10 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  # custom dateScalar because GraphQL doesn't do dates as a type definition
   scalar dateScalar
 
+  # user model
   type User {
     _id: ID
     userType: String
@@ -19,6 +21,7 @@ const typeDefs = gql`
     likedPosts: [Post]
   }
 
+  # post model
   type Post {
     _id: ID
     title: String
@@ -27,13 +30,16 @@ const typeDefs = gql`
     likes: [User]
     user: User
     createdBy: String
+    createdAt: String
   }
 
+  # category model for future use to allow users to tag posts and merch
   type Category {
     _id: ID
     name: String
   }
 
+  # merch model
   type Merch {
     _id: ID
     name: String
@@ -45,17 +51,20 @@ const typeDefs = gql`
     user: User
   }
 
+  # order model for future use when integrated with stripe
   type Order {
     _id: ID
     purchaseDate: String
     merch: [Merch]
   }
 
+  # auth model
   type Auth {
     token: ID!
     user: User
   }
 
+  # queries
   type Query {
     users: [User]
     user(username: String!): User
@@ -65,7 +74,7 @@ const typeDefs = gql`
     merch(username: String!): User
     singlePost(postId: ID!): Post
   }
-
+  # mutations model
   type Mutation {
     addUser(
       userType: String!

@@ -1,5 +1,8 @@
+// import GraphQL from Apollo
 import { gql } from '@apollo/client';
 
+// database queries with GraphQL
+// get all posts
 export const QUERY_POSTS = gql`
   query getPosts {
     posts {
@@ -8,6 +11,7 @@ export const QUERY_POSTS = gql`
       description
       image
       createdBy
+      createdAt
       likes {
         _id
         username
@@ -16,6 +20,7 @@ export const QUERY_POSTS = gql`
   }
 `;
 
+// get single post
 export const QUERY_SINGLE_POST = gql`
   query getSinglePost($postId: ID!) {
     singlePost(postId: $postId) {
@@ -32,6 +37,7 @@ export const QUERY_SINGLE_POST = gql`
   }
 `;
 
+// get single user by username
 export const QUERY_USER = gql`
   query User($username: String!) {
     user(username: $username) {
@@ -44,6 +50,7 @@ export const QUERY_USER = gql`
         description
         image
         createdBy
+        createdAt
       }
       likedPosts {
         _id
@@ -53,6 +60,7 @@ export const QUERY_USER = gql`
   }
 `;
 
+// get single artist by ID
 export const QUERY_ARTIST = gql`
   query Artist($artistId: ID!) {
     artist(artistId: $artistId) {
@@ -65,6 +73,7 @@ export const QUERY_ARTIST = gql`
         description
         image
         createdBy
+        createdAt
       }
       likedPosts {
         _id
@@ -74,6 +83,7 @@ export const QUERY_ARTIST = gql`
   }
 `;
 
+// get single artist shop by artist ID
 export const QUERY_ARTIST_SHOP = gql`
   query ArtistShop($artistId: ID!) {
     artistShop(artistId: $artistId) {
@@ -90,6 +100,7 @@ export const QUERY_ARTIST_SHOP = gql`
   }
 `;
 
+// find merch by user ID
 export const QUERY_USER_MERCH = gql`
   query userMerch($username: String!) {
     merch(username: $username) {

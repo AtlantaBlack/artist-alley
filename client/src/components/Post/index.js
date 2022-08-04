@@ -6,8 +6,20 @@ import LikeCounter from '../Likes';
 
 const Post = ({ postDetails }) => {
   // eslint-disable-next-line no-unused-vars
-  const { _id, title, image, description, createdBy } = postDetails;
+  const { _id, title, image, description, createdBy, createdAt } = postDetails;
 
+  //format the createdAt date from UNIX to date
+  const dateOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  const formattedDate = new Intl.DateTimeFormat('en-GB', dateOptions).format(
+    createdAt
+  );
+
+  // rendering
   return (
     <div className="post" postid={_id}>
       <h2 className="post-title">
@@ -26,6 +38,7 @@ const Post = ({ postDetails }) => {
         <img src={`data:image/png;base64,${image}`} alt={title} />
       </Link>
       <LikeCounter postId={_id} />
+      <p>Posted On: {formattedDate}</p>
     </div>
   );
 };

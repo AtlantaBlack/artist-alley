@@ -2,12 +2,19 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
+
+// import FileBase64 to convert uploaded images to base64 for the database
 import FileBase64 from 'react-file-base64';
+
+// import the queries and mutations
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER_MERCH } from '../utils/queries';
 import { ADD_MERCH, REMOVE_MERCH } from '../utils/mutations';
+
+// import Auth util
 import Auth from '../utils/auth';
 
+// import Merch component
 import Merch from '../components/Merch';
 
 const Shop = () => {
@@ -50,6 +57,7 @@ const Shop = () => {
     const imageVal = JSON.stringify(Object.values(value));
 
     // if/else to match data:image type and "conditionaly render" the error message.
+    // used classList as useState was not playing nice with form submit
     const reveal = document.querySelector('.file-val-handle');
 
     if (imageVal.includes('["data:image/png')) {
@@ -64,6 +72,7 @@ const Shop = () => {
       reveal.classList.remove('hidden');
     }
 
+    //strip the data type from beginning of base64 string
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
     // set the image state
@@ -123,13 +132,10 @@ const Shop = () => {
     });
   };
 
-  // handler for empty field values that we want users to add a value to
+  // handler for empty field values that we want users to add a value to. Client-side validation
   const handleEmptyField = (event) => {
-    // console.log(event.target);
-    // console.log(event.target.value.length);
-
     let reveal = document.querySelector('.error-handle');
-    console.log(event.target.value.length);
+
     if (event.target.value.length === 0) {
       reveal.classList.remove('hidden');
     } else {
@@ -137,6 +143,7 @@ const Shop = () => {
     }
   };
 
+  // rendering
   return (
     <div className="dash-flex">
       <div className="dash-flex-child dash-bg text-center">
@@ -179,7 +186,9 @@ const Shop = () => {
                 <div>
                   <label htmlFor="img">
                     Upload image:{' '}
-                    <span className="text-subbier">(Max file size 5MB)</span>
+                    <span className="text-subbier">
+                      (Max file size 5MB. File types: .jpg, .jpeg and .png)
+                    </span>
                   </label>
                   <FileBase64
                     name="file"

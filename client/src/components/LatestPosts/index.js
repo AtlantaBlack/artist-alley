@@ -1,3 +1,4 @@
+// import the userQuery, QUERY_POSTS queries
 import { useQuery } from '@apollo/client';
 import { QUERY_POSTS } from '../../utils/queries';
 
@@ -8,6 +9,7 @@ const LatestPosts = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
 
+  // rendering
   return (
     <div className="dash-flex">
       <div className="dash-flex-child dash-bg text-center">

@@ -4,6 +4,7 @@ const Merch = ({ merch }) => {
   // eslint-disable-next-line no-unused-vars
   const { _id, name, image, description, price, quantity } = merch;
 
+  // rendering
   return (
     <>
       <div className="merch">

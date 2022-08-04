@@ -2,10 +2,24 @@ import './index.css';
 import { Link } from 'react-router-dom';
 import LikeCounter from '../Likes';
 
+// post details
+
 const PostDetails = ({ postDetails }) => {
   // eslint-disable-next-line no-unused-vars
-  const { _id, title, image, description, createdBy } = postDetails;
+  const { _id, title, image, description, createdBy, createdAt } = postDetails;
 
+  //format the createdAt date from UNIX to date
+  const dateOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  const formattedDate = new Intl.DateTimeFormat('en-GB', dateOptions).format(
+    createdAt
+  );
+
+  // rendering
   return (
     <div className="post">
       <div className="post-container">
@@ -16,6 +30,7 @@ const PostDetails = ({ postDetails }) => {
         <img src={`data:image/png;base64,${image}`} alt={title} />
         <p>{description}</p>
         <LikeCounter postId={_id} />
+        <p>{formattedDate}</p>
       </div>
     </div>
   );

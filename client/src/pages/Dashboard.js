@@ -1,13 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
+
+// import FileBase64 to convert images to base64 for database
 import FileBase64 from 'react-file-base64';
+
+// import the userQuery, useMutation function and applicable mutations/queries
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 import { ADD_POST, REMOVE_POST } from '../utils/mutations';
+
+// import auth util
 import Auth from '../utils/auth';
 
+// import post component
 import Post from '../components/Post';
 
 const Dashboard = () => {
@@ -15,6 +22,7 @@ const Dashboard = () => {
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { username: Auth.getProfile().data.username }
   });
+
   // set user variables to fill in later
   let loggedInUser;
   let userType;
@@ -72,6 +80,7 @@ const Dashboard = () => {
       reveal.classList.remove('hidden');
     }
 
+    //strip the data type form beginning of base64 string
     // https://stackoverflow.com/questions/24289182/how-to-strip-type-from-javascript-filereader-base64-string
     const image = JSON.stringify(value).split(';base64,')[1].slice(0, -2);
     // set the image state
@@ -121,11 +130,7 @@ const Dashboard = () => {
 
   // handler for empty field values that we want users to add a value to
   const handleEmptyField = async (event) => {
-    // console.log(event.target);
-    // console.log(event.target.value.length);
-
     let reveal = document.querySelector('.error-handle');
-    // console.log(event.target.value.length);
     if (event.target.value.length === 0) {
       reveal.classList.remove('hidden');
     } else {
@@ -186,7 +191,9 @@ const Dashboard = () => {
                 <div className="image-upload">
                   <label htmlFor="img">
                     Upload image:{' '}
-                    <span className="text-subbier">(Max file size 5MB)</span>
+                    <span className="text-subbier">
+                      (Max file size 5MB. File types: .jpg, .jpeg and .png)
+                    </span>
                   </label>
                   <FileBase64
                     name="file"
