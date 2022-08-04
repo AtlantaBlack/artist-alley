@@ -41,32 +41,35 @@ const Shop = () => {
 
   // USING APOLLO CACHE TO TRY AND MITIGATE HEROKU SLOWNESS ISSUES
 
-  const [addMerch, { error }] = useMutation(ADD_MERCH, {
-    update(cache, { data: { addMerch } }) {
-      console.log(cache);
-      try {
-        const { merch } = cache.readQuery({
-          query: QUERY_USER_MERCH,
-          // eslint-disable-next-line no-restricted-globals
-          variables: { ...formState }
-        });
+  const [addMerch, { error }] = useMutation(ADD_MERCH);
 
-        console.log(merch);
-        cache.writeQuery({
-          query: QUERY_USER_MERCH,
-          data: { merch: [addMerch, ...merch] }
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  });
+  // const [addMerch, { error }] = useMutation(ADD_MERCH, {
+  //   update(cache, { data: { addMerch } }) {
+  //     console.log(cache);
+  //     try {
+  //       const { merch } = cache.readQuery({
+  //         query: QUERY_USER_MERCH,
+  //         // eslint-disable-next-line no-restricted-globals
+  //         variables: { ...formState }
+  //       });
+
+  //       console.log(merch);
+  //       cache.writeQuery({
+  //         query: QUERY_USER_MERCH,
+  //         data: { merch: [addMerch, ...merch] }
+  //       });
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  // });
 
   const [removeMerch] = useMutation(REMOVE_MERCH);
 
   // reveal 'make a post' on button click
   // https://stackoverflow.com/questions/71784034/react-how-to-add-a-button-click-handler-to-reveal-text
   const [showForm, setShowForm] = useState(false);
+
   const showFormHandler = async () => {
     setShowForm((showForm) => !showForm);
   };
@@ -103,7 +106,7 @@ const Shop = () => {
 
   // handler for adding march to store
   const handleFormSubmit = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     const { response } = await addMerch({
       variables: {
         name: formState.name,
@@ -112,18 +115,19 @@ const Shop = () => {
         quantity: formState.quantity,
         image: image,
         createdBy: loggedInArtist // set the artist as the person logged in
-      }
-
+      },
       // COMMENTED OUT DUE TO HEROKU SLOWNESS ISSUES. USED APOLLO CACHE INSTEAD
 
       // reload the page and fetch the artist's updated merch
-      // refetchQueries: [
-      //   {
-      //     query: QUERY_USER_MERCH,
-      //     variables: { username: Auth.getProfile().data.username }
-      //   }
-      // ]
+      refetchQueries: [
+        {
+          query: QUERY_USER_MERCH,
+          variables: { username: Auth.getProfile().data.username }
+        }
+      ]
     });
+
+    setShowForm(false);
   };
 
   // for getting details from the add merch form

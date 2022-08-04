@@ -48,35 +48,38 @@ const Dashboard = () => {
     createdAt: ''
   });
 
-  // const [addPost] = useMutation(ADD_POST);
+  const [addPost] = useMutation(ADD_POST);
 
-  const [addPost, { error }] = useMutation(ADD_POST, {
-    // All returning data from Apollo Client queries/mutations return in a `data` field, followed by the the data returned by the request
-    update(cache, { data: { addPost } }) {
-      try {
-        console.log('update 54 cache:', cache);
-        console.log('update 54 data:', data);
-        console.log('update 54 addPost', { addPost });
+  // USING APOLLO CACHE TO TRY AND MITIGATE HEROKU SLOWNESS ISSUES
+  // Okay, maybe not...
 
-        const {
-          user: { posts }
-        } = cache.readQuery({
-          query: QUERY_USER,
-          variables: { username: Auth.getProfile().data.username }
-        });
+  // const [addPost, { error }] = useMutation(ADD_POST, {
+  //   // All returning data from Apollo Client queries/mutations return in a `data` field, followed by the the data returned by the request
+  //   update(cache, { data: { addPost } }) {
+  //     try {
+  //       console.log('update 54 cache:', cache);
+  //       console.log('update 54 data:', data);
+  //       console.log('update 54 addPost', { addPost });
 
-        console.log('read query posts', posts);
+  //       const {
+  //         user: { posts }
+  //       } = cache.readQuery({
+  //         query: QUERY_USER,
+  //         variables: { username: Auth.getProfile().data.username }
+  //       });
 
-        cache.writeQuery({
-          query: QUERY_USER,
-          variables: { username: Auth.getProfile().data.username },
-          data: { user: { posts: [addPost, ...posts] } }
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  });
+  //       console.log('read query posts', posts);
+
+  //       cache.writeQuery({
+  //         query: QUERY_USER,
+  //         variables: { username: Auth.getProfile().data.username },
+  //         data: { user: { posts: [addPost, ...posts] } }
+  //       });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   }
+  // });
 
   const [removePost] = useMutation(REMOVE_POST);
 
@@ -118,53 +121,56 @@ const Dashboard = () => {
     setImage(image);
   };
 
-  // handler for submitting a new post
-  const handleFormSubmit = async (event) => {
-    // event.preventDefault();
-    try {
-      const response = await addPost({
-        variables: {
-          title: formState.title,
-          description: formState.description,
-          image: image,
-          createdBy: loggedInUser // set the artist as the person logged in
-        }
-      });
+  // handler for submitting a new post WITHOUT refetch... keeping this for testing
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await addPost({
+  //       variables: {
+  //         title: formState.title,
+  //         description: formState.description,
+  //         image: image,
+  //         createdBy: loggedInUser // set the artist as the person logged in
+  //       }
+  //     });
 
-      console.log('data in dashboard form submit: ', response);
+  //     console.log('data in dashboard form submit: ', response);
 
-      setFormState({
-        title: '',
-        description: '',
-        image: '',
-        createdBy: ''
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     setFormState({
+  //       title: '',
+  //       description: '',
+  //       image: '',
+  //       createdBy: ''
+  //     });
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
   // COMMENTED OUT DUE TO HEROKU DEPLOYMENT ISSUES. IMPLEMENTED APOLLO CACHE INSTEAD
+  // Reinstated because at this point we wanna try ANYTTHING
 
   // // handler for submitting a new post
-  // const handleFormSubmit = async (event) => {
-  //   const response = await addPost({
-  //     variables: {
-  //       title: formState.title,
-  //       description: formState.description,
-  //       image: image,
-  //       createdBy: loggedInUser // set the artist as the person logged in
-  //     },
-  //     // reload the page and fetch the artist's updated posts
-  //     refetchQueries: [
-  //       {
-  //         query: QUERY_USER,
-  //         variables: { username: Auth.getProfile().data.username }
-  //       }
-  //     ]
-  //   });
-  //   console.log('response in dashboard:', response);
-  // };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    const response = await addPost({
+      variables: {
+        title: formState.title,
+        description: formState.description,
+        image: image,
+        createdBy: loggedInUser // set the artist as the person logged in
+      },
+      // reload the page and fetch the artist's updated posts
+      refetchQueries: [
+        {
+          query: QUERY_USER,
+          variables: { username: Auth.getProfile().data.username }
+        }
+      ]
+    });
+    setShowForm(false);
+    console.log('response in dashboard:', response);
+  };
 
   // for getting info from the add post form
   const handleInputChange = (event) => {
@@ -289,7 +295,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-        {error && <p>Oops! Something went wrong!</p>}
+        {/* {error && <p>Oops! Something went wrong!</p>} */}
       </div>
 
       <div className="dash-flex-child">
