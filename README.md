@@ -49,7 +49,7 @@ Technologies used in this collaboration:
 
 ---
 
-No need to clone or download the repo. Simply head on over to the application's page and create an account!
+No need to clone or download the repo. Simply head on over to the application's page and create an account! (Though Heroku is a bit finnicky, so we recommend cloning to play around with the site offline for yourself to test things out!)
 
 In order to experience Artist Alley, a user must first sign up for an account.
 
