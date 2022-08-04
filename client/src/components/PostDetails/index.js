@@ -30,7 +30,9 @@ const PostDetails = ({ postDetails }) => {
         <img src={`data:image/png;base64,${image}`} alt={title} />
         <p>{description}</p>
         <LikeCounter postId={_id} />
-        <p>{formattedDate}</p>
+        <p>
+          <span className="text-subbier">{formattedDate}</span>
+        </p>
       </div>
     </div>
   );

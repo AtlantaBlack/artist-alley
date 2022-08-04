@@ -38,7 +38,9 @@ const Post = ({ postDetails }) => {
         <img src={`data:image/png;base64,${image}`} alt={title} />
       </Link>
       <LikeCounter postId={_id} />
-      <p>Posted On: {formattedDate}</p>
+      <p>
+        <span className="text-subbier">Posted On: {formattedDate}</span>
+      </p>
     </div>
   );
 };
