@@ -67,9 +67,15 @@ In the dashboard, an artist will be able to see all their current posts as well 
 
 ---
 
-### **Stage Two**
+Artist Alley is a fledgling app and has a lot of room to grow.
 
-In future development, the Artist's Table section will be turned into a working store with payment functionalities. Regular users will be able to add and remove an artist’s items from their cart, purchase items, and view their order history.
+Stage 1 plans include Stripe integration, allowing Artists to edit their posts, and adding a search function to find users and posts.
+
+Stage 2 plans expand to General User features, including adding the ability to follow Artists, adding a personal Merch Wishlist, a curated Dashboard, and enabling/disabling comments. Stage 2 builds upon what we’ve started in Stage 1.
+
+Stage 3 will round out the development, providing a solid platform for both Artists and Viewers.
+
+We can then continue to improve Artist Alley by looking into things like offering other payment providers, like PayPal and other image hosting capabilities in Stage 4 and beyond…
 
 **Additional development plans:**
 
