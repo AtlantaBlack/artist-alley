@@ -196,7 +196,7 @@ const Dashboard = () => {
                     multiple={false}
                     onDone={({ base64 }) => convert64({ base64 })}
                   />
-                  <p className="error-handle embolden hidden">
+                  <p className="file-val-handle embolden hidden">
                     Incorrect file type.
                   </p>
                 </div>
