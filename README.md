@@ -74,7 +74,7 @@ In future development, the Artist's Table section will be turned into a working 
 
 - Ability for users to edit existing posts
 - Search functionality
-- Follow Artist
+- Follow artist
 - Personal Wishlist to add merchandise to
 - Curated dash based on your following list
 - Artists to enable/disable comments on posts
