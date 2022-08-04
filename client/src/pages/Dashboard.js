@@ -192,7 +192,7 @@ const Dashboard = () => {
         }
       ]
     });
-    console.log('deletedPost: ', deletePost);
+    // console.log('deletedPost: ', deletePost);
   };
 
   // handler for empty field values that we want users to add a value to
