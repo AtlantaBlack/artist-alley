@@ -3,7 +3,7 @@
   background-color: var(--pink);
   border-radius: 20px;
   margin: 10px auto;
-  max-width: 650px;
+  max-width: 90%;
   overflow: hidden;
 }
 
@@ -15,4 +15,16 @@
 
 .post img {
   max-width: 100%; /* set img width @ 100% of bounding container */
+}
+
+@media screen and (min-width: 500px) {
+  .post-container {
+    max-width: 82%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .post-container {
+    max-width: 65%;
+  }
 }
