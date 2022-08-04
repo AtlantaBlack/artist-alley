@@ -39,7 +39,20 @@ const Shop = () => {
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
 
-  const [addMerch] = useMutation(ADD_MERCH);
+  const [addMerch, { error }] = useMutation(ADD_MERCH, {
+    update(cache, { data: { addMerch } }) {
+      try {
+        const { merches } = cache.readQuery({ query: QUERY_USER_MERCH });
+        cache.writeQuery({
+          query: QUERY_USER_MERCH,
+          data: { merches: [addMerch, ...merches] }
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+
   const [removeMerch] = useMutation(REMOVE_MERCH);
 
   // reveal 'make a post' on button click
@@ -89,14 +102,14 @@ const Shop = () => {
         quantity: formState.quantity,
         image: image,
         createdBy: loggedInArtist // set the artist as the person logged in
-      },
+      }
       // reload the page and fetch the artist's updated merch
-      refetchQueries: [
-        {
-          query: QUERY_USER_MERCH,
-          variables: { username: Auth.getProfile().data.username }
-        }
-      ]
+      // refetchQueries: [
+      //   {
+      //     query: QUERY_USER_MERCH,
+      //     variables: { username: Auth.getProfile().data.username }
+      //   }
+      // ]
     });
   };
 
@@ -247,6 +260,7 @@ const Shop = () => {
             </div>
           </div>
         )}
+        {error && <p>Oops! Something went wrong!</p>}
       </div>
 
       <div className="dash-flex-child">
