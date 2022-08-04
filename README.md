@@ -34,6 +34,7 @@ Technologies used in this collaboration:
 
 - Mongoose ODM
 - GraphQL and Apollo Server
+- FileBase64
 - dotenv
 - Husky
 - esLint and Prettier
