@@ -29,22 +29,22 @@ function App() {
         <GlobalHeader />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/my/store" element={<Shop />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard/my/store" element={<Shop />} />
 
-          <Route path="/posts/:postId" element={<SinglePost />} />
+          <Route path="posts/:postId" element={<SinglePost />} />
 
-          <Route path="/artists" element={<Artists />} />
-          <Route path="/artists/:artistName" element={<ArtistDetails />} />
+          <Route path="artists" element={<Artists />} />
+          <Route path="artists/:artistName" element={<ArtistDetails />} />
           <Route
-            path="/artists/:artistName/store"
+            path="artists/:artistName/store"
             element={<ArtistShopDetails />}
           />
 
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
 
-          <Route path="/*" element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
