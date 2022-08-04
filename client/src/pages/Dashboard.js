@@ -55,18 +55,24 @@ const Dashboard = () => {
   const [addPost, { error }] = useMutation(ADD_POST, {
     // All returning data from Apollo Client queries/mutations return in a `data` field, followed by the the data returned by the request
     update(cache, { data: { addPost } }) {
-      console.log(cache);
       try {
-        const { posts } = cache.readQuery({
+        console.log('update 54 cache:', cache);
+        console.log('update 54 data:', data);
+        console.log('update 54 addPost', { addPost });
+
+        const {
+          user: { posts }
+        } = cache.readQuery({
           query: QUERY_USER,
-          variables: { username: Auth.getProfile().data.username, ...formState }
+          variables: { username: Auth.getProfile().data.username }
         });
 
-        console.log(cache);
+        console.log('read query posts', posts);
 
         cache.writeQuery({
           query: QUERY_USER,
-          data: { posts: [addPost, ...posts] }
+          variables: { username: Auth.getProfile().data.username },
+          data: { user: { posts: [addPost, ...posts] } }
         });
       } catch (e) {
         console.error(e);
@@ -118,7 +124,7 @@ const Dashboard = () => {
   const handleFormSubmit = async (event) => {
     // event.preventDefault();
     try {
-      const { data } = await addPost({
+      const response = await addPost({
         variables: {
           title: formState.title,
           description: formState.description,
@@ -127,7 +133,7 @@ const Dashboard = () => {
         }
       });
 
-      console.log('data in dashboard form submit: ', data);
+      console.log('data in dashboard form submit: ', response);
 
       setFormState({
         title: '',
