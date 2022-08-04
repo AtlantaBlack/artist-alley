@@ -34,7 +34,7 @@ const PostDetails = ({ postDetails }) => {
         <p>{description}</p>
         <LikeCounter postId={_id} />
         <p>
-          <span className="text-subbier">{formattedDate}</span>
+          <span className="text-subbier">Posted on: {formattedDate}</span>
         </p>
       </div>
     </div>
