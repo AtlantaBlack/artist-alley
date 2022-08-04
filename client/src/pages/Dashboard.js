@@ -47,7 +47,28 @@ const Dashboard = () => {
     image: ''
   });
 
-  const [addPost] = useMutation(ADD_POST);
+  // const [addPost] = useMutation(ADD_POST);
+
+  const [addPost, { error }] = useMutation(ADD_POST, {
+    // All returning data from Apollo Client queries/mutations return in a `data` field, followed by the the data returned by the request
+    update(cache, { data: { addPost } }) {
+      try {
+        const { posts } = cache.readQuery({
+          query: QUERY_USER,
+          variables: { username: Auth.getProfile().data.username }
+        });
+
+        cache.writeQuery({
+          query: QUERY_USER,
+          variables: { username: Auth.getProfile().data.username },
+          data: { posts: [addPost, ...posts] }
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  });
+
   const [removePost] = useMutation(REMOVE_POST);
 
   // reveal 'make a post' on button click
@@ -90,23 +111,49 @@ const Dashboard = () => {
 
   // handler for submitting a new post
   const handleFormSubmit = async (event) => {
-    const response = await addPost({
-      variables: {
-        title: formState.title,
-        description: formState.description,
-        image: image,
-        createdBy: loggedInUser // set the artist as the person logged in
-      },
-      // reload the page and fetch the artist's updated posts
-      refetchQueries: [
-        {
-          query: QUERY_USER,
-          variables: { username: Auth.getProfile().data.username }
+    event.preventDefault();
+    try {
+      const { data } = await addPost({
+        variables: {
+          title: formState.title,
+          description: formState.description,
+          image: image,
+          createdBy: loggedInUser // set the artist as the person logged in
         }
-      ]
-    });
-    console.log('response in dashboard:', response);
+      });
+
+      console.log('data in dashboard form submit: ', data);
+
+      setFormState({
+        title: '',
+        description: '',
+        image: '',
+        createdBy: ''
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  // // handler for submitting a new post
+  // const handleFormSubmit = async (event) => {
+  //   const response = await addPost({
+  //     variables: {
+  //       title: formState.title,
+  //       description: formState.description,
+  //       image: image,
+  //       createdBy: loggedInUser // set the artist as the person logged in
+  //     },
+  //     // reload the page and fetch the artist's updated posts
+  //     refetchQueries: [
+  //       {
+  //         query: QUERY_USER,
+  //         variables: { username: Auth.getProfile().data.username }
+  //       }
+  //     ]
+  //   });
+  //   console.log('response in dashboard:', response);
+  // };
 
   // for getting info from the add post form
   const handleInputChange = (event) => {
