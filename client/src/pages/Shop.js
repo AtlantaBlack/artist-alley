@@ -90,7 +90,7 @@ const Shop = () => {
         image: image,
         createdBy: loggedInArtist // set the artist as the person logged in
       },
-      // reload the page and fetch the artist's updated posts
+      // reload the page and fetch the artist's updated merch
       refetchQueries: [
         {
           query: QUERY_USER_MERCH,
