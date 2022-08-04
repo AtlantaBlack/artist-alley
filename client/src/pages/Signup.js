@@ -153,9 +153,7 @@ function Signup(props) {
                 </div>
 
                 <div>
-                  <label htmlFor="birthday">
-                    Birthday: <span className="text-subbier">(MM/DD/YYYY)</span>
-                  </label>
+                  <label htmlFor="birthday">Birthday:</label>
                   <input
                     placeholder="MM/DD/YYYY"
                     name="birthday"
@@ -181,7 +179,6 @@ function Signup(props) {
                 >
                   Submit
                 </button>
-                {/* </div> */}
               </form>
             </div>
           </div>

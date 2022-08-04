@@ -95,7 +95,14 @@ const Dashboard = () => {
         description: formState.description,
         image: image,
         createdBy: loggedInUser // set the artist as the person logged in
-      }
+      },
+      // reload the page and fetch the artist's updated posts
+      refetchQueries: [
+        {
+          query: QUERY_USER,
+          variables: { username: Auth.getProfile().data.username }
+        }
+      ]
     });
   };
 
