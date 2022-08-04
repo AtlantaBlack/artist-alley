@@ -89,7 +89,14 @@ const Shop = () => {
         quantity: formState.quantity,
         image: image,
         createdBy: loggedInArtist // set the artist as the person logged in
-      }
+      },
+      // reload the page and fetch the artist's updated posts
+      refetchQueries: [
+        {
+          query: QUERY_USER_MERCH,
+          variables: { username: Auth.getProfile().data.username }
+        }
+      ]
     });
   };
 
