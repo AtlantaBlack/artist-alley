@@ -72,12 +72,12 @@ In future development, the Artist's Table section will be turned into a working 
 
 **Additional development plans:**
 
-- Ability for users to edit existing posts
-- Search functionality
-- Follow artist
-- Personal Wishlist to add merchandise to
-- Curated dash based on your following list
-- Artists to enable/disable comments on posts
+- Ability for users to edit existing posts.
+- Search functionality.
+- Follow artist.
+- Personal Wishlist to add merchandise to.
+- Curated dash based on your following list.
+- Artists to enable/disable comments on posts.
 
 ## License
 
