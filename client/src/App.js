@@ -47,7 +47,7 @@ function App() {
           <Route exact-path="/signup" element={<Signup />} />
           <Route exact-path="/login" element={<Login />} />
 
-          <Route exact-path="*" element={<PageNotFound />} />
+          <Route exact-path="/*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
