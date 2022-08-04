@@ -31,27 +31,38 @@ const Shop = () => {
   });
 
   const { loading, data } = useQuery(QUERY_USER_MERCH, {
-    variables: { username: Auth.getProfile().data.username }
+    variables: { username: Auth.getProfile().data.username, ...formState }
   });
 
   const merch = data?.merch.merch || [];
+
+  console.log(merch);
 
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
 
   const [addMerch, { error }] = useMutation(ADD_MERCH, {
     update(cache, { data: { addMerch } }) {
+      console.log(cache);
       try {
-        const { merches } = cache.readQuery({ query: QUERY_USER_MERCH });
+        const { merch } = cache.readQuery({
+          query: QUERY_USER_MERCH,
+          // eslint-disable-next-line no-restricted-globals
+          variables: { ...formState }
+        });
+
+        console.log(merch);
         cache.writeQuery({
           query: QUERY_USER_MERCH,
-          data: { merches: [addMerch, ...merches] }
+          data: { merch: [addMerch, ...merch] }
         });
       } catch (error) {
         console.error(error);
       }
     }
   });
+
+  // const [addMerch, { error }] = useMutation(ADD_MERCH);
 
   const [removeMerch] = useMutation(REMOVE_MERCH);
 
@@ -94,7 +105,8 @@ const Shop = () => {
 
   // handler for adding march to store
   const handleFormSubmit = async (event) => {
-    const response = await addMerch({
+    // event.preventDefault();
+    const { response } = await addMerch({
       variables: {
         name: formState.name,
         description: formState.description,

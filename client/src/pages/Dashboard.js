@@ -44,23 +44,28 @@ const Dashboard = () => {
     title: '',
     description: '',
     createdBy: '',
-    image: ''
+    image: '',
+    createdAt: ''
   });
 
   // const [addPost] = useMutation(ADD_POST);
 
+  console.log(posts);
+
   const [addPost, { error }] = useMutation(ADD_POST, {
     // All returning data from Apollo Client queries/mutations return in a `data` field, followed by the the data returned by the request
     update(cache, { data: { addPost } }) {
+      console.log(cache);
       try {
         const { posts } = cache.readQuery({
           query: QUERY_USER,
-          variables: { username: Auth.getProfile().data.username }
+          variables: { username: Auth.getProfile().data.username, ...formState }
         });
+
+        console.log(cache);
 
         cache.writeQuery({
           query: QUERY_USER,
-          variables: { username: Auth.getProfile().data.username },
           data: { posts: [addPost, ...posts] }
         });
       } catch (e) {
@@ -111,7 +116,7 @@ const Dashboard = () => {
 
   // handler for submitting a new post
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     try {
       const { data } = await addPost({
         variables: {
@@ -278,6 +283,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
+        {error && <p>Oops! Something went wrong!</p>}
       </div>
 
       <div className="dash-flex-child">
