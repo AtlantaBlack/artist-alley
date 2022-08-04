@@ -29,6 +29,7 @@ const Dashboard = () => {
 
   // if query returns with a user
   if (data) {
+    console.log('data in dashboard: ', data);
     // set the user variables when there's data
     loggedInUser = data.user.username;
     userType = data.user.userType;
@@ -104,6 +105,7 @@ const Dashboard = () => {
         }
       ]
     });
+    console.log('response in dashboard:', response);
   };
 
   // for getting info from the add post form
