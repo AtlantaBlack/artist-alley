@@ -30,7 +30,7 @@ Technologies used in this collaboration:
 - React
 - Node.js
 
-### **Additional Tech**
+### **Additional Tech:**
 
 - Mongoose ODM
 - GraphQL and Apollo Server
@@ -66,16 +66,18 @@ In the dashboard, an artist will be able to see all their current posts as well 
 
 ---
 
+### **Stage Two**
+
 In future development, the Artist's Table section will be turned into a working store with payment functionalities. Regular users will be able to add and remove an artist’s items from their cart, purchase items, and view their order history.
 
-### **Additional future development plans:**
+**Additional development plans:**
 
 - Ability for users to edit existing posts
 - Search functionality
 - Follow Artist
 - Personal Wishlist to add merchandise to
 - Curated dash based on your following list
-- Artists to enable/Disable comments on posts
+- Artists to enable/disable comments on posts
 
 ## License
 
