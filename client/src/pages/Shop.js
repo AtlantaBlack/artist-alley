@@ -200,7 +200,8 @@ const Shop = () => {
                     onDone={({ base64 }) => convert64({ base64 })}
                   />
                   <p className="file-val-handle embolden hidden">
-                    Incorrect file type.
+                    Incorrect file type. Please upload a jpg, jpeg, png or gif
+                    file.
                   </p>
                 </div>
                 <div>
