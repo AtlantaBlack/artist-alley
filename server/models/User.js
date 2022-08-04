@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 /* eslint-disable no-return-await */
 
-// user
+// user model
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;

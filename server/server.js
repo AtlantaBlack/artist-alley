@@ -18,6 +18,7 @@ const server = new ApolloServer({
   context: authMiddleware
 });
 
+// set file limit to 13MB so users cannot upload an image larger than 16MB to the database
 // https://stackoverflow.com/questions/19917401/error-request-entity-too-large
 app.use(express.urlencoded({ limit: '13MB', extended: true }));
 app.use(express.json({ limit: '13MB' }));

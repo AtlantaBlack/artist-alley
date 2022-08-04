@@ -1,6 +1,7 @@
 // Artworks posts
 const mongoose = require('mongoose');
 
+// post model
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
@@ -19,6 +20,10 @@ const postSchema = new Schema({
   createdBy: {
     type: String,
     required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   },
   user: {
     type: Schema.Types.ObjectId,

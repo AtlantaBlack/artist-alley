@@ -2,7 +2,9 @@
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
+// set session secret and expiry
 const secret = process.env.AUTH_SECRET;
 const expiration = '2h';
 
@@ -16,10 +18,12 @@ module.exports = {
       token = token.split(' ').pop().trim();
     }
 
+    // if there's no token, return request
     if (!token) {
       return req;
     }
 
+    // if there is a token, attempt to verify it
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
@@ -29,6 +33,8 @@ module.exports = {
 
     return req;
   },
+
+  // sign token with user details
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
 

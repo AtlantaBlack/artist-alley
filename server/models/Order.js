@@ -1,6 +1,7 @@
-// Shop orders
+// Merch orders
 const mongoose = require('mongoose');
 
+// Order model for future use
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({

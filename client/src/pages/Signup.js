@@ -39,6 +39,7 @@ function Signup(props) {
     });
   };
 
+  // client side form validation. Had to use classList.add etc as useState wasn't playing nice with form submit
   const handleEmptyField = (event) => {
     let reveal = document.querySelector('.error-handle');
     if (event.target.value.length === 0) {
