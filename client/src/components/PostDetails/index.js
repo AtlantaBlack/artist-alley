@@ -13,7 +13,10 @@ const PostDetails = ({ postDetails }) => {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: 'false'
   };
   const formattedDate = new Intl.DateTimeFormat('en-GB', dateOptions).format(
     createdAt

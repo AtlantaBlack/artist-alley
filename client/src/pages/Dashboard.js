@@ -175,6 +175,7 @@ const Dashboard = () => {
                     type="text"
                     id="title"
                     onChange={handleInputChange}
+                    onBlur={handleEmptyField}
                   />
                 </div>
                 <div>
@@ -204,7 +205,11 @@ const Dashboard = () => {
                     onDone={({ base64 }) => convert64({ base64 })}
                   />
                   <p className="file-val-handle embolden hidden">
-                    Incorrect file type.
+                    Incorrect file type. Please upload a jpg, jpeg, png or gif
+                    file.
+                  </p>
+                  <p className="error-handle embolden hidden">
+                    Field required.
                   </p>
                 </div>
 

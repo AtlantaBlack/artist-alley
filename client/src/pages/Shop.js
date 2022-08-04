@@ -171,6 +171,7 @@ const Shop = () => {
                     type="text"
                     id="name"
                     onChange={handleInputChange}
+                    onBlur={handleEmptyField}
                   />
                 </div>
                 <div>
@@ -181,6 +182,7 @@ const Shop = () => {
                     type="text"
                     id="description"
                     onChange={handleInputChange}
+                    onBlur={handleEmptyField}
                   ></textarea>
                 </div>
                 <div>
@@ -212,6 +214,7 @@ const Shop = () => {
                     inputMode="decimal"
                     id="price"
                     onChange={handleInputChange}
+                    onBlur={handleEmptyField}
                   />
                 </div>
                 <div>
@@ -223,8 +226,10 @@ const Shop = () => {
                     inputMode="numeric"
                     id="quantity"
                     onChange={handleInputChange}
+                    onBlur={handleEmptyField}
                   />
                 </div>
+                <p className="error-handle embolden hidden">Field required.</p>
                 <div>
                   <button type="submit" onClick={handleFormSubmit}>
                     Submit
