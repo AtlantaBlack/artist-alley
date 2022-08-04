@@ -61,6 +61,7 @@ export const ADD_POST = gql`
       title
       image
       description
+      createdAt
     }
   }
 `;

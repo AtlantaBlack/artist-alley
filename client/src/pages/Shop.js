@@ -50,6 +50,7 @@ const Shop = () => {
           // eslint-disable-next-line no-restricted-globals
           variables: { ...formState }
         });
+
         console.log(merch);
         cache.writeQuery({
           query: QUERY_USER_MERCH,
