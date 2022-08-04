@@ -228,7 +228,7 @@ const Shop = () => {
       </div>
 
       <div className="dash-flex-child">
-        <div style={{ border: '1px solid orange' }} className="flex-container">
+        <div className="flex-container">
           {loading ? (
             <div> loading </div>
           ) : (
