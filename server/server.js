@@ -34,6 +34,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
 // Create a new Apollo server instance with the GraphQL schema.
 
 // Had to remove typeDefs and resolvers from async params to keep eslint happy
