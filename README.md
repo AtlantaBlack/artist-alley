@@ -49,7 +49,7 @@ Technologies used in this collaboration:
 
 ---
 
-No need to clone or download the repo. Simply head on over to the application's page and create an account!
+No need to clone or download the repo. Simply head on over to the application's page and create an account! (Though Heroku is a bit finnicky, so we recommend cloning to play around with the site offline for yourself to test things out!)
 
 In order to experience Artist Alley, a user must first sign up for an account.
 
@@ -62,6 +62,18 @@ In the dashboard, an artist will be able to see all their current posts as well 
 ## Demo
 
 ---
+
+**Artist Alley Welcome Page**
+![Static image of the Artist Alley Welcome page](/client/src/images/artist-alley-welcome.png)
+
+**Artist Alley Sign Up Page**
+![Static image of the Artist Alley Signup page](/client/src/images/artist-alley-sign-up.png)
+
+**Make a post on Artist Alley**
+![Animated Gif of making a post on Artist Alley](/client/src/images/artist-alley-post.gif)
+
+**Add some Merch to Artist Alley**
+![Animated Gif of adding merch to the artist store](/client/src/images/artist-alley-merch.gif)
 
 ## Future Development
 

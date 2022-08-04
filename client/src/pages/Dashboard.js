@@ -29,7 +29,7 @@ const Dashboard = () => {
 
   // if query returns with a user
   if (data) {
-    console.log('data in dashboard: ', data);
+    // console.log('data in dashboard: ', data);
     // set the user variables when there's data
     loggedInUser = data.user.username;
     userType = data.user.userType;
@@ -49,8 +49,6 @@ const Dashboard = () => {
   });
 
   // const [addPost] = useMutation(ADD_POST);
-
-  console.log(posts);
 
   const [addPost, { error }] = useMutation(ADD_POST, {
     // All returning data from Apollo Client queries/mutations return in a `data` field, followed by the the data returned by the request
@@ -146,6 +144,8 @@ const Dashboard = () => {
     }
   };
 
+  // COMMENTED OUT DUE TO HEROKU DEPLOYMENT ISSUES. IMPLEMENTED APOLLO CACHE INSTEAD
+
   // // handler for submitting a new post
   // const handleFormSubmit = async (event) => {
   //   const response = await addPost({
@@ -192,7 +192,7 @@ const Dashboard = () => {
         }
       ]
     });
-    console.log('deletedPost: ', deletePost);
+    // console.log('deletedPost: ', deletePost);
   };
 
   // handler for empty field values that we want users to add a value to

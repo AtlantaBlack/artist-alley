@@ -36,10 +36,10 @@ const Shop = () => {
 
   const merch = data?.merch.merch || [];
 
-  console.log(merch);
-
   // set the person logged in as the artist
   const loggedInArtist = Auth.getProfile().data.username;
+
+  // USING APOLLO CACHE TO TRY AND MITIGATE HEROKU SLOWNESS ISSUES
 
   const [addMerch, { error }] = useMutation(ADD_MERCH, {
     update(cache, { data: { addMerch } }) {
@@ -61,8 +61,6 @@ const Shop = () => {
       }
     }
   });
-
-  // const [addMerch, { error }] = useMutation(ADD_MERCH);
 
   const [removeMerch] = useMutation(REMOVE_MERCH);
 
@@ -115,6 +113,9 @@ const Shop = () => {
         image: image,
         createdBy: loggedInArtist // set the artist as the person logged in
       }
+
+      // COMMENTED OUT DUE TO HEROKU SLOWNESS ISSUES. USED APOLLO CACHE INSTEAD
+
       // reload the page and fetch the artist's updated merch
       // refetchQueries: [
       //   {
